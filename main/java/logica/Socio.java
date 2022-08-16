@@ -1,5 +1,5 @@
 package logica;
 
-public class Socio {
+public class Socio extends Usuario{
 
 }
