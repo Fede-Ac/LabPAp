@@ -2,12 +2,12 @@ package logica;
 
 import java.util.Date;
 
-public class Usuario {
+public abstract class Usuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fecha; //ver que tipo de fecha usar
+	private Date fecha;
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, Date fecha) {
 		super();
