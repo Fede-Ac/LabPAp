@@ -1,10 +1,14 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class InstitucionDeportiva {
 	private String nombre;
 	private String descripcion;
 	private String url;
 	
+	private ArrayList<InstitucionDeportiva> actDeportivas = new ArrayList<>();
+
 	public InstitucionDeportiva(String nombre, String descripcion, String url) {
 		super();
 		this.nombre = nombre;
