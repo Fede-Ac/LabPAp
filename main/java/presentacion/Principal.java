@@ -45,7 +45,7 @@ public class Principal {
 		iControladorUsuario iCU = fabrica.getIControladorUsuario();
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
-		altaUsuarioInF = new AltaUsuario();
+		altaUsuarioInF = new AltaUsuario(iCU);
 		
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);

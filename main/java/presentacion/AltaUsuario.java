@@ -14,8 +14,6 @@ import java.awt.event.ActionEvent;
 import interfaces.iControladorUsuario;
 
 public class AltaUsuario extends JInternalFrame {
-	public AltaUsuario() {
-	}
 	private static final long serialVersionUID = 1L;
 	private iControladorUsuario icon;//
 	
@@ -43,6 +41,17 @@ public class AltaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	
+	public AltaUsuario(iControladorUsuario iCU) {
+		this.icon = iCU;
+		setResizable(true);
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("Agregar un Usuario");
+		
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		
+	}
 	
 	/*public AltaInstitucionDep(IControladorInstitucionDep icon) {
 		//
