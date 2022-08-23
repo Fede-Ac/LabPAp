@@ -1,6 +1,7 @@
 package interfaces;
 
 import logica.ControladorInstitucionDep;
+import logica.ControladorClase;
 
 public class Fabrica {
 	private static Fabrica instancia = null;
@@ -16,6 +17,10 @@ public class Fabrica {
 	
 	public IControladorInstitucionDep getIControladorInstitucionDep() {
 		return new ControladorInstitucionDep();
+	}
+	
+	public IControladorClase getIControladorClase() {
+		return new ControladorClase();
 	}
 	
 }
