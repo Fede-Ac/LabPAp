@@ -7,8 +7,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-/////import interfaces.Fabrica;
-/////import interfaces.IControladorInstitucionDep;
+import interfaces.Fabrica;
+import interfaces.iControladorUsuario;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -41,8 +41,8 @@ public class Principal {
 		initialize();
 		
 		//indicializo para usar operaciones
-		//////Fabrica fabrica = Fabrica.getInstancia();
-		//////IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
+		Fabrica fabrica = Fabrica.getInstancia();
+		iControladorUsuario iCU = fabrica.getIControladorUsuario();
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
