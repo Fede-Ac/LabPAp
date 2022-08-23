@@ -21,7 +21,7 @@ public class ManejadorUsuario {
 	public Usuario buscarUsuarioPorNickname(String nickname) {
 		Usuario usuario=null;
 		for(Usuario u: usuarios) {
-			if (u.getNickname() == nickname)
+			if (u.getNickname().equals(nickname))
 				usuario = u;
 		}
 		return usuario;
@@ -30,7 +30,7 @@ public class ManejadorUsuario {
 	public Usuario buscarUsuarioPorEmail(String email) {
 		Usuario usuario=null;
 		for(Usuario u: usuarios) {
-			if (u.getEmail() == email)
+			if (u.getEmail().equals(email))
 				usuario = u;
 		}
 		return usuario;

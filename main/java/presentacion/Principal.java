@@ -46,6 +46,8 @@ public class Principal {
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
 		altaUsuarioInF = new AltaUsuario(iCU);
+		altaUsuarioInF.setVisible(false);
+		frame.getContentPane().add(altaUsuarioInF);
 		
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);
@@ -75,7 +77,7 @@ public class Principal {
 		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
 		mntmAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				altaUsuarioInF.setVisible(true);
 			}
 		});
 		mnUsuarios.add(mntmAltaUsuario);

@@ -13,12 +13,10 @@ public class ControladorUsuario implements iControladorUsuario{
 	}
 	
 	public void altaUsuario(DtUsuario dtU) throws UsuarioRepetidoEx{
-		//busca si ya existe el usuario, con un find
-		//si es profesor crea profesor, si es socio crea socio
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		Usuario uN = mU.buscarUsuarioPorNickname(dtU.getNickname());
 		Usuario uE = mU.buscarUsuarioPorEmail(dtU.getEmail());
-		
+	
 		if(uN != null) 
 			throw new UsuarioRepetidoEx("El usuario " + uN.getNickname() + " ya esta registrado");
 		
@@ -26,7 +24,11 @@ public class ControladorUsuario implements iControladorUsuario{
 			throw new UsuarioRepetidoEx("El usuario con email " + uE.getEmail() + " ya esta registrado");
 		
 		
+		
 		if(dtU instanceof DtProfesor) {
+			
+			//se busca si la institucion existe, si no existe tira un error, si existe se la pasa por parametro al constructor
+			
 			uN = new Profesor(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(),
 							  dtU.getFecha(), ((DtProfesor) dtU).getDescripcion(), ((DtProfesor) dtU).getBiografia(), ((DtProfesor) dtU).getSitioWeb());
 		}
