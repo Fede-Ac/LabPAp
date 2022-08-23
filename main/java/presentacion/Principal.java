@@ -16,7 +16,7 @@ public class Principal {
 
 	private JFrame frame;
 	
-	//private AltaInstitucionDep altaInstitucionDepInF; 
+	private AltaUsuario altaUsuarioInF;
 
 	/**
 	 * Launch the application.
@@ -45,6 +45,8 @@ public class Principal {
 		iControladorUsuario iCU = fabrica.getIControladorUsuario();
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
+		altaUsuarioInF = new AltaUsuario();
+		
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);
 		/////frame.getContentPane().add(altaInstitucionDepInF);
@@ -69,6 +71,14 @@ public class Principal {
 		
 		JMenu mnUsuarios = new JMenu("Usuarios");
 		menuBar.add(mnUsuarios);
+		
+		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
+		mntmAltaUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnUsuarios.add(mntmAltaUsuario);
 		
 		JMenu mnInstitucionesDeportivas = new JMenu("Instituciones Deportivas");
 		menuBar.add(mnInstitucionesDeportivas);
