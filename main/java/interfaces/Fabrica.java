@@ -1,6 +1,9 @@
 package interfaces;
 
+
 import logica.ControladorInstitucionDep;
+import logica.ControladorUsuario;
+
 
 public class Fabrica {
 	private static Fabrica instancia = null;
@@ -14,8 +17,15 @@ public class Fabrica {
 		return instancia;
 	}
 	
+
 	public IControladorInstitucionDep getIControladorInstitucionDep() {
 		return new ControladorInstitucionDep();
 	}
+
+	public iControladorUsuario getIControladorUsuario() {
+		return new ControladorUsuario();
+	}
 	
 }
+	
+

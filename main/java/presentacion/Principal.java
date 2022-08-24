@@ -8,7 +8,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import interfaces.Fabrica;
+
 import interfaces.IControladorInstitucionDep;
+import interfaces.iControladorUsuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -16,7 +19,11 @@ public class Principal {
 
 	private JFrame frame;
 	
+
 	private AltaInstitucionDep altaInstitucionDepInF; 
+
+	private AltaUsuario altaUsuarioInF;
+
 
 	/**
 	 * Launch the application.
@@ -48,11 +55,17 @@ public class Principal {
 		altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		altaInstitucionDepInF.setVisible(false);
 		frame.getContentPane().add(altaInstitucionDepInF);
+		iControladorUsuario iCU = fabrica.getIControladorUsuario();
 		
+		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
+		altaUsuarioInF = new AltaUsuario(iCU);
+		altaUsuarioInF.setVisible(false);
+		frame.getContentPane().add(altaUsuarioInF);
 		
-		
-	
-	
+		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
+		//////altaInstitucionDepInF.setVisible(false);
+		/////frame.getContentPane().add(altaInstitucionDepInF);
+
 	}
 
 	/**
@@ -70,13 +83,27 @@ public class Principal {
 		JMenu mnUsuarios = new JMenu("Usuarios");
 		menuBar.add(mnUsuarios);
 		
+
+		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
+		mntmAltaUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaUsuarioInF.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmAltaUsuario);
+		
+
 		JMenu mnInstitucionesDeportivas = new JMenu("Instituciones Deportivas");
 		menuBar.add(mnInstitucionesDeportivas);
 		
 		JMenuItem mntmAltaInstitucinDep = new JMenuItem("Alta institución dep.");
 		mntmAltaInstitucinDep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				altaInstitucionDepInF.setVisible(true);
+
+				////altaInstitucionDepInF.setVisible(true);
+
 			}
 		});
 		mnInstitucionesDeportivas.add(mntmAltaInstitucinDep);
