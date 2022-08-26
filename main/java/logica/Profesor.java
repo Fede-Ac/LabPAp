@@ -2,6 +2,9 @@ package logica;
 
 import java.util.Date;
 
+import datatypes.DtProfesor;
+import datatypes.DtUsuario;
+
 public class Profesor extends Usuario{
 	private String descripcion;
 	private String biografia;
@@ -41,5 +44,25 @@ public class Profesor extends Usuario{
 
 	public void setSitioWeb(String sitioWeb) {
 		this.sitioWeb = sitioWeb;
+	}
+
+	@Override
+	public String toString() {
+		return "Profesor [descripcion=" + descripcion + ", biografia=" + biografia + ", sitioWeb=" + sitioWeb + "]";
+	}
+	
+	public DtProfesor consultaProfesor(Profesor prof) {
+		DtProfesor retorno;
+		retorno = new DtProfesor(prof.getNickname(),prof.getNombre(),prof.getApellido(),prof.getEmail(),prof.getFecha());
+		return retorno;
+	}
+
+	@Override
+	public DtUsuario consulta(Usuario uS) {
+		
+		DtProfesor dtP;
+		dtP = new DtProfesor(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha(),this.biografia,this.descripcion,this.sitioWeb, this.biografia);
+		
+		return dtP;
 	}
 }

@@ -23,6 +23,8 @@ public class Principal {
 	private AltaInstitucionDep altaInstitucionDepInF; 
 
 	private AltaUsuario altaUsuarioInF;
+	
+	private ConsultaUsuario consultaUsuarioInF;
 
 
 	/**
@@ -46,7 +48,6 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
-		
 		//indicializo para usar operaciones
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
@@ -61,6 +62,14 @@ public class Principal {
 		altaUsuarioInF = new AltaUsuario(iCU);
 		altaUsuarioInF.setVisible(false);
 		frame.getContentPane().add(altaUsuarioInF);
+		
+		iControladorUsuario icoN = fabrica.getIControladorUsuario();
+		consultaUsuarioInF = new ConsultaUsuario(icoN);
+		consultaUsuarioInF.setSize(450, 327);
+		consultaUsuarioInF.setLocation(100, 100);
+		consultaUsuarioInF.setVisible(false);
+		frame.getContentPane().add(consultaUsuarioInF);
+		//consultaUsuariosInF.getContentPane().setLayout(null);
 		
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);
@@ -91,6 +100,14 @@ public class Principal {
 			}
 		});
 		mnUsuarios.add(mntmAltaUsuario);
+		
+		JMenuItem mntmConsultaUsuaro = new JMenuItem("Consulta Usuario");
+		mntmConsultaUsuaro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				consultaUsuarioInF.setVisible(true);
+			}
+		});
+		mnUsuarios.add(mntmConsultaUsuaro);
 		
 
 		JMenu mnInstitucionesDeportivas = new JMenu("Instituciones Deportivas");
