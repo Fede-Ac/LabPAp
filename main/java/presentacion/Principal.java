@@ -6,7 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
+import excepciones.NoExistenUsuariosEx;
 import interfaces.Fabrica;
 
 import interfaces.IControladorInstitucionDep;
@@ -64,7 +66,12 @@ public class Principal {
 		frame.getContentPane().add(altaUsuarioInF);
 		
 		iControladorUsuario icoN = fabrica.getIControladorUsuario();
-		consultaUsuarioInF = new ConsultaUsuario(icoN);
+		try {
+			consultaUsuarioInF = new ConsultaUsuario(icoN);
+		} catch (NoExistenUsuariosEx e) {
+			JOptionPane.showMessageDialog(consultaUsuarioInF, e.getMessage(), "Consulta Usuario", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
 		consultaUsuarioInF.setSize(450, 327);
 		consultaUsuarioInF.setLocation(100, 100);
 		consultaUsuarioInF.setVisible(false);

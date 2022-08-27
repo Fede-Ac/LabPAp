@@ -38,7 +38,10 @@ public class ManejadorUsuario {
 
 	public ArrayList<String> toNickString() {
 		ArrayList<String> nickUsuarios = new ArrayList<>();
-		this.usuarios.forEach((n)-> nickUsuarios.add(n.getNickname()));
+		//this.usuarios.forEach((n)-> nickUsuarios.add(n.getNickname()));
+		for(Usuario u : usuarios){
+			nickUsuarios.add(u.getNickname());
+		}
 		return nickUsuarios;
 	}
 
