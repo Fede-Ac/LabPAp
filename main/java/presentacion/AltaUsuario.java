@@ -12,7 +12,7 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import interfaces.iControladorUsuario;
+import interfaces.IControladorUsuario;
 import logica.ManejadorUsuario;
 import logica.Usuario;
 
@@ -38,7 +38,7 @@ import javax.swing.SpinnerListModel;
 
 public class AltaUsuario extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
-	private iControladorUsuario icon;//
+	private IControladorUsuario icon;//
 	
 	private JTextField txtNickname;
 	private JTextField txtNombre;
@@ -77,7 +77,7 @@ public class AltaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	
-	public AltaUsuario(iControladorUsuario iCU) {
+	public AltaUsuario(IControladorUsuario iCU) {
 		this.icon = iCU;
 		setResizable(false);
 		setIconifiable(true);

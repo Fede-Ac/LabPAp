@@ -3,14 +3,13 @@ package logica;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
-import excepciones.NoExistenUsuariosEx;
 import excepciones.UsuarioRepetidoEx;
-import interfaces.iControladorUsuario;
+import interfaces.IControladorUsuario;
 
 import java.util.ArrayList;
 
 
-public class ControladorUsuario implements iControladorUsuario{
+public class ControladorUsuario implements IControladorUsuario{
 
 	public ControladorUsuario() {
 		super();
@@ -42,12 +41,16 @@ public class ControladorUsuario implements iControladorUsuario{
 		
 		mU.agregarUsuario(uN);
 	}
-	public ArrayList<String> mostrarUsuarios() throws NoExistenUsuariosEx{ // Retorna un set(String): ArrayList
+	public String[] mostrarUsuarios(){ // Retorna un set(String): ArrayList
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		if(mU == null)
-			throw new NoExistenUsuariosEx ("Aun no se ha creado ningun Usuario");
 		ArrayList<String> users = mU.toNickString();
-		return users;
+		String[] users_ret = new String[users.size()];
+		int i = 0;
+		for(String s : users) {
+			users_ret[i]=s;
+			i++;
+		}		
+		return users_ret;
 	}	
 	public DtUsuario consultaUsuario(String email){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();

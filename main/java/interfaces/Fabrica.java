@@ -22,7 +22,7 @@ public class Fabrica {
 		return new ControladorInstitucionDep();
 	}
 
-	public iControladorUsuario getIControladorUsuario() {
+	public IControladorUsuario getIControladorUsuario() {
 		return new ControladorUsuario();
 	}
 	

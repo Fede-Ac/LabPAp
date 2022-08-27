@@ -1,29 +1,23 @@
 package presentacion;
 
 import java.awt.EventQueue;
-import java.util.ArrayList;
+import java.util.Vector;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 
-import excepciones.NoExistenUsuariosEx;
-import interfaces.iControladorUsuario;
+import interfaces.IControladorUsuario;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
-
+	
+	
 	private static final long serialVersionUID = 1L;
-	private iControladorUsuario icon;
-	private String selectedNickname;
-	private JList<String> listaUsuarios;
-	
-	
+	private IControladorUsuario icon;
+	private JList<String> listaUsuarios = new JList<>();
 
 	/**
 	 * Launch the application.
@@ -39,61 +33,42 @@ public class ConsultaUsuario extends JInternalFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
-	 * @throws NoExistenUsuariosEx 
 	 */
-	public ConsultaUsuario(iControladorUsuario icon) throws NoExistenUsuariosEx {
-		setTitle("Consulta Usuarios");
-		setBounds(100, 100, 450, 300);
+	public ConsultaUsuario(IControladorUsuario icon) {
 		this.icon = icon;
 		setResizable(true);
 		setIconifiable(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setClosable(true);
+		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
-		selectedNickname = null;
 		
 		JLabel lblUsuarios = new JLabel("Usuarios");
 		lblUsuarios.setBounds(12, 12, 70, 15);
 		getContentPane().add(lblUsuarios);
 		
-		DefaultListModel<String>  model = new DefaultListModel<>();
-		ArrayList<String> aux = icon.mostrarUsuarios();
-		
-		for(String agrego : aux) {
-			model.addElement(agrego);
-		}
-		model.addElement("Hola");
-		model.addElement("Hola1");
-		model.addElement("Hola2");
-		this.listaUsuarios = new JList<String>();
-		
-		listaUsuarios.setBounds(12, 39, 117, 188);
+		//JList listaUsuarios = new JList();
+		listaUsuarios.setBounds(12, 43, 116, 138);
 		getContentPane().add(listaUsuarios);
-
-		listaUsuarios.setModel(model);
 		
 		JButton btnSeleccionar = new JButton("Seleccionar");
-		btnSeleccionar.setBounds(12, 231, 117, 25);
+		btnSeleccionar.setBounds(12, 193, 116, 25);
 		getContentPane().add(btnSeleccionar);
-		
-		JButton btnVolver = new JButton("Volver");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				consultaUsuarioCancelarActionPerformed(e);
-			}
-		});
-		btnVolver.setBounds(311, 231, 117, 25);
-		getContentPane().add(btnVolver);
+
 	}
 	
-	protected void consultaUsuarioCancelarActionPerformed(ActionEvent arg0){
-		setVisible(false);
-		
+	public void inicializarLista() {
+		DefaultListModel<String> modelo = new DefaultListModel<String>();
+		int i=0;
+		String[] a = icon.mostrarUsuarios();
+		for (String s : a) {
+			s=a[i];
+			modelo.addElement(s);
+			i++;	
+		}
+		this.listaUsuarios.setModel(modelo);
 	}
-	DefaultListModel<Object> listModel = new DefaultListModel<>();
 }
-

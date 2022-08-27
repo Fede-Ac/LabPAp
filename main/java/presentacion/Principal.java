@@ -12,7 +12,7 @@ import excepciones.NoExistenUsuariosEx;
 import interfaces.Fabrica;
 
 import interfaces.IControladorInstitucionDep;
-import interfaces.iControladorUsuario;
+import interfaces.IControladorUsuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -58,20 +58,20 @@ public class Principal {
 		altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		altaInstitucionDepInF.setVisible(false);
 		frame.getContentPane().add(altaInstitucionDepInF);
-		iControladorUsuario iCU = fabrica.getIControladorUsuario();
+		IControladorUsuario iCU = fabrica.getIControladorUsuario();
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
 		altaUsuarioInF = new AltaUsuario(iCU);
 		altaUsuarioInF.setVisible(false);
 		frame.getContentPane().add(altaUsuarioInF);
 		
-		iControladorUsuario icoN = fabrica.getIControladorUsuario();
-		try {
+		IControladorUsuario icoN = fabrica.getIControladorUsuario();
+		//try {
 			consultaUsuarioInF = new ConsultaUsuario(icoN);
-		} catch (NoExistenUsuariosEx e) {
+		/*} catch (NoExistenUsuariosEx e) {
 			JOptionPane.showMessageDialog(consultaUsuarioInF, e.getMessage(), "Consulta Usuario", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
-		}
+		}*/
 		consultaUsuarioInF.setSize(450, 327);
 		consultaUsuarioInF.setLocation(100, 100);
 		consultaUsuarioInF.setVisible(false);
@@ -111,6 +111,7 @@ public class Principal {
 		JMenuItem mntmConsultaUsuaro = new JMenuItem("Consulta Usuario");
 		mntmConsultaUsuaro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				consultaUsuarioInF.inicializarLista();
 				consultaUsuarioInF.setVisible(true);
 			}
 		});

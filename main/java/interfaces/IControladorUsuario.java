@@ -6,10 +6,10 @@ import excepciones.NoExistenUsuariosEx;
 import excepciones.UsuarioRepetidoEx;
 
 
-public interface iControladorUsuario {
+public interface IControladorUsuario {
 	public void altaUsuario(DtUsuario dtU) throws UsuarioRepetidoEx;
 	
 	public DtUsuario consultaUsuario(String email);
-	public ArrayList<String> mostrarUsuarios() throws NoExistenUsuariosEx;
+	public String[] mostrarUsuarios();
 }
 
