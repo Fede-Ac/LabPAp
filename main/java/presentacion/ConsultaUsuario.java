@@ -1,23 +1,33 @@
 package presentacion;
 
 import java.awt.EventQueue;
-import java.util.Vector;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import interfaces.IControladorUsuario;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionListener;
+
+import datatypes.DtUsuario;
+
+import javax.swing.event.ListSelectionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class ConsultaUsuario extends JInternalFrame {
 	
 	
 	private static final long serialVersionUID = 1L;
 	private IControladorUsuario icon;
-	private JList<String> listaUsuarios = new JList<>();
+	private JList<String> listaUsuarios = new JList<String>();
+	private String nickSelected;
+	private JTextArea textAreaInformacion = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -50,17 +60,52 @@ public class ConsultaUsuario extends JInternalFrame {
 		lblUsuarios.setBounds(12, 12, 70, 15);
 		getContentPane().add(lblUsuarios);
 		
-		//JList listaUsuarios = new JList();
-		listaUsuarios.setBounds(12, 43, 116, 138);
-		getContentPane().add(listaUsuarios);
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(12, 43, 116, 138);
+		getContentPane().add(scrollPane_1);
+		scrollPane_1.setViewportView(listaUsuarios);
+		listaUsuarios.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				nickSelectedAcionPerformed(arg0);
+			}
+		});
 		
 		JButton btnSeleccionar = new JButton("Seleccionar");
+		btnSeleccionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				selectedFromListActionPerformed(arg0);
+			}
+		});
 		btnSeleccionar.setBounds(12, 193, 116, 25);
 		getContentPane().add(btnSeleccionar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(163, 44, 248, 137);
+		getContentPane().add(scrollPane);
+		scrollPane.setViewportView(textAreaInformacion);
+		textAreaInformacion.setVisible(false);
+		textAreaInformacion.setEditable(false);
+		//textAreaInformacion.setText("Hola");
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				limpiarTextAreaActionPerformed(arg0);
+			}
+		});
+		btnLimpiar.setBounds(293, 193, 117, 25);
+		getContentPane().add(btnLimpiar);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setBounds(161, 12, 90, 15);
+		getContentPane().add(lblDescripcion);
+
+		
 
 	}
 	
 	public void inicializarLista() {
+		
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		int i=0;
 		String[] a = icon.mostrarUsuarios();
@@ -70,5 +115,17 @@ public class ConsultaUsuario extends JInternalFrame {
 			i++;	
 		}
 		this.listaUsuarios.setModel(modelo);
+	}	
+	public void nickSelectedAcionPerformed(ListSelectionEvent e){
+		this.nickSelected = new String(listaUsuarios.getSelectedValue());
+	}
+	public void selectedFromListActionPerformed (ActionEvent arg0){
+		this.textAreaInformacion.setVisible(true);
+		DtUsuario dtu = icon.consultaUsuario(nickSelected);
+		this.textAreaInformacion.setText(dtu.toString());		
+	}
+	public void limpiarTextAreaActionPerformed(ActionEvent arg0){
+		this.textAreaInformacion.setText("");
+		JOptionPane.showMessageDialog(this.textAreaInformacion, "Area de texto Limpiada con exito","Limpiar Area",JOptionPane.INFORMATION_MESSAGE);
 	}
 }

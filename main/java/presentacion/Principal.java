@@ -113,6 +113,7 @@ public class Principal {
 			public void actionPerformed(ActionEvent e) {
 				consultaUsuarioInF.inicializarLista();
 				consultaUsuarioInF.setVisible(true);
+					
 			}
 		});
 		mnUsuarios.add(mntmConsultaUsuaro);

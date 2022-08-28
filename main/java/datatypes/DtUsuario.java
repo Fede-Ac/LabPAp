@@ -37,6 +37,13 @@ public class DtUsuario {
 	public Date getFecha() {
 		return fecha;
 	}
+
+	@Override
+	public String toString() {
+		return "DtUsuario [nickname=" + nickname + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
+				+ ", fecha=" + fecha + "]";
+	}
+	
 	
 	
 }

@@ -52,16 +52,20 @@ public class ControladorUsuario implements IControladorUsuario{
 		}		
 		return users_ret;
 	}	
-	public DtUsuario consultaUsuario(String email){
+	public DtUsuario consultaUsuario(String nick){
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
-		Usuario uS = mU.buscarUsuarioPorEmail(email);
+		Usuario uS = mU.buscarUsuarioPorNickname(nick);
 		DtUsuario dtU;
 		
 		if (uS instanceof Profesor) {
-			dtU = new DtProfesor(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha());
+			Profesor p = (Profesor) uS;
+			 dtU = new DtProfesor(p.getNickname(),p.getNombre(),p.getApellido(),p.getEmail(),p.getFecha(),p.getBiografia(),p.getDescripcion(),p.getSitioWeb(),null);
+			 // missing institution.
+				
 		}	
 		else {
-			dtU = new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha());
+			Socio s = (Socio) uS;
+			dtU = new DtSocio(s.getNickname(),s.getNombre(),s.getApellido(),s.getEmail(),s.getFecha());
 		}
 		
 		return dtU;
