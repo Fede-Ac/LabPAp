@@ -10,7 +10,7 @@ public class Clase {
 	private String url;
 	private Date fechaReg;
 	
-	private ArrayList<InstitucionDeportiva> actDeportivas = new ArrayList<>();
+	private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
 	public Clase(String nombre, Date fecha, Date horaInicio, String url, Date fechaReg) {
 		super();

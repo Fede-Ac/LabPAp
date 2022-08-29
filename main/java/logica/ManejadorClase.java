@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ManejadorClase {
 	private static ManejadorClase instancia = null;
 	
-	private ArrayList<InstitucionDeportiva> clases = new ArrayList<>();
+	private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
 	private ManejadorClase() {}
 	
@@ -18,15 +18,15 @@ public class ManejadorClase {
 	
 	public boolean existeClase(String nombre) {
 		Boolean existe = false; 
-		for (Clase clase : clases) {
-			if (clase.getNombre().equals(nombre))
+		for (Clase cls : clases) {
+			if (cls.getNombre().equals(nombre))
 				existe=true;
 		}
 		return existe;
 	}
 	
-	public void add(InstitucionDeportiva clase) {
-		instDeportivas.add(instDep);		
+	public void add(Clase clase) {
+		clases.add(clase);		
 	}
 
 	

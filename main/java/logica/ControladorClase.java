@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Date;
+
 import excepciones.ClaseRepetidaEx;
 import interfaces.IControladorClase;
 

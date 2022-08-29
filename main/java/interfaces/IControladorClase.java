@@ -1,5 +1,7 @@
 package interfaces;
 
+import java.util.Date;
+
 import excepciones.ClaseRepetidaEx;
 
 public interface IControladorClase {
