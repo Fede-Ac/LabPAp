@@ -75,6 +75,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblFecha);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("d MM y");
 		dateChooser.setBounds(243, 51, 114, 20);
 		getContentPane().add(dateChooser);
 		
@@ -101,11 +102,12 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		
 		//FECHA ALTA
 		
-		JLabel lblUrl_2_1 = new JLabel("Fecha de alta");
-		lblUrl_2_1.setBounds(12, 144, 70, 15);
-		getContentPane().add(lblUrl_2_1);
+		JLabel lblFechaAlt = new JLabel("Fecha de alta");
+		lblFechaAlt.setBounds(12, 144, 70, 15);
+		getContentPane().add(lblFechaAlt);
 		
 		JDateChooser dateChooser_1 = new JDateChooser();
+		dateChooser_1.setDateFormatString("d MM y");
 		dateChooser_1.setBounds(243, 141, 114, 20);
 		getContentPane().add(dateChooser_1);
 		
