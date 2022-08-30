@@ -14,16 +14,19 @@ import java.awt.event.ActionListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorClase;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JList;
+import javax.swing.JSlider;
+import com.toedter.components.JSpinField;
+
 
 public class AltaDictadoDeClase extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
 	private IControladorClase icon;//
 	private JTextField textNombre;
-	private JTextField textFecha;
-	private JTextField textHoraIn;
-	private JLabel lblError;
 	private JTextField textURL;
-	private JTextField textFechaAlt;
 	/**
 	 * Launch the application.
 	 
@@ -51,8 +54,10 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		setClosable(true);
 		setTitle("Agregar una Institución deportiva");
 		//
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 391, 313);
 		getContentPane().setLayout(null);
+		
+		//NOMBRRE
 		
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
 		lblNombreDeLa.setBounds(12, 24, 198, 15);
@@ -63,23 +68,48 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
-		JLabel lblDescripcin = new JLabel("Fecha");
-		lblDescripcin.setBounds(12, 54, 124, 15);
-		getContentPane().add(lblDescripcin);
+		//FECHA
 		
-		textFecha = new JTextField();
-		textFecha.setBounds(243, 51, 114, 19);
-		getContentPane().add(textFecha);
-		textFecha.setColumns(10);
+		JLabel lblFecha = new JLabel("Fecha");
+		lblFecha.setBounds(12, 54, 124, 15);
+		getContentPane().add(lblFecha);
 		
-		JLabel lblUrl = new JLabel("Hora de inicio");
-		lblUrl.setBounds(12, 80, 70, 15);
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(243, 51, 114, 20);
+		getContentPane().add(dateChooser);
+		
+		//HORA
+		
+		JLabel lblHora = new JLabel("Hora de inicio");
+		lblHora.setBounds(12, 84, 70, 15);
+		getContentPane().add(lblHora);
+		
+		JSpinField spinField = new JSpinField();
+		spinField.setBounds(311, 82, 46, 20);
+		getContentPane().add(spinField);
+		
+		//URL
+		
+		JLabel lblUrl = new JLabel("URL");
+		lblUrl.setBounds(12, 114, 70, 15);
 		getContentPane().add(lblUrl);
 		
-		textHoraIn = new JTextField();
-		textHoraIn.setBounds(243, 81, 114, 19);
-		getContentPane().add(textHoraIn);
-		textHoraIn.setColumns(10);
+		textURL = new JTextField();
+		textURL.setColumns(10);
+		textURL.setBounds(243, 111, 114, 19);
+		getContentPane().add(textURL);
+		
+		//FECHA ALTA
+		
+		JLabel lblUrl_2_1 = new JLabel("Fecha de alta");
+		lblUrl_2_1.setBounds(12, 144, 70, 15);
+		getContentPane().add(lblUrl_2_1);
+		
+		JDateChooser dateChooser_1 = new JDateChooser();
+		dateChooser_1.setBounds(243, 141, 114, 20);
+		getContentPane().add(dateChooser_1);
+		
+		//INGRESAR
 		
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
@@ -88,36 +118,16 @@ public class AltaDictadoDeClase extends JInternalFrame {
 				addClasePerformed(e);
 			}
 		});
-		btnIngresar.setBounds(311, 231, 117, 25);
+		btnIngresar.setBounds(243, 231, 117, 25);
 		getContentPane().add(btnIngresar);
+		
+		//CANCELAR
 		
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(12, 231, 117, 25);
 		getContentPane().add(btnCancelar);
 		
-		lblError = new JLabel("");
-		lblError.setForeground(new Color(239, 41, 41));
-		lblError.setFont(new Font("Dialog", Font.PLAIN, 9));
-		lblError.setBounds(99, 194, 254, 15);
-		getContentPane().add(lblError);
-		
-		JLabel lblUrl_2 = new JLabel("URL");
-		lblUrl_2.setBounds(12, 114, 70, 15);
-		getContentPane().add(lblUrl_2);
-		
-		textURL = new JTextField();
-		textURL.setColumns(10);
-		textURL.setBounds(243, 111, 114, 19);
-		getContentPane().add(textURL);
-		
-		JLabel lblUrl_2_1 = new JLabel("Fecha de alta");
-		lblUrl_2_1.setBounds(12, 144, 70, 15);
-		getContentPane().add(lblUrl_2_1);
-		
-		textFechaAlt = new JTextField();
-		textFechaAlt.setColumns(10);
-		textFechaAlt.setBounds(243, 141, 114, 19);
-		getContentPane().add(textFechaAlt);
+
 		
 
 	}
