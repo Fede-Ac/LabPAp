@@ -81,6 +81,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(label);
 		
 		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("d MM y");
 		dateChooser.setBounds(100, 191, 75, 19);
 		getContentPane().add(dateChooser);
 		
