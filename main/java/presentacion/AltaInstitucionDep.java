@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorInstitucionDep;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class AltaInstitucionDep extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
@@ -40,6 +42,12 @@ public class AltaInstitucionDep extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaInstitucionDep(IControladorInstitucionDep icon) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				internalFrameClosedEvent(e);
+			}
+		});
 		//
 		this.icon = icon;
 		setResizable(true);
@@ -55,7 +63,8 @@ public class AltaInstitucionDep extends JInternalFrame {
 		getContentPane().add(lblNombreDeLa);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(243, 42, 114, 19);
+		textNombre.setToolTipText("Nombre de la institución a añadir");
+		textNombre.setBounds(243, 42, 152, 19);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
@@ -64,7 +73,8 @@ public class AltaInstitucionDep extends JInternalFrame {
 		getContentPane().add(lblDescripcin);
 		
 		textDescripcion = new JTextField();
-		textDescripcion.setBounds(243, 92, 114, 19);
+		textDescripcion.setToolTipText("Una breve descripción de la institución");
+		textDescripcion.setBounds(243, 92, 152, 19);
 		getContentPane().add(textDescripcion);
 		textDescripcion.setColumns(10);
 		
@@ -73,7 +83,8 @@ public class AltaInstitucionDep extends JInternalFrame {
 		getContentPane().add(lblUrl);
 		
 		textURL = new JTextField();
-		textURL.setBounds(243, 145, 114, 19);
+		textURL.setToolTipText("Dirección web de la institución");
+		textURL.setBounds(243, 145, 152, 19);
 		getContentPane().add(textURL);
 		textURL.setColumns(10);
 		
@@ -88,13 +99,18 @@ public class AltaInstitucionDep extends JInternalFrame {
 		getContentPane().add(btnIngresar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancelar.setBounds(12, 231, 117, 25);
 		getContentPane().add(btnCancelar);
 		
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(239, 41, 41));
-		lblError.setFont(new Font("Dialog", Font.PLAIN, 9));
-		lblError.setBounds(99, 194, 254, 15);
+		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblError.setBounds(115, 186, 227, 33);
 		getContentPane().add(lblError);
 		
 
@@ -105,18 +121,24 @@ public class AltaInstitucionDep extends JInternalFrame {
 		String descripcion = this.textDescripcion.getText();
 		String URL = this.textURL.getText();
 		if (nombre.isEmpty()) {
-			this.lblError.setText("Nombre no puede estar vacio");
+			this.lblError.setText("Nombre no puede estar vacío");
 		}else if (descripcion.isEmpty()) {
-			this.lblError.setText("Descripción no puede estar vacio");			
+			this.lblError.setText("Descripción no puede estar vacío");			
 		}else if (URL.isEmpty()) {
-			this.lblError.setText("URL no puede estar vacio");
+			this.lblError.setText("URL no puede estar vacío");
 		}else{
 			try {
 				this.icon.addInstitucionDep(this.textNombre.getText(),this.textDescripcion.getText(),this.textURL.getText());
 			}catch(InstitucionDepRepetidaEx ex){
-				
+				this.lblError.setText(ex.getMessage());
 			}
 		}
-		
+	}
+	
+	protected void internalFrameClosedEvent(InternalFrameEvent e) {
+		this.textNombre.setText(null);
+		this.textDescripcion.setText(null);
+		this.textURL.setText(null);
+		this.lblError.setText(null);
 	}
 }

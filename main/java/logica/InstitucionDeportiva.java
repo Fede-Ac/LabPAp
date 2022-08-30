@@ -6,8 +6,8 @@ public class InstitucionDeportiva {
 	private String nombre;
 	private String descripcion;
 	private String url;
-	
-	private ArrayList<InstitucionDeportiva> actDeportivas = new ArrayList<>();
+	private ArrayList<ActividadDeportiva> actDeportivas = new ArrayList<>();
+
 
 	public InstitucionDeportiva(String nombre, String descripcion, String url) {
 		super();
@@ -39,7 +39,9 @@ public class InstitucionDeportiva {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
+
+	public ArrayList<ActividadDeportiva> getActDeportivas() {
+		return actDeportivas;
+	}
 	
 }
