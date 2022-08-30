@@ -1,5 +1,6 @@
 package datatypes;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class DtProfesor extends DtUsuario{
@@ -36,13 +37,12 @@ public class DtProfesor extends DtUsuario{
 	public String getInstitucion() {
 		return institucion;
 	}
-
 	@Override
 	public String toString() {
 		return "PROFESOR:\nNICK : " + getNickname() + "\n Nombre: " + getNombre() + "\n Apellido: " + getApellido() + "\nEmail: " + getEmail() 
-				+ "\nFecha de Nacimiento: " + getFecha().getDay() +  "/" + getFecha().getMonth() + "/" + getFecha().getYear() 
-				+ "\nDescripcion: " + descripcion + "\nBiografia: " + biografia + "\nSitioWeb: " + sitioWeb
-				+ "\ninstitucion: " + institucion;
+				+ "\nFecha de Nacimiento: " + getFecha()+  "/" + getFecha().getMonth() + "/" + getFecha().getYear() 
+				+ "\nDescripcion=" + descripcion + "\nBiografia=" + biografia + "\nSitioWeb=" + sitioWeb
+				+ "\ninstitucion=" + institucion;
 	}
 	
 

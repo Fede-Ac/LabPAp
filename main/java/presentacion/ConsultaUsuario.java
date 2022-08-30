@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class ConsultaUsuario extends JInternalFrame {
 	
@@ -49,6 +51,11 @@ public class ConsultaUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ConsultaUsuario(IControladorUsuario icon) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosing(InternalFrameEvent e) {
+			}
+		});
 		this.icon = icon;
 		setResizable(true);
 		setIconifiable(true);
@@ -107,17 +114,14 @@ public class ConsultaUsuario extends JInternalFrame {
 	public void inicializarLista() {
 		
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		int i=0;
 		String[] a = icon.mostrarUsuarios();
 		for (String s : a) {
-			s=a[i];
 			modelo.addElement(s);
-			i++;	
 		}
-		this.listaUsuarios.setModel(modelo);
+		listaUsuarios.setModel(modelo);
 	}	
 	public void nickSelectedAcionPerformed(ListSelectionEvent e){
-		this.nickSelected = new String(listaUsuarios.getSelectedValue());
+		nickSelected = listaUsuarios.getSelectedValue();
 	}
 	public void selectedFromListActionPerformed (ActionEvent arg0){
 		this.textAreaInformacion.setVisible(true);
