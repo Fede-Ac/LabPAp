@@ -2,7 +2,9 @@ package interfaces;
 
 
 import logica.ControladorInstitucionDep;
+import logica.ControladorClase;
 import logica.ControladorUsuario;
+
 import logica.ControladorActividadDeportiva;
 
 public class Fabrica {
@@ -29,7 +31,10 @@ public class Fabrica {
 	public IControladorActividadDeportiva getIControladorActividadDeportiva() {
 		return new ControladorActividadDeportiva();
 	}
+
+	public IControladorClase getIControladorClase() {
+		return new ControladorClase();
+	}
+	
 	
 }
-	
-

@@ -1,5 +1,6 @@
 package logica;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Clase {
@@ -9,9 +10,8 @@ public class Clase {
 	private String url;
 	private Date fechaReg;
 	
-	public Clase() {
-		super();
-	}
+	private ArrayList<Clase> clases = new ArrayList<Clase>();
+	
 	public Clase(String nombre, Date fecha, Date horaInicio, String url, Date fechaReg) {
 		super();
 		this.nombre = nombre;
