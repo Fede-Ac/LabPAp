@@ -1,9 +1,10 @@
 package interfaces;
 
-import java.util.Date;
-
 import excepciones.ClaseRepetidaEx;
 
+import java.util.GregorianCalendar;
+
+
 public interface IControladorClase {
-	public void addClase(String nombre, Date fecha, Date horaInicio, String url, Date fechaReg) throws ClaseRepetidaEx;
+	public void addClase(String nombre, GregorianCalendar fecha, int hora, String URL, GregorianCalendar fechaAlt) throws ClaseRepetidaEx;
 }

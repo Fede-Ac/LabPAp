@@ -13,6 +13,7 @@ import interfaces.Fabrica;
 
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
+import interfaces.IControladorClase;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,7 @@ public class Principal {
 
 	private JFrame frame;
 	
+	private AltaDictadoDeClase altaDictadoDeClaseInF;
 
 	private AltaInstitucionDep altaInstitucionDepInF; 
 
@@ -52,6 +54,7 @@ public class Principal {
 		initialize();
 		//indicializo para usar operaciones
 		Fabrica fabrica = Fabrica.getInstancia();
+		IControladorClase iconClase = fabrica.getIControladorClase();
 		IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
 		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
@@ -81,6 +84,10 @@ public class Principal {
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);
 		/////frame.getContentPane().add(altaInstitucionDepInF);
+		
+		altaDictadoDeClaseInF = new AltaDictadoDeClase(iconClase);
+		altaDictadoDeClaseInF.setVisible(false);
+		frame.getContentPane().add(altaDictadoDeClaseInF);
 
 	}
 
@@ -133,5 +140,16 @@ public class Principal {
 			}
 		});
 		mnInstitucionesDeportivas.add(mntmAltaInstitucinDep);
+		
+		JMenu mnDictadoDeClases = new JMenu("Dictado de clases");
+		menuBar.add(mnDictadoDeClases);
+		
+		JMenuItem mntmDictadoDeClases = new JMenuItem("Alta dictado de clase");
+		mntmDictadoDeClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaDictadoDeClaseInF.setVisible(true);
+			}
+		});
+		mnDictadoDeClases.add(mntmDictadoDeClases);
 	}
 }

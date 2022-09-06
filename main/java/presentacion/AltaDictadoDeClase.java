@@ -5,20 +5,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import excepciones.ClaseRepetidaEx;
-import excepciones.InstitucionDepRepetidaEx;
 
 import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorClase;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JList;
-import javax.swing.JSlider;
 import com.toedter.components.JSpinField;
 
 
@@ -27,6 +21,10 @@ public class AltaDictadoDeClase extends JInternalFrame {
 	private IControladorClase icon;//
 	private JTextField textNombre;
 	private JTextField textURL;
+	private JDateChooser dateFecha;
+	private JSpinField spinHora;
+	private JDateChooser dateFechaAlta;
+	private JLabel lblError;
 	/**
 	 * Launch the application.
 	 
@@ -74,10 +72,10 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		lblFecha.setBounds(12, 54, 124, 15);
 		getContentPane().add(lblFecha);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("d MM y");
-		dateChooser.setBounds(243, 51, 114, 20);
-		getContentPane().add(dateChooser);
+		dateFecha = new JDateChooser();
+		dateFecha.setDateFormatString("d MM y");
+		dateFecha.setBounds(243, 51, 114, 20);
+		getContentPane().add(dateFecha);
 		
 		//HORA
 		
@@ -85,9 +83,9 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		lblHora.setBounds(12, 84, 70, 15);
 		getContentPane().add(lblHora);
 		
-		JSpinField spinField = new JSpinField();
-		spinField.setBounds(311, 82, 46, 20);
-		getContentPane().add(spinField);
+		spinHora = new JSpinField();
+		spinHora.setBounds(311, 82, 46, 20);
+		getContentPane().add(spinHora);
 		
 		//URL
 		
@@ -106,10 +104,10 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		lblFechaAlt.setBounds(12, 144, 70, 15);
 		getContentPane().add(lblFechaAlt);
 		
-		JDateChooser dateChooser_1 = new JDateChooser();
-		dateChooser_1.setDateFormatString("d MM y");
-		dateChooser_1.setBounds(243, 141, 114, 20);
-		getContentPane().add(dateChooser_1);
+		dateFechaAlta = new JDateChooser();
+		dateFechaAlta.setDateFormatString("d MM y");
+		dateFechaAlta.setBounds(243, 141, 114, 20);
+		getContentPane().add(dateFechaAlta);
 		
 		//INGRESAR
 		
@@ -136,25 +134,29 @@ public class AltaDictadoDeClase extends JInternalFrame {
 	
 	protected void addClasePerformed(ActionEvent arg0) {
 		String nombre = this.textNombre.getText();
-		String fecha = this.textFecha.getText();
-		String horaIn = this.textHoraIn.getText();
+		Calendar fechaCal = this.dateFecha.getCalendar();
+		Integer hora = (int)this.spinHora.getValue();
 		String URL = this.textURL.getText();
-		String fechaAlt = this.textFechaAlt.getText();
+		Calendar fechaAlta = this.dateFechaAlta.getCalendar();
+		
+		GregorianCalendar fecha = new GregorianCalendar(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
+		GregorianCalendar fechaAlt = new GregorianCalendar(fechaAlta.YEAR, fechaAlta.MONTH, fechaAlta.DAY_OF_MONTH);
+
 		if (nombre.isEmpty()) {
-			this.lblError.setText("Nombre no puede estar vacio");
-		}else if (fecha.isEmpty()) {
+			this.lblError.setText("Nombre no puede estar vacío");
+		}else if (dateFecha.getCalendar() == null) {
 			this.lblError.setText("La fecha no puede estar vacia");			
-		}else if (horaIn.isEmpty()) {
-			this.lblError.setText("La hora de inicio no puede estar vacia");
+		}else if (hora < 0) {
+			this.lblError.setText("Hora no puede estar vacío");
 		}else if (URL.isEmpty()) {
 			this.lblError.setText("URL no puede estar vaci0");
-		}else if (fechaAlt.isEmpty()) {
+		}else if (dateFechaAlta.getCalendar() == null) {
 			this.lblError.setText("La fecha de alta no puede estar vacia");
 		}else{
 			try {
-				this.icon.addClase(this.textNombre.getText(),this.textFecha.getText(),this.textHoraIn.getText(),this.textURL.getText(),this.textFechaAlt.getText());
+				this.icon.addClase(nombre,fecha,hora,URL,fechaAlt);
 			}catch(ClaseRepetidaEx ex){
-				
+				this.lblError.setText(ex.getMessage());
 			}
 		}
 		
