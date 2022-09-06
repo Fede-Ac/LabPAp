@@ -1,24 +1,42 @@
 package presentacion;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import java.awt.FlowLayout;
+import java.awt.Font;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JFormattedTextField;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 import com.toedter.calendar.JDateChooser;
+
+import excepciones.ActividadDepRepetidaEx;
+import interfaces.IControladorActividadDeportiva;
+
 import javax.swing.JTextArea;
 
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+import javax.swing.JSpinner;
 
 public class AltaActividadDeportiva extends JInternalFrame {
-	private JTextField textField;
-
+	private IControladorActividadDeportiva icon;
+	private JTextField nombre;
+	private JTextArea descripcion;
+	private JLabel lblError;
+	private JDateChooser fechaCreacion;
+	private JSpinner duracion;
+	private JSpinner costo;
 	/**
 	 * Launch the application.
-	 */
+	/* 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,63 +49,108 @@ public class AltaActividadDeportiva extends JInternalFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
-	public AltaActividadDeportiva() {
+	public AltaActividadDeportiva(IControladorActividadDeportiva icon) {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(299, 233, 79, 24);
-		getContentPane().add(btnAceptar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(77, 233, 98, 24);
-		getContentPane().add(btnCancelar);
-		
-		textField = new JTextField();
-		textField.setBounds(97, 12, 114, 18);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		this.icon = icon;
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(12, 12, 55, 14);
 		getContentPane().add(lblNombre);
 		
-		JLabel lblDescripcin = new JLabel("Descripción");
-		lblDescripcin.setBounds(12, 38, 79, 14);
-		getContentPane().add(lblDescripcin);
+		nombre = new JTextField();
+		nombre.setBounds(97, 12, 114, 18);
+		getContentPane().add(nombre);
+		nombre.setColumns(10);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(97, 100, 89, 18);
-		getContentPane().add(formattedTextField);
+		JLabel lblDescripcion = new JLabel("Descripción");
+		lblDescripcion.setBounds(12, 38, 79, 14);
+		getContentPane().add(lblDescripcion);
 		
-		JLabel lblDuracin = new JLabel("Duración");
-		lblDuracin.setBounds(12, 102, 55, 14);
-		getContentPane().add(lblDuracin);
+		descripcion = new JTextArea();
+		descripcion.setBounds(97, 38, 193, 52);
+		getContentPane().add(descripcion);
 		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setBounds(97, 161, 89, 18);
-		getContentPane().add(formattedTextField_1);
+		JLabel lblDuracion = new JLabel("Duración");
+		lblDuracion.setBounds(12, 102, 55, 14);
+		getContentPane().add(lblDuracion);
 		
 		JLabel lblCosto = new JLabel("Costo");
 		lblCosto.setBounds(12, 163, 55, 14);
 		getContentPane().add(lblCosto);
 		
-		JLabel label = new JLabel("New label");
-		label.setBounds(12, 196, 55, 14);
-		getContentPane().add(label);
+		JLabel lblAltaActividad = new JLabel("Fecha de alta");
+		lblAltaActividad.setBounds(212, 163, 78, 14);
+		getContentPane().add(lblAltaActividad);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("d MM y");
-		dateChooser.setBounds(100, 191, 75, 19);
-		getContentPane().add(dateChooser);
+		fechaCreacion = new JDateChooser();
+		fechaCreacion.setDateFormatString("d MM y");
+		fechaCreacion.setBounds(299, 163, 75, 19);
+		getContentPane().add(fechaCreacion);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(97, 38, 193, 52);
-		getContentPane().add(textArea);
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				AddActividadActionPerformed(e);
+			}
+		});
+		btnAceptar.setBounds(299, 233, 79, 24);
+		getContentPane().add(btnAceptar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setBounds(77, 233, 98, 24);
+		getContentPane().add(btnCancelar);
+		
+		lblError = new JLabel("");
+		lblError.setForeground(new Color(239, 41, 41));
+		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblError.setBounds(115, 186, 227, 33);
+		getContentPane().add(lblError);
+		
+		duracion = new JSpinner();
+		duracion.setBounds(97, 102, 78, 18);
+		getContentPane().add(duracion);
+		
+		costo = new JSpinner();
+		costo.setBounds(97, 161, 78, 18);
+		getContentPane().add(costo);
 
+	}
+	
+	protected void AddActividadActionPerformed(ActionEvent arg0) {
+		String nombre = this.nombre.getText();
+		String descripcion = this.descripcion.getText();
+		Integer duracion = (int)this.duracion.getValue();
+		Integer costo = (int)this.costo.getValue();
+		Calendar fechaCal = this.fechaCreacion.getCalendar();
+		
+		GregorianCalendar fecha = new GregorianCalendar(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
+		
+		if (nombre.isEmpty()) {
+			this.lblError.setText("Nombre no puede estar vacío");
+		}else if (descripcion.isEmpty()) {
+			this.lblError.setText("Descripción no puede estar vacío");			
+		}else if (duracion < 0) {
+			this.lblError.setText("Duracion no puede estar vacío");
+		}else if (costo < 0) {
+			this.lblError.setText("Costo no puede estar vacío");
+		}else{
+			try {
+				this.icon.AltaActividadDeportiva(nombre,descripcion,duracion,costo,fecha);
+			}catch(ActividadDepRepetidaEx ex){
+				this.lblError.setText(ex.getMessage());
+			}
+		}
 	}
 }
