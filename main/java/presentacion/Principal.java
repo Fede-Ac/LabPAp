@@ -13,6 +13,7 @@ import interfaces.Fabrica;
 
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
+import interfaces.IControladorActividadDeportiva;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,8 @@ public class Principal {
 	
 
 	private AltaInstitucionDep altaInstitucionDepInF; 
+	
+	private AltaActividadDeportiva altaActividadDeportivaInF;
 
 	private AltaUsuario altaUsuarioInF;
 	
@@ -53,13 +56,14 @@ public class Principal {
 		//indicializo para usar operaciones
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
-		
+		IControladorActividadDeportiva iconAct = fabrica.getIControladorActividadDeportiva();
+		IControladorUsuario iCU = fabrica.getIControladorUsuario();
+				
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
 		altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		altaInstitucionDepInF.setVisible(false);
 		frame.getContentPane().add(altaInstitucionDepInF);
-		IControladorUsuario iCU = fabrica.getIControladorUsuario();
-		
+
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
 		altaUsuarioInF = new AltaUsuario(iCU);
 		altaUsuarioInF.setVisible(false);
@@ -81,6 +85,11 @@ public class Principal {
 		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
 		//////altaInstitucionDepInF.setVisible(false);
 		/////frame.getContentPane().add(altaInstitucionDepInF);
+		
+		altaActividadDeportivaInF = new AltaActividadDeportiva(iconAct);
+		altaActividadDeportivaInF.setVisible(false);
+		frame.getContentPane().add(altaActividadDeportivaInF);
+
 
 	}
 
@@ -133,5 +142,16 @@ public class Principal {
 			}
 		});
 		mnInstitucionesDeportivas.add(mntmAltaInstitucinDep);
+		
+		JMenu mnActividadesDeportivas = new JMenu("Actividades Deportivas");
+		menuBar.add(mnActividadesDeportivas);
+		
+		JMenuItem mntmAltaDeActividad = new JMenuItem("Alta de Actividad Deportiva");
+		mntmAltaDeActividad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaActividadDeportivaInF.setVisible(true);
+			}
+		});
+		mnActividadesDeportivas.add(mntmAltaDeActividad);
 	}
 }

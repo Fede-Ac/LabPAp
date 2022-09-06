@@ -3,7 +3,7 @@ package interfaces;
 
 import logica.ControladorInstitucionDep;
 import logica.ControladorUsuario;
-
+import logica.ControladorActividadDeportiva;
 
 public class Fabrica {
 	private static Fabrica instancia = null;
@@ -24,6 +24,10 @@ public class Fabrica {
 
 	public IControladorUsuario getIControladorUsuario() {
 		return new ControladorUsuario();
+	}
+	
+	public IControladorActividadDeportiva getIControladorActividadDeportiva() {
+		return new ControladorActividadDeportiva();
 	}
 	
 }

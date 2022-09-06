@@ -1,6 +1,6 @@
 package logica;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import interfaces.IControladorActividadDeportiva;
 
@@ -20,7 +20,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	}
 	
 	@Override
-	public void AltaActividadDeportiva(String nombre, String descripcion, int duracion, float costo, Date fecha) throws ActividadDepRepetidaEx{
+	public void AltaActividadDeportiva(String nombre, String descripcion, int duracion, float costo, GregorianCalendar fecha) throws ActividadDepRepetidaEx{
 		Boolean exists = false; 
 		ManejadorActividadDeportiva manejador = ManejadorActividadDeportiva.getInstancia();
 		exists = manejador.existeActividad(nombre);
