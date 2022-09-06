@@ -24,7 +24,16 @@ public class ManejadorActividadDeportiva {
 		}
 		return existe;
 	}
-
+	
+	public ActividadDeportiva buscarActividadDeportiva(String nombre) {
+		ActividadDeportiva actDep=null;
+		for(ActividadDeportiva a: actDeportivas) {
+			if (a.getNombre().equals(nombre))
+				actDep = a;
+		}
+		return actDep;
+	}
+	
 	public void add(ActividadDeportiva actDep) {
 		actDeportivas.add(actDep);		
 	}

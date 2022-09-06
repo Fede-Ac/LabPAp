@@ -159,6 +159,8 @@ public class Principal {
 		
 		JMenu mnActividadesDeportivas = new JMenu("Actividades Deportivas");
 		menuBar.add(mnActividadesDeportivas);
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 		JMenuItem mntmAltaDeActividad = new JMenuItem("Alta de Actividad Deportiva");
 		mntmAltaDeActividad.addActionListener(new ActionListener() {
@@ -178,6 +180,12 @@ public class Principal {
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
 
+=======
+		
+>>>>>>> Stashed changes
+=======
+		
+>>>>>>> Stashed changes
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -186,6 +194,12 @@ public class Principal {
 			}
 		});
 		mnActividadesDeportivas.add(mntmConsultaActividadDep);
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 	}
 }

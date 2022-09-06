@@ -383,6 +383,8 @@ public class AltaUsuario extends JInternalFrame {
 		GregorianCalendar fecha = new GregorianCalendar(anio, mes, dia);
 		Date fechaNac = fecha.getTime();
 		
+		JOptionPane.showMessageDialog(this, fecha.get(fecha.DAY_OF_MONTH) +"/"+ fecha.get(fecha.MONTH) +"/"+ fecha.get(fecha.YEAR), "Agregar Usuario", JOptionPane.INFORMATION_MESSAGE);
+		
 		String institucion = this.txtInstitucion.getText();
 		String sitioWeb = this.txtSitioWeb.getText();
 		String biografia = this.txtrBiografia.getText();

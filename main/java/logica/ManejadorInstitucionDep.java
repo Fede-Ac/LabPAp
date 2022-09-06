@@ -24,9 +24,22 @@ public class ManejadorInstitucionDep {
 		}
 		return existe;
 	}
+	
+	public InstitucionDeportiva buscarInstitucion(String nombre) {
+		InstitucionDeportiva institucion=null;
+		for(InstitucionDeportiva i: instDeportivas) {
+			if (i.getNombre().equals(nombre))
+				institucion = i;
+		}
+		return institucion;
+	}
 
 	public void add(InstitucionDeportiva instDep) {
 		instDeportivas.add(instDep);		
+	}
+	
+	public ArrayList<InstitucionDeportiva> listarInstituciones(){
+		return instDeportivas;
 	}
 	
 	

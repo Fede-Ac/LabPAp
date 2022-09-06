@@ -1,5 +1,6 @@
 package datatypes;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class DtSocio extends DtUsuario{
@@ -12,7 +13,7 @@ public class DtSocio extends DtUsuario{
 	public String toString() {
 		return "SOCIO \n NICK: " + getNickname() + "\n Nombre: " + getNombre() + "\n Apellido: "
 				+ getApellido() + "\n correo electronico: " + getEmail() +
-				"\n Fecha de Nacimiento: " + getFecha().getDay() +  "/" + getFecha().getMonth() + "/" + getFecha().getYear();
+				"\n Fecha de Nacimiento: " + getFecha().getDate()+  "/" + getFecha().getMonth() + "/" + getFecha().getYear();
 	}
 
 	
