@@ -10,10 +10,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorClase;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JSpinField;
+import javax.swing.JComboBox;
 
 
 public class AltaDictadoDeClase extends JInternalFrame {
@@ -50,7 +53,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		setResizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("Agregar una Institución deportiva");
+		setTitle("Agregar una clase");
 		//
 		setBounds(100, 100, 391, 313);
 		getContentPane().setLayout(null);
@@ -58,55 +61,57 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		//NOMBRRE
 		
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
-		lblNombreDeLa.setBounds(12, 24, 198, 15);
+		lblNombreDeLa.setBounds(12, 49, 198, 15);
 		getContentPane().add(lblNombreDeLa);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(243, 21, 114, 19);
+		textNombre.setBounds(243, 46, 114, 19);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		//FECHA
 		
 		JLabel lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(12, 54, 124, 15);
+		lblFecha.setBounds(12, 76, 124, 15);
 		getContentPane().add(lblFecha);
 		
 		dateFecha = new JDateChooser();
 		dateFecha.setDateFormatString("d MM y");
-		dateFecha.setBounds(243, 51, 114, 20);
+		dateFecha.setBounds(243, 76, 114, 20);
 		getContentPane().add(dateFecha);
 		
 		//HORA
 		
 		JLabel lblHora = new JLabel("Hora de inicio");
-		lblHora.setBounds(12, 84, 70, 15);
+		lblHora.setBounds(12, 112, 70, 15);
 		getContentPane().add(lblHora);
 		
 		spinHora = new JSpinField();
-		spinHora.setBounds(311, 82, 46, 20);
+		spinHora.setMinimum(1);
+		spinHora.setMaximum(24);
+		spinHora.setBounds(311, 107, 46, 20);
 		getContentPane().add(spinHora);
 		
 		//URL
 		
 		JLabel lblUrl = new JLabel("URL");
-		lblUrl.setBounds(12, 114, 70, 15);
+		lblUrl.setBounds(12, 141, 70, 15);
 		getContentPane().add(lblUrl);
 		
 		textURL = new JTextField();
 		textURL.setColumns(10);
-		textURL.setBounds(243, 111, 114, 19);
+		textURL.setBounds(243, 138, 114, 19);
 		getContentPane().add(textURL);
 		
 		//FECHA ALTA
 		
 		JLabel lblFechaAlt = new JLabel("Fecha de alta");
-		lblFechaAlt.setBounds(12, 144, 70, 15);
+		lblFechaAlt.setBounds(12, 173, 70, 15);
 		getContentPane().add(lblFechaAlt);
 		
 		dateFechaAlta = new JDateChooser();
 		dateFechaAlta.setDateFormatString("d MM y");
-		dateFechaAlta.setBounds(243, 141, 114, 20);
+		dateFechaAlta.setBounds(243, 168, 114, 20);
 		getContentPane().add(dateFechaAlta);
 		
 		//INGRESAR
@@ -124,11 +129,31 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		//CANCELAR
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnCancelar.setBounds(12, 231, 117, 25);
 		getContentPane().add(btnCancelar);
 		
-
+		//ERROR
 		
+		lblError = new JLabel("");
+		lblError.setForeground(new Color(239, 41, 41));
+		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblError.setBounds(115, 186, 227, 33);
+		getContentPane().add(lblError);
+		
+		//INSTITUCION
+		
+		JLabel lblNewLabel = new JLabel("Institucion");
+		lblNewLabel.setBounds(12, 15, 87, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(243, 11, 114, 22);
+		getContentPane().add(comboBox);
 
 	}
 	
@@ -146,8 +171,6 @@ public class AltaDictadoDeClase extends JInternalFrame {
 			this.lblError.setText("Nombre no puede estar vacío");
 		}else if (dateFecha.getCalendar() == null) {
 			this.lblError.setText("La fecha no puede estar vacia");			
-		}else if (hora < 0) {
-			this.lblError.setText("Hora no puede estar vacío");
 		}else if (URL.isEmpty()) {
 			this.lblError.setText("URL no puede estar vaci0");
 		}else if (dateFechaAlta.getCalendar() == null) {
