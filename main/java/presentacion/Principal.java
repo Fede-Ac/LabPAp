@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import excepciones.NoExistenUsuariosEx;
 import interfaces.Fabrica;
-
+import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
 import interfaces.IControladorActividadDeportiva;
@@ -32,6 +32,8 @@ public class Principal {
 	private AltaUsuario altaUsuarioInF;
 	
 	private ConsultaUsuario consultaUsuarioInF;
+	
+	private ConsultaActividadDeportiva consultaActividadDepInF;
 
 
 	/**
@@ -71,6 +73,11 @@ public class Principal {
 		altaUsuarioInF = new AltaUsuario(iCU);
 		altaUsuarioInF.setVisible(false);
 		frame.getContentPane().add(altaUsuarioInF);
+		
+		IControladorActividadDeportiva iCAB = fabrica.getIControladorActividadDeportiva();
+		consultaActividadDepInF = new ConsultaActividadDeportiva(iCAB);
+		consultaActividadDepInF.setVisible(false);
+		frame.getContentPane().add(consultaActividadDepInF);
 		
 		IControladorUsuario icoN = fabrica.getIControladorUsuario();
 		//try {
@@ -170,5 +177,15 @@ public class Principal {
 			}
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
+
+		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
+		mntmConsultaActividadDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				consultaActividadDepInF.inicializarLista();
+				consultaActividadDepInF.setVisible(true);
+			}
+		});
+		mnActividadesDeportivas.add(mntmConsultaActividadDep);
+
 	}
 }
