@@ -159,7 +159,7 @@ public class Principal {
 		
 		JMenu mnActividadesDeportivas = new JMenu("Actividades Deportivas");
 		menuBar.add(mnActividadesDeportivas);
-		
+
 		JMenuItem mntmAltaDeActividad = new JMenuItem("Alta de Actividad Deportiva");
 		mntmAltaDeActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
