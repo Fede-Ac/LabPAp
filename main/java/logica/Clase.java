@@ -1,24 +1,24 @@
 package logica;
 
-import java.util.ArrayList;
-import java.util.Date;
+//import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 public class Clase {
 	private String nombre;
-	private Date fecha;
-	private Date horaInicio;
-	private String url;
-	private Date fechaReg;
+	private GregorianCalendar fecha;
+	private Integer hora;
+	private String URL;
+	private GregorianCalendar fechaAlt;
 	
-	private ArrayList<Clase> clases = new ArrayList<Clase>();
+	//private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
-	public Clase(String nombre, Date fecha, Date horaInicio, String url, Date fechaReg) {
+	public Clase(String nombre, GregorianCalendar fecha, int hora, String URL, GregorianCalendar fechaAlt) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
-		this.horaInicio = horaInicio;
-		this.url = url;
-		this.fechaReg = fechaReg;
+		this.hora = hora;
+		this.URL = URL;
+		this.fechaAlt = fechaAlt;
 	}
 	public String getNombre() {
 		return nombre;
@@ -26,29 +26,29 @@ public class Clase {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Date getFecha() {
+	public GregorianCalendar getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(GregorianCalendar fecha) {
 		this.fecha = fecha;
 	}
-	public Date getHoraInicio() {
-		return horaInicio;
+	public int getHoraInicio() {
+		return hora;
 	}
-	public void setHoraInicio(Date horaInicio) {
-		this.horaInicio = horaInicio;
+	public void setHora(int hora) {
+		this.hora = hora;
 	}
 	public String getUrl() {
-		return url;
+		return URL;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrl(String URL) {
+		this.URL = URL;
 	}
-	public Date getFechaReg() {
-		return fechaReg;
+	public GregorianCalendar getFechaAlt() {
+		return fechaAlt;
 	}
-	public void setFechaReg(Date fechaReg) {
-		this.fechaReg = fechaReg;
+	public void setFechaReg(GregorianCalendar fechaAlt) {
+		this.fechaAlt = fechaAlt;
 	}
 	
 	

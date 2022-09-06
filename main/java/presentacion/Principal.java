@@ -14,6 +14,7 @@ import interfaces.Fabrica;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
 import interfaces.IControladorActividadDeportiva;
+import interfaces.IControladorClase;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ public class Principal {
 
 	private JFrame frame;
 	
+	private AltaDictadoDeClase altaDictadoDeClaseInF;
 
 	private AltaInstitucionDep altaInstitucionDepInF; 
 	
@@ -55,6 +57,7 @@ public class Principal {
 		initialize();
 		//indicializo para usar operaciones
 		Fabrica fabrica = Fabrica.getInstancia();
+		IControladorClase iconClase = fabrica.getIControladorClase();
 		IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
 		IControladorActividadDeportiva iconAct = fabrica.getIControladorActividadDeportiva();
 		IControladorUsuario iCU = fabrica.getIControladorUsuario();
@@ -86,10 +89,14 @@ public class Principal {
 		//////altaInstitucionDepInF.setVisible(false);
 		/////frame.getContentPane().add(altaInstitucionDepInF);
 		
+
 		altaActividadDeportivaInF = new AltaActividadDeportiva(iconAct);
 		altaActividadDeportivaInF.setVisible(false);
 		frame.getContentPane().add(altaActividadDeportivaInF);
 
+		altaDictadoDeClaseInF = new AltaDictadoDeClase(iconClase);
+		altaDictadoDeClaseInF.setVisible(false);
+		frame.getContentPane().add(altaDictadoDeClaseInF);
 
 	}
 
@@ -153,5 +160,15 @@ public class Principal {
 			}
 		});
 		mnActividadesDeportivas.add(mntmAltaDeActividad);
+		JMenu mnDictadoDeClases = new JMenu("Dictado de clases");
+		menuBar.add(mnDictadoDeClases);
+		
+		JMenuItem mntmDictadoDeClases = new JMenuItem("Alta dictado de clase");
+		mntmDictadoDeClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaDictadoDeClaseInF.setVisible(true);
+			}
+		});
+		mnDictadoDeClases.add(mntmDictadoDeClases);
 	}
 }
