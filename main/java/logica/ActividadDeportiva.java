@@ -4,14 +4,16 @@ import java.util.GregorianCalendar;
 
 public class ActividadDeportiva {
 	private String nombre;
+	private String nombreInst;
 	private String descripcion;
 	private Integer duracion;
 	private Float costo;
 	private GregorianCalendar fechaReg;
 	
-	public ActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, GregorianCalendar fechaReg) {
+	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, GregorianCalendar fechaReg) {
 		super();
 		this.nombre = nombre;
+		this.nombreInst = nombreInst;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
@@ -24,6 +26,10 @@ public class ActividadDeportiva {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public void setNombreInst(String nombreInst) {
+		this.nombreInst = nombreInst;
 	}
 
 	public String getDescripcion() {

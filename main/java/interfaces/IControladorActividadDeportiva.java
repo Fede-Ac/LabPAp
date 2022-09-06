@@ -9,8 +9,8 @@ import java.util.GregorianCalendar;
 
 
 public interface IControladorActividadDeportiva {
-	public Boolean existeInstitucionD(String nombre);
+	public Boolean existeInstitucionD(String nombreInst);
 	
-	public void AltaActividadDeportiva(String nombre, String descripcion, int duracion, float costo, GregorianCalendar fecha) throws ActividadDepRepetidaEx;
+	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, GregorianCalendar fecha) throws ActividadDepRepetidaEx;
 }
                                    
