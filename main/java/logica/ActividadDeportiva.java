@@ -63,6 +63,10 @@ public class ActividadDeportiva {
 	public void setFechaReg(GregorianCalendar fechaReg) {
 		this.fechaReg = fechaReg;
 	}
+
+	public String getNombreInst() {
+		return nombreInst;
+	}
 	
 	
 	

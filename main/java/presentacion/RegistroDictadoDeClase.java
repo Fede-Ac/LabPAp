@@ -1,28 +1,22 @@
 package presentacion;
 
-import java.awt.EventQueue;
-
-import java.util.GregorianCalendar;
 import javax.swing.JInternalFrame;
-import com.toedter.components.JLocaleChooser;
-import java.awt.BorderLayout;
-import javax.swing.JList;
-import javax.swing.JTree;
-import javax.swing.JTextArea;
+
 import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import java.awt.TextArea;
+
 import java.awt.List;
-import java.awt.Choice;
+
 import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 
 public class RegistroDictadoDeClase extends JInternalFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,10 +30,13 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		});
 	}
 
-	/**
+	
 	 * Create the frame.
 	 */
 	public RegistroDictadoDeClase() {
+		setResizable(true);
+		setIconifiable(true);
+		setClosable(true);
 		setTitle("Registro de Dictado de Clase");
 		setBounds(100, 100, 440, 331);
 		getContentPane().setLayout(null);
@@ -51,7 +48,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(244, 24, 140, 22);
+		comboBox.setBounds(223, 28, 140, 22);
 		getContentPane().add(comboBox);
 		
 		//ACTIVIDADES
@@ -61,7 +58,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(244, 57, 140, 22);
+		comboBox_1.setBounds(223, 61, 140, 22);
 		getContentPane().add(comboBox_1);
 		
 		//CLASES
@@ -71,7 +68,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_2);
 		
 		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(244, 90, 140, 22);
+		comboBox_2.setBounds(223, 94, 140, 22);
 		getContentPane().add(comboBox_2);
 		
 		//DATOS DE CLASE
@@ -81,7 +78,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_3);
 		
 		List list = new List();
-		list.setBounds(244, 118, 140, 60);
+		list.setBounds(223, 122, 156, 49);
 		getContentPane().add(list);
 		
 		//SOCIOS
@@ -91,7 +88,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_4);
 		
 		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(244, 184, 140, 22);
+		comboBox_3.setBounds(223, 188, 140, 22);
 		getContentPane().add(comboBox_3);
 		
 		//FECHA
@@ -102,15 +99,15 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setDateFormatString("d MM y");
-		dateChooser.setBounds(244, 217, 140, 20);
+		dateChooser.setBounds(223, 221, 140, 20);
 		getContentPane().add(dateChooser);
 		
 		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setBounds(30, 267, 89, 23);
+		btnNewButton.setBounds(30, 267, 107, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Acceptar");
-		btnNewButton_1.setBounds(295, 267, 89, 23);
+		btnNewButton_1.setBounds(295, 267, 107, 23);
 		getContentPane().add(btnNewButton_1);
 		
 

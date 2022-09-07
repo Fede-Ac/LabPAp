@@ -2,6 +2,7 @@ package presentacion;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import excepciones.InstitucionDepRepetidaEx;
@@ -109,7 +110,7 @@ public class AltaInstitucionDep extends JInternalFrame {
 		
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(239, 41, 41));
-		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblError.setFont(new Font("Dialog", Font.BOLD, 10));
 		lblError.setBounds(115, 186, 227, 33);
 		getContentPane().add(lblError);
 		
@@ -129,6 +130,9 @@ public class AltaInstitucionDep extends JInternalFrame {
 		}else{
 			try {
 				this.icon.addInstitucionDep(this.textNombre.getText(),this.textDescripcion.getText(),this.textURL.getText());
+	            JOptionPane.showMessageDialog(this, "Agregada con exito la institución: " + nombre, "Agregar Institución deportiva",
+	                    JOptionPane.INFORMATION_MESSAGE);
+	            dispose();
 			}catch(InstitucionDepRepetidaEx ex){
 				this.lblError.setText(ex.getMessage());
 			}

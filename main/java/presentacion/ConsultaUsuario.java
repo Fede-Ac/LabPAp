@@ -1,6 +1,5 @@
 package presentacion;
 
-import java.awt.EventQueue;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -56,13 +55,15 @@ public class ConsultaUsuario extends JInternalFrame {
 			public void internalFrameClosing(InternalFrameEvent e) {
 			}
 		});
+		//
 		this.icon = icon;
 		setResizable(true);
 		setIconifiable(true);
 		setClosable(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
-		
+		setTitle("Consultar por un usuario");
+		//
 		JLabel lblUsuarios = new JLabel("Usuarios");
 		lblUsuarios.setBounds(12, 12, 70, 15);
 		getContentPane().add(lblUsuarios);

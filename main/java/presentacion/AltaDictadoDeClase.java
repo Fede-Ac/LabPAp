@@ -54,12 +54,11 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Agregar una clase");
-		//
 		setBounds(100, 100, 391, 313);
 		getContentPane().setLayout(null);
-		
-		//NOMBRRE
-		
+		//
+
+				
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
 		lblNombreDeLa.setBounds(12, 49, 198, 15);
 		getContentPane().add(lblNombreDeLa);
@@ -83,7 +82,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		//HORA
 		
 		JLabel lblHora = new JLabel("Hora de inicio");
-		lblHora.setBounds(12, 112, 70, 15);
+		lblHora.setBounds(12, 112, 117, 15);
 		getContentPane().add(lblHora);
 		
 		spinHora = new JSpinField();
@@ -106,7 +105,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		//FECHA ALTA
 		
 		JLabel lblFechaAlt = new JLabel("Fecha de alta");
-		lblFechaAlt.setBounds(12, 173, 70, 15);
+		lblFechaAlt.setBounds(12, 173, 137, 15);
 		getContentPane().add(lblFechaAlt);
 		
 		dateFechaAlta = new JDateChooser();

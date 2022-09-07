@@ -1,15 +1,10 @@
 package presentacion;
 
 import java.awt.Component;
-import java.awt.EventQueue;
-import java.util.ArrayList;
-
-import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import interfaces.IControladorActividadDeportiva;
@@ -17,7 +12,6 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import javax.swing.JTable;
 
 public class ConsultaActividadDeportiva extends JInternalFrame {
 
@@ -27,7 +21,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	private JLabel lblLista;
 	private JTextArea textArea;
 	private boolean a;
-	
+	private Component textAreaInformacion;
 	
 	/**
 	 * Launch the application.
@@ -48,7 +42,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ConsultaActividadDeportiva(IControladorActividadDeportiva icAD) {
+	public ConsultaActividadDeportiva(IControladorActividadDeportiva icon) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
@@ -56,16 +50,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 				list.clearSelection();
 			}
 		});
-		icon = icAD;
-		setClosable(true);
+		//
+		this.icon = icon;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
+		setResizable(true);
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("Consultar una actividad deportiva");
+		//
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(28, 52, 121, 151);
 		getContentPane().add(scrollPane);
 		list.addListSelectionListener(new ListSelectionListener() {
-			private Component textAreaInformacion;
+
 
 			public void valueChanged(ListSelectionEvent arg0) {
 				if(!a) {
@@ -96,28 +95,24 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	}
 	
 	public void inicializarLista() {
-		a=false;
+		/*a=false;
 		lblLista.setText("Institucion:");
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		ArrayList<String> instituciones = icon.listarInstituciones();
 		for (String s : instituciones) {
 			modelo.addElement(s);
 		}
-		list.setModel(modelo);
+		list.setModel(modelo);*/
 	}	
 	
 	public void cambiarListaActividadDeportiva() {
-		lblLista.setText("Actividad Deportiva:");
+		/*lblLista.setText("Actividad Deportiva:");
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		//ArrayList<String> actividadesDeportivas = icon.listarActividadesDeportivas(list.getSelectedValue());
 		ArrayList<String> aa = new ArrayList<String>();
-		aa.add("aa");
-		aa.add("bb");
-		aa.add("cc");
-		aa.add("dd");
 		for (String a : aa) {
 			modelo.addElement(a);
 		}
-		list.setModel(modelo);
+		list.setModel(modelo);*/
 	}
 }

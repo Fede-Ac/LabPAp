@@ -21,11 +21,7 @@ public class Socio extends Usuario{
 
 	@Override
 	public DtUsuario consulta(Usuario uS) {
-		// TODO Auto-generated method stub
-		DtSocio retorno;
-		
-		retorno = new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha());
-		return retorno;
+		return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha());
 	}
 
 }

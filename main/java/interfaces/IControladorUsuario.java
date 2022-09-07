@@ -1,8 +1,7 @@
 package interfaces;
-import java.util.ArrayList;
 
 import datatypes.DtUsuario;
-import excepciones.NoExistenUsuariosEx;
+
 import excepciones.UsuarioRepetidoEx;
 
 

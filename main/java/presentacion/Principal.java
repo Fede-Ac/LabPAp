@@ -1,21 +1,15 @@
 package presentacion;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-
-import excepciones.NoExistenUsuariosEx;
 import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
-import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorClase;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -34,6 +28,8 @@ public class Principal {
 	private ConsultaUsuario consultaUsuarioInF;
 	
 	private ConsultaActividadDeportiva consultaActividadDepInF;
+	
+	//private RegistroDictadoDeClase regDictadoDeClase;
 
 
 	/**
@@ -57,54 +53,42 @@ public class Principal {
 	 */
 	public Principal() {
 		initialize();
-		//indicializo para usar operaciones
+		//indicializo icon
 		Fabrica fabrica = Fabrica.getInstancia();
-		IControladorClase iconClase = fabrica.getIControladorClase();
-		IControladorInstitucionDep icon = fabrica.getIControladorInstitucionDep();
-		IControladorActividadDeportiva iconAct = fabrica.getIControladorActividadDeportiva();
-		IControladorUsuario iCU = fabrica.getIControladorUsuario();
-				
+		IControladorClase iConClase = fabrica.getIControladorClase();
+		IControladorInstitucionDep iConIntDep = fabrica.getIControladorInstitucionDep();
+		IControladorActividadDeportiva iConActDep = fabrica.getIControladorActividadDeportiva();
+		IControladorUsuario iConUser = fabrica.getIControladorUsuario();
+		
 		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
-		altaInstitucionDepInF = new AltaInstitucionDep(icon);
+		
+		altaInstitucionDepInF = new AltaInstitucionDep(iConIntDep);
 		altaInstitucionDepInF.setVisible(false);
 		frame.getContentPane().add(altaInstitucionDepInF);
 
-		//crear una instancia de internal frame, ponerla en invisible y añadirla a principal
-		altaUsuarioInF = new AltaUsuario(iCU);
+		altaUsuarioInF = new AltaUsuario(iConUser);
 		altaUsuarioInF.setVisible(false);
 		frame.getContentPane().add(altaUsuarioInF);
 		
-		IControladorActividadDeportiva iCAB = fabrica.getIControladorActividadDeportiva();
-		consultaActividadDepInF = new ConsultaActividadDeportiva(iCAB);
+		consultaActividadDepInF = new ConsultaActividadDeportiva(iConActDep);
 		consultaActividadDepInF.setVisible(false);
 		frame.getContentPane().add(consultaActividadDepInF);
 		
-		IControladorUsuario icoN = fabrica.getIControladorUsuario();
-		//try {
-			consultaUsuarioInF = new ConsultaUsuario(icoN);
-		/*} catch (NoExistenUsuariosEx e) {
-			JOptionPane.showMessageDialog(consultaUsuarioInF, e.getMessage(), "Consulta Usuario", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
-		}*/
+		consultaUsuarioInF = new ConsultaUsuario(iConUser);
 		consultaUsuarioInF.setSize(450, 327);
 		consultaUsuarioInF.setLocation(100, 100);
 		consultaUsuarioInF.setVisible(false);
 		frame.getContentPane().add(consultaUsuarioInF);
-		//consultaUsuariosInF.getContentPane().setLayout(null);
-		
-		///////altaInstitucionDepInF = new AltaInstitucionDep(icon);
-		//////altaInstitucionDepInF.setVisible(false);
-		/////frame.getContentPane().add(altaInstitucionDepInF);
-		
 
-		altaActividadDeportivaInF = new AltaActividadDeportiva(iconAct);
+		altaActividadDeportivaInF = new AltaActividadDeportiva(iConActDep);
 		altaActividadDeportivaInF.setVisible(false);
 		frame.getContentPane().add(altaActividadDeportivaInF);
 
-		altaDictadoDeClaseInF = new AltaDictadoDeClase(iconClase);
+		altaDictadoDeClaseInF = new AltaDictadoDeClase(iConClase);
 		altaDictadoDeClaseInF.setVisible(false);
 		frame.getContentPane().add(altaDictadoDeClaseInF);
-
+		
+		
 	}
 
 	/**
@@ -116,6 +100,7 @@ public class Principal {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Entrenamos UY - principal");
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
@@ -148,19 +133,13 @@ public class Principal {
 		JMenuItem mntmAltaInstitucinDep = new JMenuItem("Alta institución dep.");
 		mntmAltaInstitucinDep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				altaInstitucionDepInF.setVisible(true);
-
-				////altaInstitucionDepInF.setVisible(true);
-
 			}
 		});
 		mnInstitucionesDeportivas.add(mntmAltaInstitucinDep);
 		
 		JMenu mnActividadesDeportivas = new JMenu("Actividades Deportivas");
 		menuBar.add(mnActividadesDeportivas);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
 		JMenuItem mntmAltaDeActividad = new JMenuItem("Alta de Actividad Deportiva");
 		mntmAltaDeActividad.addActionListener(new ActionListener() {
@@ -180,12 +159,6 @@ public class Principal {
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
 
-=======
-		
->>>>>>> Stashed changes
-=======
-		
->>>>>>> Stashed changes
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -194,12 +167,6 @@ public class Principal {
 			}
 		});
 		mnActividadesDeportivas.add(mntmConsultaActividadDep);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	}
 }

@@ -13,20 +13,12 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorUsuario;
-import logica.ManejadorUsuario;
-import logica.Usuario;
-
-import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -78,15 +70,15 @@ public class AltaUsuario extends JInternalFrame {
 	 */
 	
 	public AltaUsuario(IControladorUsuario iCU) {
+		//
 		this.icon = iCU;
 		setResizable(false);
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Agregar un Usuario");
-		
-		setBounds(100, 100, 450, 327);
+		setBounds(100, 100, 482, 351);
 		getContentPane().setLayout(null);
-		
+		//
 		txtNickname = new JTextField();
 		txtNickname.addFocusListener(new FocusAdapter() {
 			@Override
@@ -268,7 +260,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtrDescripcion.setForeground(Color.GRAY);
 		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtrDescripcion.setColumns(10);
-		txtrDescripcion.setBounds(133, 225, 277, 50);
+		txtrDescripcion.setBounds(164, 228, 277, 50);
 		getContentPane().add(txtrDescripcion);
 		
 		rdbtnSocio = new JRadioButton("Socio");
@@ -310,7 +302,7 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioAceptarActionPerformed(e);
 			}
 		});
-		btnNewButton.setBounds(24, 223, 89, 23);
+		btnNewButton.setBounds(24, 223, 98, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -319,7 +311,7 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioCancelarActionPerformed(e);
 			}
 		});
-		btnCancelar.setBounds(24, 257, 89, 23);
+		btnCancelar.setBounds(24, 257, 98, 23);
 		getContentPane().add(btnCancelar);
 		
 		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento:");

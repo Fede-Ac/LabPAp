@@ -1,16 +1,16 @@
 package presentacion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
+
 
 import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
+
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JFormattedTextField;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,6 +27,7 @@ import java.util.Calendar;
 import javax.swing.JSpinner;
 
 public class AltaActividadDeportiva extends JInternalFrame {
+	private static final long serialVersionUID = 1L;
 	private IControladorActividadDeportiva icon;
 	private JTextField nombre;
 	private JTextArea descripcion;
@@ -55,85 +56,90 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaActividadDeportiva(IControladorActividadDeportiva icon) {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(null);
-		
+		//
+		setBounds(100, 100, 490, 327);
 		this.icon = icon;
-		
+		setResizable(true);
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("Agregar una Actividad deportiva");
+		getContentPane().setLayout(null);
+		//
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(12, 12, 55, 14);
+		lblNombre.setBounds(12, 12, 67, 14);
 		getContentPane().add(lblNombre);
 		
 		nombre = new JTextField();
-		nombre.setBounds(61, 10, 114, 18);
+		nombre.setBounds(141, 10, 114, 18);
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		
 		JLabel lblNombreInst = new JLabel("Nombre Inst.");
-		lblNombreInst.setBounds(212, 12, 79, 14);
+		lblNombreInst.setBounds(12, 42, 124, 14);
 		getContentPane().add(lblNombreInst);
 		
 		nombreInst = new JTextField();
+		nombreInst.setBounds(141, 40, 114, 18);
 		nombreInst.setColumns(10);
-		nombreInst.setBounds(299, 10, 114, 18);
 		getContentPane().add(nombreInst);
 		
 		JLabel lblDescripcion = new JLabel("Descripción");
-		lblDescripcion.setBounds(12, 38, 79, 14);
+		lblDescripcion.setBounds(12, 80, 100, 14);
 		getContentPane().add(lblDescripcion);
 		
 		descripcion = new JTextArea();
-		descripcion.setBounds(97, 38, 193, 52);
+		descripcion.setBackground(Color.LIGHT_GRAY);
+		descripcion.setBounds(141, 80, 193, 52);
 		getContentPane().add(descripcion);
 		
 		JLabel lblDuracion = new JLabel("Duración");
-		lblDuracion.setBounds(12, 102, 55, 14);
+		lblDuracion.setBounds(12, 164, 79, 14);
 		getContentPane().add(lblDuracion);
 		
 		JLabel lblCosto = new JLabel("Costo");
-		lblCosto.setBounds(12, 163, 55, 14);
+		lblCosto.setBounds(12, 205, 55, 14);
 		getContentPane().add(lblCosto);
 		
 		JLabel lblAltaActividad = new JLabel("Fecha de alta");
-		lblAltaActividad.setBounds(212, 163, 78, 14);
+		lblAltaActividad.setBounds(232, 205, 100, 14);
 		getContentPane().add(lblAltaActividad);
 		
 		fechaCreacion = new JDateChooser();
+		fechaCreacion.setBounds(348, 200, 120, 19);
 		fechaCreacion.setDateFormatString("d MM y");
-		fechaCreacion.setBounds(299, 163, 98, 19);
 		getContentPane().add(fechaCreacion);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(299, 259, 114, 24);
 		btnAceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				AddActividadActionPerformed(e);
 			}
 		});
-		btnAceptar.setBounds(299, 233, 79, 24);
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(99, 259, 98, 24);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		btnCancelar.setBounds(77, 233, 98, 24);
 		getContentPane().add(btnCancelar);
 		
 		lblError = new JLabel("");
+		lblError.setBounds(241, 145, 227, 33);
 		lblError.setForeground(new Color(239, 41, 41));
 		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
-		lblError.setBounds(115, 186, 227, 33);
 		getContentPane().add(lblError);
 		
 		duracion = new JSpinner();
-		duracion.setBounds(97, 102, 78, 18);
+		duracion.setBounds(119, 162, 78, 18);
 		getContentPane().add(duracion);
 		
 		costo = new JSpinner();
-		costo.setBounds(97, 161, 78, 18);
+		costo.setBounds(119, 203, 78, 18);
 		getContentPane().add(costo);
 
 	}

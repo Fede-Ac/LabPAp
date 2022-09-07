@@ -1,6 +1,5 @@
 package datatypes;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class DtSocio extends DtUsuario{
