@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.GregorianCalendar;
-
 import excepciones.ClaseRepetidaEx;
 import interfaces.IControladorClase;
 
@@ -9,7 +7,7 @@ public class ControladorClase implements IControladorClase{
 	public ControladorClase() {
 		super();
 	}
-	public void addClase(String nombre, GregorianCalendar fecha, int hora, String URL, GregorianCalendar fechaAlt) throws ClaseRepetidaEx {
+	public void addClase(String nombre, Fecha fecha, int hora, String URL, Fecha fechaAlt) throws ClaseRepetidaEx {
 		ManejadorClase mid = ManejadorClase.getInstancia();
 		if (!mid.existeClase(nombre)) {
 			Clase clase = new Clase(nombre, fecha, hora, URL, fechaAlt);

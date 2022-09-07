@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.Date;
-
 import datatypes.DtUsuario;
 
 
@@ -11,9 +9,9 @@ public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fecha;
+	private Fecha fecha;
 	
-	public Usuario(String nickname, String nombre, String apellido, String email, Date fecha) {
+	public Usuario(String nickname, String nombre, String apellido, String email, Fecha fecha) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -50,10 +48,10 @@ public abstract class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFecha() {
+	public Fecha getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
 	}
 	public abstract DtUsuario consulta(Usuario uS);

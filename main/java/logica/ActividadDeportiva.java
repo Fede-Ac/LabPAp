@@ -1,16 +1,14 @@
 package logica;
 
-import datatypes.DtFecha;
-
 public class ActividadDeportiva {
 	private String nombre;
 	private String nombreInst;
 	private String descripcion;
 	private Integer duracion;
 	private Float costo;
-	private DtFecha fechaReg;
+	private Fecha fechaReg;
 	
-	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, DtFecha fechaReg) {
+	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, Fecha fechaReg) {
 		super();
 		this.nombre = nombre;
 		this.nombreInst = nombreInst;
@@ -56,11 +54,11 @@ public class ActividadDeportiva {
 		this.costo = costo;
 	}
 
-	public DtFecha getFechaReg() {
+	public Fecha getFechaReg() {
 		return fechaReg;
 	}
 
-	public void setFechaReg(DtFecha fechaReg) {
+	public void setFechaReg(Fecha fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 

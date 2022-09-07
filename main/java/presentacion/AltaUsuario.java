@@ -13,15 +13,15 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorUsuario;
+
 import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import datatypes.DtFecha;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -315,7 +315,7 @@ public class AltaUsuario extends JInternalFrame {
 
 		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento:");
 		lblFechaDeNacimiento.setForeground(Color.GRAY);
-		lblFechaDeNacimiento.setBounds(24, 147, 125, 14);
+		lblFechaDeNacimiento.setBounds(24, 147, 153, 14);
 		getContentPane().add(lblFechaDeNacimiento);
 
 		spinnerDia = new JSpinner();
@@ -376,8 +376,7 @@ public class AltaUsuario extends JInternalFrame {
 		int mes = (int) spinnerMes.getValue();
 		String anioString = (String) spinnerAnio.getValue();
 		int anio = Integer.parseInt(anioString);
-		GregorianCalendar fecha = new GregorianCalendar(anio, mes, dia);
-		Date fechaNac = fecha.getTime();
+		DtFecha fecha = new DtFecha(anio, mes, dia);
 
 		String institucion = this.txtInstitucion.getText();
 		String sitioWeb = this.txtSitioWeb.getText();
@@ -387,9 +386,9 @@ public class AltaUsuario extends JInternalFrame {
 		DtUsuario dtU = null;
 
 		if (rdbtnSocio.isSelected()) {
-			dtU = new DtSocio(nickname, nombre, apellido, email, fechaNac);
+			dtU = new DtSocio(nickname, nombre, apellido, email, fecha);
 		} else if (rdbtnProfesor.isSelected()) {
-			dtU = new DtProfesor(nickname, nombre, apellido, email, fechaNac, descripcion, biografia, sitioWeb,
+			dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
 					institucion);
 		}
 

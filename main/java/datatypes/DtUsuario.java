@@ -1,15 +1,13 @@
 package datatypes;
 
-import java.util.Date;
-
 public class DtUsuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fecha;
+	protected DtFecha fecha;
 	
-	public DtUsuario(String nickname, String nombre, String apellido, String email, Date fecha) {
+	public DtUsuario(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
@@ -34,7 +32,7 @@ public class DtUsuario {
 	public String getEmail() {
 		return email;
 	}
-	public Date getFecha() {
+	public DtFecha getFecha() {
 		return fecha;
 	}
 

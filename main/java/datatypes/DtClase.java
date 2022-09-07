@@ -1,15 +1,14 @@
 package datatypes;
 
-import java.util.Date;
 
 public class DtClase {
 	private String nombre;
-	private Date fecha;
-	private Date horaInicio;
+	private DtFecha fecha;
+	private DtFecha horaInicio;
 	private String url;
-	private Date fechaReg;
+	private DtFecha fechaReg;
 	
-	public DtClase(String nombre, Date fecha, Date horaInicio, String url, Date fechaReg) {
+	public DtClase(String nombre, DtFecha fecha, DtFecha horaInicio, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -21,11 +20,11 @@ public class DtClase {
 		return nombre;
 	}
 
-	public Date getFecha() {
+	public DtFecha getFecha() {
 		return fecha;
 	}
 
-	public Date getHoraInicio() {
+	public DtFecha getHoraInicio() {
 		return horaInicio;
 	}
 
@@ -33,7 +32,7 @@ public class DtClase {
 		return url;
 	}
 
-	public Date getFechaReg() {
+	public DtFecha getFechaReg() {
 		return fechaReg;
 	}
 	

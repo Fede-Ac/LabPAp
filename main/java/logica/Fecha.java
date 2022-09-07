@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Calendar;
 
+import datatypes.DtFecha;
 import excepciones.FechaInvalidaEx;
 
 public class Fecha {
@@ -35,6 +36,11 @@ public class Fecha {
 		this.dia = cal.get(Calendar.DAY_OF_MONTH);
 	}
 	
+	public Fecha(DtFecha fecha) {
+		this.anio = fecha.getAnio();
+		this.mes = fecha.getMes();
+		this.dia = fecha.getDia();
+	}
 	public int getAnio() {
 		return anio;
 	}
@@ -63,7 +69,9 @@ public class Fecha {
 		this.dia = dia;
 	}
 
-	
+	public DtFecha getDtFecha() {
+		return new DtFecha(this.anio,this.mes,this.dia);
+	}
 	
 	
 }

@@ -1,14 +1,11 @@
 package logica;
 
-
-import java.util.Date;
-
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
 public class Socio extends Usuario{
 
-	public Socio(String nickname, String nombre, String apellido, String email, Date fecha) {
+	public Socio(String nickname, String nombre, String apellido, String email, Fecha fecha) {
 		super(nickname, nombre, apellido, email, fecha);
 	}
 
@@ -21,7 +18,7 @@ public class Socio extends Usuario{
 
 	@Override
 	public DtUsuario consulta(Usuario uS) {
-		return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha());
+		return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha().getDtFecha());
 	}
 
 }

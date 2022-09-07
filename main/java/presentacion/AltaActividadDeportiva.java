@@ -20,10 +20,10 @@ import com.toedter.calendar.JDateChooser;
 
 import excepciones.ActividadDepRepetidaEx;
 import interfaces.IControladorActividadDeportiva;
+import logica.Fecha;
 
 import javax.swing.JTextArea;
 
-import datatypes.DtFecha;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.event.InternalFrameAdapter;
@@ -160,7 +160,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		Integer costo = (int)this.costo.getValue();
 		Calendar fechaCal = this.fechaCreacion.getCalendar();
 		
-		DtFecha fecha = new DtFecha(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
+		Fecha fecha = new Fecha(fechaCal);
 		
 		if (nombre.isEmpty()) {
 			this.lblError.setText("El nombre no puede estar vacío");

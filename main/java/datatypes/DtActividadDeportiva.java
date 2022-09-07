@@ -1,17 +1,16 @@
 package datatypes;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DtActividadDeportiva {
 	private String nombre;
 	private String descripcion;
 	private Integer duracion;
 	private Float costo;
-	private Date fechaReg;
+	private DtFecha fechaReg;
 	private ArrayList<DtClase> clases;
 	
-	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, Date fechaReg, ArrayList<DtClase> clases) {
+	public DtActividadDeportiva(String nombre, String descripcion, Integer duracion, Float costo, DtFecha fechaReg, ArrayList<DtClase> clases) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -36,7 +35,7 @@ public class DtActividadDeportiva {
 		return costo;
 	}
 	
-	public Date getFechaReg() {
+	public DtFecha getFechaReg() {
 		return fechaReg;
 	}	
 	

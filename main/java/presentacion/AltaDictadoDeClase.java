@@ -8,15 +8,17 @@ import excepciones.ClaseRepetidaEx;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import interfaces.IControladorClase;
+import logica.Fecha;
+
 import com.toedter.calendar.JDateChooser;
 import com.toedter.components.JSpinField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class AltaDictadoDeClase extends JInternalFrame {
@@ -162,8 +164,8 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		String URL = this.textURL.getText();
 		Calendar fechaAlta = this.dateFechaAlta.getCalendar();
 		
-		GregorianCalendar fecha = new GregorianCalendar(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
-		GregorianCalendar fechaAlt = new GregorianCalendar(fechaAlta.YEAR, fechaAlta.MONTH, fechaAlta.DAY_OF_MONTH);
+		Fecha fecha = new Fecha(fechaCal);
+		Fecha fechaAlt = new Fecha(fechaAlta);
 
 		if (nombre.isEmpty()) {
 			this.lblError.setText("Nombre no puede estar vacío");

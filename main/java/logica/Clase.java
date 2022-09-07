@@ -1,18 +1,13 @@
 package logica;
 
-//import java.util.ArrayList;
-import java.util.GregorianCalendar;
-
 public class Clase {
 	private String nombre;
-	private GregorianCalendar fecha;
+	private Fecha fecha;
 	private Integer hora;
 	private String URL;
-	private GregorianCalendar fechaAlt;
+	private Fecha fechaAlt;
 	
-	//private ArrayList<Clase> clases = new ArrayList<Clase>();
-	
-	public Clase(String nombre, GregorianCalendar fecha, int hora, String URL, GregorianCalendar fechaAlt) {
+	public Clase(String nombre, Fecha fecha, int hora, String URL, Fecha fechaAlt) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -26,10 +21,10 @@ public class Clase {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public GregorianCalendar getFecha() {
+	public Fecha getFecha() {
 		return fecha;
 	}
-	public void setFecha(GregorianCalendar fecha) {
+	public void setFecha(Fecha fecha) {
 		this.fecha = fecha;
 	}
 	public int getHoraInicio() {
@@ -44,10 +39,10 @@ public class Clase {
 	public void setUrl(String URL) {
 		this.URL = URL;
 	}
-	public GregorianCalendar getFechaAlt() {
+	public Fecha getFechaAlt() {
 		return fechaAlt;
 	}
-	public void setFechaReg(GregorianCalendar fechaAlt) {
+	public void setFechaReg(Fecha fechaAlt) {
 		this.fechaAlt = fechaAlt;
 	}
 	

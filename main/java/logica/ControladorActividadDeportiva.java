@@ -1,7 +1,5 @@
 package logica;
 
-import datatypes.DtFecha;
-
 import interfaces.IControladorActividadDeportiva;
 
 import excepciones.ActividadDepRepetidaEx;
@@ -20,7 +18,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	}
 	
 	@Override
-	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha) throws ActividadDepRepetidaEx{
+	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, Fecha fecha) throws ActividadDepRepetidaEx{
 		Boolean exists = false; 
 		ManejadorActividadDeportiva manejador = ManejadorActividadDeportiva.getInstancia();
 		exists = manejador.existeActividad(nombre);

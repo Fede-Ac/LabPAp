@@ -1,7 +1,5 @@
 package logica;
 
-import java.util.Date;
-
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 
@@ -10,7 +8,7 @@ public class Profesor extends Usuario{
 	private String biografia;
 	private String sitioWeb;
 
-	public Profesor(String nickname, String nombre, String apellido, String email, Date fecha, String descripcion,
+	public Profesor(String nickname, String nombre, String apellido, String email, Fecha fecha, String descripcion,
 			String biografia, String sitioWeb) {
 		super(nickname, nombre, apellido, email, fecha);
 		this.descripcion = descripcion;
@@ -18,7 +16,7 @@ public class Profesor extends Usuario{
 		this.sitioWeb = sitioWeb;
 	}
 
-	public Profesor(String nickname, String nombre, String apellido, String email, Date fecha) {
+	public Profesor(String nickname, String nombre, String apellido, String email, Fecha fecha) {
 		super(nickname, nombre, apellido, email, fecha);
 	}
 
@@ -53,7 +51,7 @@ public class Profesor extends Usuario{
 	
 	public DtProfesor consultaProfesor(Profesor prof) {
 		DtProfesor retorno;
-		retorno = new DtProfesor(prof.getNickname(),prof.getNombre(),prof.getApellido(),prof.getEmail(),prof.getFecha());
+		retorno = new DtProfesor(prof.getNickname(),prof.getNombre(),prof.getApellido(),prof.getEmail(),prof.getFecha().getDtFecha());
 		return retorno;
 	}
 
@@ -61,7 +59,7 @@ public class Profesor extends Usuario{
 	public DtUsuario consulta(Usuario uS) {
 		
 		DtProfesor dtP;
-		dtP = new DtProfesor(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha(),this.biografia,this.descripcion,this.sitioWeb, this.biografia);
+		dtP = new DtProfesor(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getFecha().getDtFecha(),this.biografia,this.descripcion,this.sitioWeb, this.biografia);
 		
 		return dtP;
 	}

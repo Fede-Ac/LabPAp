@@ -1,5 +1,7 @@
 package datatypes;
 
+import java.util.Calendar;
+
 public class DtFecha {
 	private int anio;
 	private int mes;
@@ -11,6 +13,13 @@ public class DtFecha {
 		this.mes = mes;
 		this.dia = dia;
 	}
+	
+	public DtFecha(Calendar cal) {
+		this.anio = cal.get(Calendar.YEAR);
+		this.mes = cal.get(Calendar.MONTH);
+		this.dia = cal.get(Calendar.DAY_OF_MONTH);
+	}
+	
 	public int getAnio() {
 		return anio;
 	}

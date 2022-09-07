@@ -33,10 +33,11 @@ public class ControladorUsuario implements IControladorUsuario{
 			//se busca si la institucion existe, si no existe tira un error, si existe se la pasa por parametro al constructor
 			
 			uN = new Profesor(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(),
-							  dtU.getFecha(), ((DtProfesor) dtU).getDescripcion(), ((DtProfesor) dtU).getBiografia(), ((DtProfesor) dtU).getSitioWeb());
+					new Fecha(dtU.getFecha()), ((DtProfesor) dtU).getDescripcion(), ((DtProfesor) dtU).getBiografia(), ((DtProfesor) dtU).getSitioWeb());
 		}
 		if(dtU instanceof DtSocio) {
-			uN = new Socio(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(), dtU.getFecha());
+			//Fecha fecha = new Fecha(dtU.getFecha());
+			uN = new Socio(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(), new Fecha(dtU.getFecha()));
 		}
 		
 		mU.agregarUsuario(uN);
@@ -59,13 +60,13 @@ public class ControladorUsuario implements IControladorUsuario{
 		
 		if (uS instanceof Profesor) {
 			Profesor p = (Profesor) uS;
-			 dtU = new DtProfesor(p.getNickname(),p.getNombre(),p.getApellido(),p.getEmail(),p.getFecha(),p.getBiografia(),p.getDescripcion(),p.getSitioWeb(),null);
+			 dtU = new DtProfesor(p.getNickname(),p.getNombre(),p.getApellido(),p.getEmail(),p.getFecha().getDtFecha(),p.getBiografia(),p.getDescripcion(),p.getSitioWeb(),null);
 			 // missing institution.
 				
 		}	
 		else {
 			Socio s = (Socio) uS;
-			dtU = new DtSocio(s.getNickname(),s.getNombre(),s.getApellido(),s.getEmail(),s.getFecha());
+			dtU = new DtSocio(s.getNickname(),s.getNombre(),s.getApellido(),s.getEmail(),s.getFecha().getDtFecha());
 		}
 		
 		return dtU;

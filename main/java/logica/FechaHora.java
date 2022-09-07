@@ -2,6 +2,7 @@ package logica;
 
 import java.util.Calendar;
 
+import datatypes.DtFechaHora;
 import excepciones.FechaInvalidaEx;
 import excepciones.HoraInvalidaEx;
 
@@ -38,6 +39,13 @@ public class FechaHora extends Fecha{
 		this.seg = cal.get(Calendar.SECOND);
 	}
 
+	public FechaHora(DtFechaHora fechaHora) throws FechaInvalidaEx {
+		super(fechaHora.getAnio(),fechaHora.getMes(),fechaHora.getDia());
+		this.hora = fechaHora.getHora();
+		this.min = fechaHora.getMin();
+		this.seg = fechaHora.getSeg();
+	}
+	
 	public int getHora() {
 		return hora;
 	}
@@ -71,5 +79,8 @@ public class FechaHora extends Fecha{
 		this.seg = seg;
 	}
 	
+	public DtFechaHora getDtFechaHora() {
+		return new DtFechaHora(this.getAnio(),this.getMes(),this.getDia(),this.hora,this.min,this.seg);
+	}
 	
 }
