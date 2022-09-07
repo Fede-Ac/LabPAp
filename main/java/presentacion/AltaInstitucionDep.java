@@ -92,8 +92,7 @@ public class AltaInstitucionDep extends JInternalFrame {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//para facilitar
-				addInstitucionDepActionPerformed(e);
+				addInstitucionDepActionPerformed(e);//para facilitar
 			}
 		});
 		btnIngresar.setBounds(311, 231, 117, 25);
@@ -111,7 +110,7 @@ public class AltaInstitucionDep extends JInternalFrame {
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(239, 41, 41));
 		lblError.setFont(new Font("Dialog", Font.BOLD, 10));
-		lblError.setBounds(115, 186, 227, 33);
+		lblError.setBounds(57, 186, 338, 33);
 		getContentPane().add(lblError);
 		
 

@@ -110,7 +110,5 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		btnNewButton_1.setBounds(295, 267, 107, 23);
 		getContentPane().add(btnNewButton_1);
 		
-
-
 	}
 }

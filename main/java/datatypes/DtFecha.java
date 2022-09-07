@@ -22,6 +22,6 @@ public class DtFecha {
 	}
 	@Override
 	public String toString() {
-		return "Fecha: año: " + anio + ", mes: " + mes + ", día: " + dia;
+		return "Fecha: " + anio + "/" + mes + "/" + dia;
 	}
 }

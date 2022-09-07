@@ -40,8 +40,8 @@ public class DtUsuario {
 
 	@Override
 	public String toString() {
-		return "DtUsuario [nickname=" + nickname + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
-				+ ", fecha=" + fecha + "]";
+		return "Nickname: " + nickname + "\nNombre: " + nombre + "\nApellido=" + apellido + "\nEmail=" + email
+				+ "\nFecha: " + fecha;
 	}
 	
 	

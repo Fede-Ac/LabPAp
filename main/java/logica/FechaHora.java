@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Calendar;
+
 import excepciones.FechaInvalidaEx;
 import excepciones.HoraInvalidaEx;
 
@@ -27,6 +29,13 @@ public class FechaHora extends Fecha{
 		this.hora = hora;
 		this.min = min;
 		this.seg = seg;
+	}
+	
+	public FechaHora(Calendar cal) {
+		super(cal);
+		this.hora = cal.get(Calendar.HOUR);
+		this.min = cal.get(Calendar.MINUTE);
+		this.seg = cal.get(Calendar.SECOND);
 	}
 
 	public int getHora() {

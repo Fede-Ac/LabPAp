@@ -9,6 +9,7 @@ import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JLabel;
 
 
@@ -25,6 +26,7 @@ import javax.swing.JTextArea;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 import javax.swing.JSpinner;
+import javax.swing.event.InternalFrameAdapter;
 
 public class AltaActividadDeportiva extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
@@ -56,6 +58,12 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaActividadDeportiva(IControladorActividadDeportiva icon) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				internalFrameClosedEvent(e);
+			}
+		});
 		//
 		setBounds(100, 100, 490, 327);
 		this.icon = icon;
@@ -106,7 +114,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		
 		fechaCreacion = new JDateChooser();
 		fechaCreacion.setBounds(348, 200, 120, 19);
-		fechaCreacion.setDateFormatString("d MM y");
+		fechaCreacion.setDateFormatString("d/MM/y");
 		getContentPane().add(fechaCreacion);
 		
 		JButton btnAceptar = new JButton("Aceptar");
@@ -156,16 +164,16 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		
 		if (nombre.isEmpty()) {
 			this.lblError.setText("El nombre no puede estar vacío");
+		}else if (nombreInst.isEmpty()) {
+			this.lblError.setText("La institución deportiva no puede estar vacía");
 		}else if (descripcion.isEmpty()) {
 			this.lblError.setText("La descripción no puede estar vacía");			
 		}else if (duracion < 0) {
-			this.lblError.setText("La duración no puede ser menor o igual a cero");
+			this.lblError.setText("La duración no puede ser menor a cero");
 		}else if (costo < 0) {
-			this.lblError.setText("El costo no puede ser menor o igual a cero");
+			this.lblError.setText("El costo no puede ser menor a cero");
 		}else if (fechaCreacion.getCalendar() == null) {
 			this.lblError.setText("La fecha no puede estar vacía");
-		}else if (nombreInst.isEmpty()) {
-			this.lblError.setText("La institución deportiva no puede estar vacía");
 		}else{
 			try {
 				this.icon.AltaActividadDeportiva(nombre,nombreInst,descripcion,duracion,costo,fecha);
@@ -173,5 +181,15 @@ public class AltaActividadDeportiva extends JInternalFrame {
 				this.lblError.setText(ex.getMessage());
 			}
 		}
+	}
+	
+	protected void internalFrameClosedEvent(InternalFrameEvent e) {
+		this.nombre.setText(null);
+		this.nombreInst.setText(null);
+		this.descripcion.setText(null);
+		this.duracion.setValue(0);
+		this.costo.setValue(0);
+		this.lblError.setText(null);
+		
 	}
 }

@@ -118,8 +118,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//para facilitar
-				addClasePerformed(e);
+				addClasePerformed(e);//para facilitar
 			}
 		});
 		btnIngresar.setBounds(243, 231, 117, 25);

@@ -93,7 +93,6 @@ public class ConsultaUsuario extends JInternalFrame {
 		scrollPane.setViewportView(textAreaInformacion);
 		textAreaInformacion.setVisible(false);
 		textAreaInformacion.setEditable(false);
-		//textAreaInformacion.setText("Hola");
 		
 		JButton btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.addActionListener(new ActionListener() {

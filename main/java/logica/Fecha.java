@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Calendar;
+
 import excepciones.FechaInvalidaEx;
 
 public class Fecha {
@@ -25,6 +27,12 @@ public class Fecha {
 		this.anio = anio;
 		this.mes = mes;
 		this.dia = dia;
+	}
+	
+	public Fecha(Calendar cal) {
+		this.anio = cal.get(Calendar.YEAR);
+		this.mes = cal.get(Calendar.MONTH);
+		this.dia = cal.get(Calendar.DAY_OF_MONTH);
 	}
 	
 	public int getAnio() {

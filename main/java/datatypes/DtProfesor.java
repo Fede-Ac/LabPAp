@@ -39,10 +39,10 @@ public class DtProfesor extends DtUsuario{
 	@Override
 	public String toString() {
 		
-		return "PROFESOR:\nNICK : " + getNickname() + "\n Nombre: " + getNombre() + "\n Apellido: " + getApellido() + "\nEmail: " + getEmail() 
+		return "PROFESOR:\nNickname : " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: " + getApellido() + "\nEmail: " + getEmail() 
 				+ "\nFecha de Nacimiento: " + getFecha()+  "/" + getFecha().getMonth() + "/" + getFecha().getYear() 
-				+ "\nDescripcion=" + descripcion + "\nBiografia=" + biografia + "\nSitioWeb=" + sitioWeb
-				+ "\ninstitucion=" + institucion;
+				+ "\nDescripción: " + descripcion + "\nBiografía: " + biografia + "\nSitioWeb: " + sitioWeb
+				+ "\nInstitución: " + institucion;
 	}
 	
 
