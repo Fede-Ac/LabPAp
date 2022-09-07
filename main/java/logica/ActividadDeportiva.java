@@ -1,6 +1,6 @@
 package logica;
 
-import java.util.GregorianCalendar;
+import datatypes.DtFecha;
 
 public class ActividadDeportiva {
 	private String nombre;
@@ -8,9 +8,9 @@ public class ActividadDeportiva {
 	private String descripcion;
 	private Integer duracion;
 	private Float costo;
-	private GregorianCalendar fechaReg;
+	private DtFecha fechaReg;
 	
-	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, GregorianCalendar fechaReg) {
+	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
 		this.nombreInst = nombreInst;
@@ -56,11 +56,11 @@ public class ActividadDeportiva {
 		this.costo = costo;
 	}
 
-	public GregorianCalendar getFechaReg() {
+	public DtFecha getFechaReg() {
 		return fechaReg;
 	}
 
-	public void setFechaReg(GregorianCalendar fechaReg) {
+	public void setFechaReg(DtFecha fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 

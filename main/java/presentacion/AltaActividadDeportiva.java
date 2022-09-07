@@ -23,7 +23,7 @@ import interfaces.IControladorActividadDeportiva;
 
 import javax.swing.JTextArea;
 
-import java.util.GregorianCalendar;
+import datatypes.DtFecha;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.event.InternalFrameAdapter;
@@ -160,7 +160,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		Integer costo = (int)this.costo.getValue();
 		Calendar fechaCal = this.fechaCreacion.getCalendar();
 		
-		GregorianCalendar fecha = new GregorianCalendar(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
+		DtFecha fecha = new DtFecha(fechaCal.YEAR, fechaCal.MONTH, fechaCal.DAY_OF_MONTH);
 		
 		if (nombre.isEmpty()) {
 			this.lblError.setText("El nombre no puede estar vacío");
