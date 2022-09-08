@@ -1,5 +1,10 @@
 package logica;
 
+import java.util.ArrayList;
+
+import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
+
 public class ActividadDeportiva {
 	private String nombre;
 	private String nombreInst;
@@ -7,6 +12,7 @@ public class ActividadDeportiva {
 	private Integer duracion;
 	private Float costo;
 	private Fecha fechaReg;
+	private ArrayList<Clase> clases;
 	
 	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, Fecha fechaReg) {
 		super();
@@ -64,6 +70,24 @@ public class ActividadDeportiva {
 
 	public String getNombreInst() {
 		return nombreInst;
+	}
+	
+	public ArrayList<Clase> getClases(){
+		return clases;
+	}
+	
+	public void agregarClase(Clase c) {
+		clases.add(c);
+	}
+	
+	public DtActividadDeportiva getDtActividadDeportiva() {
+		
+		ArrayList<DtClase> dtClases = new ArrayList<DtClase>();
+		for(Clase c : clases) {
+			dtClases.add(c.getDtClase());
+		}
+		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg.getDtFecha(), dtClases);
+		return dt;
 	}
 	
 	

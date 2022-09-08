@@ -4,11 +4,12 @@ package datatypes;
 public class DtClase {
 	private String nombre;
 	private DtFecha fecha;
-	private DtFecha horaInicio;
+	//private DtFecha horaInicio;
+	private Integer horaInicio;
 	private String url;
 	private DtFecha fechaReg;
 	
-	public DtClase(String nombre, DtFecha fecha, DtFecha horaInicio, String url, DtFecha fechaReg) {
+	public DtClase(String nombre, DtFecha fecha, /*DtFecha horaInicio*/Integer horaInicio, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
 		this.fecha = fecha;
@@ -24,7 +25,7 @@ public class DtClase {
 		return fecha;
 	}
 
-	public DtFecha getHoraInicio() {
+	public /*DtFecha*/Integer getHoraInicio() {
 		return horaInicio;
 	}
 

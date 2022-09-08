@@ -1,5 +1,7 @@
 package logica;
 
+import datatypes.DtClase;
+
 public class Clase {
 	private String nombre;
 	private Fecha fecha;
@@ -45,6 +47,9 @@ public class Clase {
 	public void setFechaReg(Fecha fechaAlt) {
 		this.fechaAlt = fechaAlt;
 	}
-	
+	public DtClase getDtClase() {
+		DtClase dt = new DtClase(nombre, fecha.getDtFecha(), hora, URL, fechaAlt.getDtFecha());
+		return dt;
+	}
 	
 }

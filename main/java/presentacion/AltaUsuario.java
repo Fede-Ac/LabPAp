@@ -418,7 +418,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtrBiografia.setText("Biografia (opcional)");
 		spinnerDia.setValue(1);
 		spinnerMes.setValue(1);
-		spinnerAnio.setValue(1920);
+		spinnerAnio.setValue("1920");
 
 		txtNombre.setForeground(Color.GRAY);
 		txtNickname.setForeground(Color.GRAY);

@@ -1,6 +1,9 @@
 package presentacion;
 
 import java.awt.Component;
+import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -95,24 +98,24 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	}
 	
 	public void inicializarLista() {
-		/*a=false;
+		a=false;
 		lblLista.setText("Institucion:");
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		ArrayList<String> instituciones = icon.listarInstituciones();
 		for (String s : instituciones) {
 			modelo.addElement(s);
 		}
-		list.setModel(modelo);*/
+		list.setModel(modelo);
 	}	
 	
 	public void cambiarListaActividadDeportiva() {
-		/*lblLista.setText("Actividad Deportiva:");
+		lblLista.setText("Actividad Deportiva:");
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		//ArrayList<String> actividadesDeportivas = icon.listarActividadesDeportivas(list.getSelectedValue());
+		ArrayList<String> actividadesDeportivas = icon.listarActividadesDeportivas(list.getSelectedValue());
 		ArrayList<String> aa = new ArrayList<String>();
 		for (String a : aa) {
 			modelo.addElement(a);
 		}
-		list.setModel(modelo);*/
+		list.setModel(modelo);
 	}
 }

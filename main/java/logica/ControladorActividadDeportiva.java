@@ -2,6 +2,10 @@ package logica;
 
 import interfaces.IControladorActividadDeportiva;
 
+import java.util.ArrayList;
+
+import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 import excepciones.ActividadDepRepetidaEx;
 
 public class ControladorActividadDeportiva implements IControladorActividadDeportiva{
@@ -36,5 +40,37 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 			throw new ActividadDepRepetidaEx("La institución deportiva " + nombreInst + " no existe.");
 		}
 	
+	}
+
+	@Override
+	public ArrayList<String> listarInstituciones() {
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
+		ArrayList<InstitucionDeportiva> instituciones = mI.listarInstituciones();
+		ArrayList<String> institucionesNombre = new ArrayList<String>();
+		for(InstitucionDeportiva i : instituciones) {
+			institucionesNombre.add(i.getNombre());
+		}
+		return institucionesNombre;
+	}
+
+	@Override
+	public ArrayList<String> listarActividadesDeportivas(String institucion) {
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
+		InstitucionDeportiva institucionDep = mI.buscarInstitucion(institucion);
+		ArrayList<ActividadDeportiva> actDep = institucionDep.getActDeportivas();
+		ArrayList<String> actDepNombre = new ArrayList<String>();
+		for(ActividadDeportiva i : actDep) {
+			actDepNombre.add(i.getNombre());
+		}
+		return actDepNombre;
+	}
+
+	@Override
+	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) {
+		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva actividad = mAD.buscarActividadDeportiva(actDep);
+		DtActividadDeportiva dtActividad = actividad.getDtActividadDeportiva();
+		
+		return dtActividad;
 	}
 }
