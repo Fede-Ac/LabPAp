@@ -12,4 +12,5 @@ public interface IControladorClase {
 	public ArrayList<String> listarInstituciones();
 	public ArrayList<String> listarActividadesDeportivas(String institucion);
 	public ArrayList<String> listarProfesores(String institucion);
+	public ArrayList<String> listarClases(String clase);
 }

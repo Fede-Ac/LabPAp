@@ -20,5 +20,7 @@ public interface IControladorActividadDeportiva {
 	public ArrayList<String> listarActividadesDeportivas(String institucion);
 	
 	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep);
+	
+	public ArrayList<String> listarClases(String clase);
 }
                                    
