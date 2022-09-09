@@ -1,32 +1,31 @@
 package datatypes;
 
-
 public class DtClase {
-	private String nombre;
-	private DtFecha fecha;
-	//private DtFecha horaInicio;
-	private Integer horaInicio;
+	private String nombre;//unico
+	private DtFechaHora fechaInicio;
+	private DtProfesor profe;
 	private String url;
 	private DtFecha fechaReg;
 	
-	public DtClase(String nombre, DtFecha fecha, /*DtFecha horaInicio*/Integer horaInicio, String url, DtFecha fechaReg) {
+	public DtClase(String nombre, DtFechaHora fechaInicio, DtProfesor profe, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
-		this.fecha = fecha;
-		this.horaInicio = horaInicio;
+		this.fechaInicio = fechaInicio;
+		this.profe = profe;
 		this.url = url;
 		this.fechaReg = fechaReg;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
 
-	public DtFecha getFecha() {
-		return fecha;
+	public DtFechaHora getFechaInicio() {
+		return fechaInicio;
 	}
 
-	public /*DtFecha*/Integer getHoraInicio() {
-		return horaInicio;
+	public DtProfesor getProfe() {
+		return profe;
 	}
 
 	public String getUrl() {
@@ -36,7 +35,12 @@ public class DtClase {
 	public DtFecha getFechaReg() {
 		return fechaReg;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + "\nFecha de inicio: " + fechaInicio + "\nProfesor: " + profe + "\nUrl: " + url
+				+ "\nFecha de registro: " + fechaReg.toString();
+	}
+
 	
 }

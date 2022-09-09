@@ -5,6 +5,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import excepciones.FechaInvalidaEx;
+import excepciones.NoExisteInstitucionDepEx;
 import excepciones.UsuarioRepetidoEx;
 
 import javax.swing.JButton;
@@ -22,6 +24,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
 import datatypes.DtFecha;
+import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -376,20 +379,30 @@ public class AltaUsuario extends JInternalFrame {
 		int mes = (int) spinnerMes.getValue();
 		String anioString = (String) spinnerAnio.getValue();
 		int anio = Integer.parseInt(anioString);
-		DtFecha fecha = new DtFecha(anio, mes, dia);
+		DtFecha fecha = null;
+		try {
+			fecha = new DtFecha(anio, mes, dia);
+		} catch (FechaInvalidaEx ex) {
+			JOptionPane.showMessageDialog(this, ex.getMessage(), "Fecha", JOptionPane.ERROR_MESSAGE);
+		}
 
 		String institucion = this.txtInstitucion.getText();
-		String sitioWeb = this.txtSitioWeb.getText();
-		String biografia = this.txtrBiografia.getText();
 		String descripcion = this.txtrDescripcion.getText();
+		String sitioWeb = "";
+		String biografia = "";
+		if(!this.txtSitioWeb.getForeground().equals(Color.GRAY))
+			sitioWeb = this.txtSitioWeb.getText();
+		if(!this.txtrBiografia.getForeground().equals(Color.GRAY))
+			biografia = this.txtrBiografia.getText();
 
 		DtUsuario dtU = null;
 
 		if (rdbtnSocio.isSelected()) {
 			dtU = new DtSocio(nickname, nombre, apellido, email, fecha);
 		} else if (rdbtnProfesor.isSelected()) {
+			DtInstitucionDeportiva dtInstDep = new DtInstitucionDeportiva(institucion,"","");
 			dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
-					institucion);
+					dtInstDep);
 		}
 
 		if (checkFormulario()) {
@@ -400,6 +413,8 @@ public class AltaUsuario extends JInternalFrame {
 				limpiarFormulario();
 				setVisible(false);
 			} catch (UsuarioRepetidoEx ex) {
+				JOptionPane.showMessageDialog(this, ex.getMessage(), "Agregar Usuario", JOptionPane.ERROR_MESSAGE);
+			} catch (NoExisteInstitucionDepEx ex) {
 				JOptionPane.showMessageDialog(this, ex.getMessage(), "Agregar Usuario", JOptionPane.ERROR_MESSAGE);
 			}
 

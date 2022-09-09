@@ -5,7 +5,7 @@ import interfaces.IControladorActividadDeportiva;
 import java.util.ArrayList;
 
 import datatypes.DtActividadDeportiva;
-import datatypes.DtClase;
+import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
 
 public class ControladorActividadDeportiva implements IControladorActividadDeportiva{
@@ -22,14 +22,14 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	}
 	
 	@Override
-	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, Fecha fecha) throws ActividadDepRepetidaEx{
+	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha) throws ActividadDepRepetidaEx{
 		Boolean exists = false; 
 		ManejadorActividadDeportiva manejador = ManejadorActividadDeportiva.getInstancia();
 		exists = manejador.existeActividad(nombre);
 		
 		if(existeInstitucionD(nombreInst)){
 			if(exists == false) {
-				ActividadDeportiva nuevaActividad = new ActividadDeportiva(nombre, nombreInst, descripcion, duracion, costo, fecha);
+				ActividadDeportiva nuevaActividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fecha);
 				manejador.add(nuevaActividad);
 			}
 			else {

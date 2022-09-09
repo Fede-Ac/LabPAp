@@ -1,19 +1,19 @@
 package datatypes;
 
-public class DtUsuario {
+public abstract class DtUsuario {
 	private String nickname;
 	private String nombre;
 	private String apellido;
 	private String email;
-	protected DtFecha fecha;
+	protected DtFecha fechaNac;
 	
-	public DtUsuario(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
+	public DtUsuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		this.fecha = fecha;
+		this.fechaNac = fechaNac;
 	}
 	
 	public DtUsuario() {
@@ -33,13 +33,13 @@ public class DtUsuario {
 		return email;
 	}
 	public DtFecha getFecha() {
-		return fecha;
+		return fechaNac;
 	}
 
 	@Override
 	public String toString() {
-		return "Nickname: " + nickname + "\nNombre: " + nombre + "\nApellido=" + apellido + "\nEmail=" + email
-				+ "\nFecha: " + fecha;
+		return "Nickname: " + nickname + "\nNombre: " + nombre + "\nApellido: " + apellido + "\nEmail: " + email
+				+ "\nFecha: " + fechaNac;
 	}
 	
 	

@@ -1,8 +1,14 @@
 package interfaces;
 
+import java.util.ArrayList;
+
+import datatypes.DtFecha;
+import datatypes.DtFechaHora;
 import excepciones.ClaseRepetidaEx;
-import logica.Fecha;
+import excepciones.NoExistenUsuariosEx;
 
 public interface IControladorClase {
-	public void addClase(String nombre, Fecha fecha, int hora, String URL, Fecha fechaAlt) throws ClaseRepetidaEx;
+	public void addClase(String actDep, String nombreClase, DtFechaHora fechaHoraInicio, String nomProf, String URL, DtFecha fechaAlt) throws ClaseRepetidaEx, NoExistenUsuariosEx;
+	public ArrayList<String> listarInstituciones();
+	public ArrayList<String> listarActividadesDeportivas(String institucion);
 }

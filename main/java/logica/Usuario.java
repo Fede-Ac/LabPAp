@@ -1,23 +1,22 @@
 package logica;
 
+import datatypes.DtFecha;
 import datatypes.DtUsuario;
 
-
-
 public abstract class Usuario {
-	private String nickname;
+	private String nickname;//unico
 	private String nombre;
 	private String apellido;
-	private String email;
-	private Fecha fecha;
+	private String email;//unico
+	private DtFecha fechaNac;
 	
-	public Usuario(String nickname, String nombre, String apellido, String email, Fecha fecha) {
+	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		this.fecha = fecha;
+		this.fechaNac = fechaNac;
 	}
 	
 	public Usuario() {
@@ -48,11 +47,11 @@ public abstract class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Fecha getFecha() {
-		return fecha;
+	public DtFecha getDtFechaNac() {
+		return fechaNac;
 	}
-	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
+	public void setDtFechaNac(DtFecha fechaNac) {
+		this.fechaNac = fechaNac;
 	}
 	public abstract DtUsuario consulta(Usuario uS);
 	

@@ -8,9 +8,9 @@ public class DtSocio extends DtUsuario{
 
 	@Override
 	public String toString() {
-		return "SOCIO \n NICK: " + getNickname() + "\n Nombre: " + getNombre() + "\n Apellido: "
-				+ getApellido() + "\n correo electronico: " + getEmail() +
-				"\n Fecha de Nacimiento: " + fecha.toString();
+		return "SOCIO \nNICK: " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: "
+				+ getApellido() + "\nCorreo electrónico: " + getEmail() +
+				"\nFecha de Nacimiento: " + fechaNac.toString();
 	}
 
 	

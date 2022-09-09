@@ -1,54 +1,71 @@
 package logica;
 
+import java.util.ArrayList;
+
 import datatypes.DtClase;
+import datatypes.DtFecha;
+import datatypes.DtFechaHora;
 
 public class Clase {
-	private String nombre;
-	private Fecha fecha;
-	private Integer hora;
-	private String URL;
-	private Fecha fechaAlt;
+	private String nombre;//unico
+	private DtFechaHora fechaInicio;
+	private String url;
+	private DtFecha fechaReg;
+	//links
+	private Profesor profe;
+	private ArrayList<Socio> socios;
 	
-	public Clase(String nombre, Fecha fecha, int hora, String URL, Fecha fechaAlt) {
+	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
-		this.fecha = fecha;
-		this.hora = hora;
-		this.URL = URL;
-		this.fechaAlt = fechaAlt;
+		this.fechaInicio = fechaInicio;
+		this.profe = profe;
+		this.url = url;
+		this.fechaReg = fechaReg;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Fecha getFecha() {
-		return fecha;
+
+	public DtFechaHora getDtFechaInicio() {
+		return fechaInicio;
 	}
-	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
+
+	public void setDtFechaInicio(DtFechaHora fechaInicio) {
+		this.fechaInicio = fechaInicio;
 	}
-	public int getHoraInicio() {
-		return hora;
+
+	public Profesor getProfe() {
+		return profe;
 	}
-	public void setHora(int hora) {
-		this.hora = hora;
+
+	public void setProfe(Profesor profe) {
+		this.profe = profe;
 	}
+
 	public String getUrl() {
-		return URL;
+		return url;
 	}
-	public void setUrl(String URL) {
-		this.URL = URL;
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
-	public Fecha getFechaAlt() {
-		return fechaAlt;
+
+	public DtFecha getDtFechaAlta() {
+		return fechaReg;
 	}
-	public void setFechaReg(Fecha fechaAlt) {
-		this.fechaAlt = fechaAlt;
+
+	public void setDtFechaAlta(DtFecha fechaReg) {
+		this.fechaReg = fechaReg;
 	}
+
 	public DtClase getDtClase() {
-		DtClase dt = new DtClase(nombre, fecha.getDtFecha(), hora, URL, fechaAlt.getDtFecha());
+		DtClase dt = new DtClase(nombre, fechaInicio, profe.getDtProfesor(), url, fechaReg);
 		return dt;
 	}
 	

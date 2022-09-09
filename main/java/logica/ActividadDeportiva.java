@@ -4,20 +4,21 @@ import java.util.ArrayList;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
+import datatypes.DtFecha;
 
 public class ActividadDeportiva {
-	private String nombre;
-	private String nombreInst;
+	private String nombre;//unico
 	private String descripcion;
-	private Integer duracion;
+	private int duracion;
 	private Float costo;
-	private Fecha fechaReg;
+	private DtFecha fechaReg;
+	//links
 	private ArrayList<Clase> clases;
 	
-	public ActividadDeportiva(String nombre, String nombreInst, String descripcion, Integer duracion, Float costo, Fecha fechaReg) {
+
+	public ActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
-		this.nombreInst = nombreInst;
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
@@ -31,10 +32,6 @@ public class ActividadDeportiva {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public void setNombreInst(String nombreInst) {
-		this.nombreInst = nombreInst;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
@@ -44,11 +41,11 @@ public class ActividadDeportiva {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getDuracion() {
+	public int getDuracion() {
 		return duracion;
 	}
 
-	public void setDuracion(Integer duracion) {
+	public void setDuracion(int duracion) {
 		this.duracion = duracion;
 	}
 
@@ -60,22 +57,22 @@ public class ActividadDeportiva {
 		this.costo = costo;
 	}
 
-	public Fecha getFechaReg() {
+	public DtFecha getDtFechaReg() {
 		return fechaReg;
 	}
 
-	public void setFechaReg(Fecha fechaReg) {
+	public void setDtFechaReg(DtFecha fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 
-	public String getNombreInst() {
-		return nombreInst;
-	}
-	
-	public ArrayList<Clase> getClases(){
+	public ArrayList<Clase> getClases() {
 		return clases;
 	}
-	
+
+	public void setClases(ArrayList<Clase> clases) {
+		this.clases = clases;
+	}
+
 	public void agregarClase(Clase c) {
 		clases.add(c);
 	}
@@ -86,7 +83,7 @@ public class ActividadDeportiva {
 		for(Clase c : clases) {
 			dtClases.add(c.getDtClase());
 		}
-		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg.getDtFecha(), dtClases);
+		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, dtClases);
 		return dt;
 	}
 	

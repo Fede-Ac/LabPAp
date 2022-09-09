@@ -11,22 +11,23 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import com.toedter.calendar.JDateChooser;
 
+import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
 import interfaces.IControladorActividadDeportiva;
-import logica.Fecha;
 
 import javax.swing.JTextArea;
 
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.event.InternalFrameAdapter;
+import javax.swing.UIManager;
 
 public class AltaActividadDeportiva extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
@@ -78,16 +79,16 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblNombre);
 		
 		nombre = new JTextField();
-		nombre.setBounds(141, 10, 114, 18);
+		nombre.setBounds(170, 10, 114, 18);
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		
-		JLabel lblNombreInst = new JLabel("Nombre Inst.");
-		lblNombreInst.setBounds(12, 42, 124, 14);
+		JLabel lblNombreInst = new JLabel("Nombre Institución");
+		lblNombreInst.setBounds(12, 42, 140, 14);
 		getContentPane().add(lblNombreInst);
 		
 		nombreInst = new JTextField();
-		nombreInst.setBounds(141, 40, 114, 18);
+		nombreInst.setBounds(170, 40, 114, 18);
 		nombreInst.setColumns(10);
 		getContentPane().add(nombreInst);
 		
@@ -96,24 +97,24 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblDescripcion);
 		
 		descripcion = new JTextArea();
-		descripcion.setBackground(Color.LIGHT_GRAY);
+		descripcion.setBackground(UIManager.getColor("Button.disabledToolBarBorderBackground"));
 		descripcion.setBounds(141, 80, 193, 52);
 		getContentPane().add(descripcion);
 		
-		JLabel lblDuracion = new JLabel("Duración");
-		lblDuracion.setBounds(12, 164, 79, 14);
+		JLabel lblDuracion = new JLabel("Duración (minutos)");
+		lblDuracion.setBounds(12, 144, 152, 14);
 		getContentPane().add(lblDuracion);
 		
-		JLabel lblCosto = new JLabel("Costo");
-		lblCosto.setBounds(12, 205, 55, 14);
+		JLabel lblCosto = new JLabel("Costo ($ UYU)");
+		lblCosto.setBounds(12, 176, 114, 14);
 		getContentPane().add(lblCosto);
 		
 		JLabel lblAltaActividad = new JLabel("Fecha de alta");
-		lblAltaActividad.setBounds(232, 205, 100, 14);
+		lblAltaActividad.setBounds(12, 209, 100, 14);
 		getContentPane().add(lblAltaActividad);
 		
 		fechaCreacion = new JDateChooser();
-		fechaCreacion.setBounds(348, 200, 120, 19);
+		fechaCreacion.setBounds(185, 204, 120, 19);
 		fechaCreacion.setDateFormatString("d/MM/y");
 		getContentPane().add(fechaCreacion);
 		
@@ -137,17 +138,17 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(btnCancelar);
 		
 		lblError = new JLabel("");
-		lblError.setBounds(241, 145, 227, 33);
+		lblError.setBounds(135, 223, 227, 24);
 		lblError.setForeground(new Color(239, 41, 41));
 		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
 		getContentPane().add(lblError);
 		
 		duracion = new JSpinner();
-		duracion.setBounds(119, 162, 78, 18);
+		duracion.setBounds(187, 142, 78, 18);
 		getContentPane().add(duracion);
 		
 		costo = new JSpinner();
-		costo.setBounds(119, 203, 78, 18);
+		costo.setBounds(187, 174, 78, 18);
 		getContentPane().add(costo);
 
 	}
@@ -160,7 +161,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		Integer costo = (int)this.costo.getValue();
 		Calendar fechaCal = this.fechaCreacion.getCalendar();
 		
-		Fecha fecha = new Fecha(fechaCal);
+		DtFecha fecha = new DtFecha(fechaCal);
 		
 		if (nombre.isEmpty()) {
 			this.lblError.setText("El nombre no puede estar vacío");
@@ -168,8 +169,8 @@ public class AltaActividadDeportiva extends JInternalFrame {
 			this.lblError.setText("La institución deportiva no puede estar vacía");
 		}else if (descripcion.isEmpty()) {
 			this.lblError.setText("La descripción no puede estar vacía");			
-		}else if (duracion < 0) {
-			this.lblError.setText("La duración no puede ser menor a cero");
+		}else if (duracion <= 0) {
+			this.lblError.setText("La duración no puede ser menor o igual a cero");
 		}else if (costo < 0) {
 			this.lblError.setText("El costo no puede ser menor a cero");
 		}else if (fechaCreacion.getCalendar() == null) {
@@ -177,6 +178,9 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		}else{
 			try {
 				this.icon.AltaActividadDeportiva(nombre,nombreInst,descripcion,duracion,costo,fecha);
+				JOptionPane.showMessageDialog(this, "La actividad deportiva se ha registrado con éxito", "Actividad deportiva",
+						JOptionPane.INFORMATION_MESSAGE);
+				dispose();
 			}catch(ActividadDepRepetidaEx ex){
 				this.lblError.setText(ex.getMessage());
 			}

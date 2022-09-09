@@ -1,20 +1,21 @@
 package logica;
 
-import java.util.Date;
+import datatypes.DtFecha;
 
 public class Registro {
-	private Date fechaReg;
-
-	public Date getFechaReg() {
-		return fechaReg;
-	}
-
-	public void setFechaReg(Date fechaReg) {
+	private DtFecha fechaReg;
+	//links (ver cuando se haga el CU)
+	
+	public Registro(DtFecha fechaReg) {
+		super();
 		this.fechaReg = fechaReg;
 	}
 
-	public Registro(Date fechaReg) {
-		super();
+	public DtFecha getDtFechaReg() {
+		return fechaReg;
+	}
+
+	public void setDtFechaReg(DtFecha fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 

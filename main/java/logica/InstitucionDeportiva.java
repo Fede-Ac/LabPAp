@@ -2,12 +2,15 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtInstitucionDeportiva;
+
 public class InstitucionDeportiva {
 	private String nombre;
 	private String descripcion;
 	private String url;
+	//links
 	private ArrayList<ActividadDeportiva> actDeportivas = new ArrayList<>();
-
+	private ArrayList<Profesor> profesores;
 
 	public InstitucionDeportiva(String nombre, String descripcion, String url) {
 		super();
@@ -44,4 +47,7 @@ public class InstitucionDeportiva {
 		return actDeportivas;
 	}
 	
+	public DtInstitucionDeportiva getDtInstitucionDeportiva() {
+		return new DtInstitucionDeportiva(this.nombre, this.descripcion, this.url);
+	}
 }
