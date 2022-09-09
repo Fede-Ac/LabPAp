@@ -171,6 +171,16 @@ public class Principal {
 			}
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Registro dictado de clase");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					
+				}
+			}
+		});
+		mnDictadoDeClases.add(mntmNewMenuItem);
 
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
