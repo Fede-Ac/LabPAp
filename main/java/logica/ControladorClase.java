@@ -70,6 +70,18 @@ public class ControladorClase implements IControladorClase{
 		return profesores;
 	}
 	
+	@Override
+	public ArrayList<String> listarClases(String actividadDeportiva) {
+		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva actDep = mA.buscarActividadDeportiva(actividadDeportiva);
+		ArrayList<Clase> clas = actDep.getClases();
+		ArrayList<String> actClasNombre = new ArrayList<String>();
+		for(Clase i : clas) {
+			actClasNombre.add(i.getNombre());
+		}
+		return actClasNombre;
+	}
+	
 	
 
 
