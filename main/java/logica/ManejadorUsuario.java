@@ -43,6 +43,10 @@ public class ManejadorUsuario {
 		}
 		return nickUsuarios;
 	}
+	
+	public ArrayList<Usuario> listarUsuarios(){
+		return usuarios;
+	}
 
 }
 	

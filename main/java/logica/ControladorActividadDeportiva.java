@@ -25,11 +25,14 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha) throws ActividadDepRepetidaEx{
 		Boolean exists = false; 
 		ManejadorActividadDeportiva manejador = ManejadorActividadDeportiva.getInstancia();
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
 		exists = manejador.existeActividad(nombre);
 		
 		if(existeInstitucionD(nombreInst)){
 			if(exists == false) {
 				ActividadDeportiva nuevaActividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fecha);
+				InstitucionDeportiva inst = mI.buscarInstitucion(nombreInst);
+				inst.agregarActividadDeportiva(nuevaActividad);
 				manejador.add(nuevaActividad);
 			}
 			else {

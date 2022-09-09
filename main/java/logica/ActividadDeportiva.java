@@ -13,7 +13,7 @@ public class ActividadDeportiva {
 	private Float costo;
 	private DtFecha fechaReg;
 	//links
-	private ArrayList<Clase> clases;
+	private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
 
 	public ActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg) {

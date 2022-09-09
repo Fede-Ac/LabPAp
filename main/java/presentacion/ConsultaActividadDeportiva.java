@@ -3,11 +3,13 @@ package presentacion;
 import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import interfaces.IControladorActividadDeportiva;
@@ -15,16 +17,18 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
+import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class ConsultaActividadDeportiva extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private IControladorActividadDeportiva icon;
-	private JList<String> list = new JList<String>();
-	private JLabel lblLista;
+	private JLabel lblInstitucion;
 	private JTextArea textArea;
-	private boolean a;
-	private Component textAreaInformacion;
+	private JComboBox<String> comInst;
+	private JComboBox<String> comActDep;
 	
 	/**
 	 * Launch the application.
@@ -49,8 +53,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
-				a = true;
-				list.clearSelection();
+				//list.clearSelection();
 			}
 		});
 		//
@@ -61,61 +64,67 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Consultar una actividad deportiva");
-		//
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 52, 121, 151);
-		getContentPane().add(scrollPane);
-		list.addListSelectionListener(new ListSelectionListener() {
-
-
-			public void valueChanged(ListSelectionEvent arg0) {
-				if(!a) {
-					lblLista.setText("Actividad Deportiva:");
-					
-				}
-				
-			}
-		});
-		
-		scrollPane.setViewportView(list);
-		
-		lblLista = new JLabel("Institucion:");
-		lblLista.setBounds(28, 25, 154, 15);
-		getContentPane().add(lblLista);
+		lblInstitucion = new JLabel("Institución:");
+		lblInstitucion.setBounds(28, 25, 154, 15);
+		getContentPane().add(lblInstitucion);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(194, 52, 202, 151);
+		scrollPane_1.setBounds(194, 52, 213, 151);
 		getContentPane().add(scrollPane_1);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		scrollPane_1.setViewportView(textArea);
 		
-		JLabel lblInstitucion_1 = new JLabel("Informacion:");
+		JLabel lblInstitucion_1 = new JLabel("Información:");
 		lblInstitucion_1.setBounds(194, 25, 104, 15);
 		getContentPane().add(lblInstitucion_1);
+		
+		comInst = new JComboBox<String>();
+		comInst.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				cambiarComboBoxActividadesDep();
+				if((String)comActDep.getSelectedItem() != null)
+				textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+			}
+		});
+		comInst.setBounds(28, 54, 138, 22);
+		getContentPane().add(comInst);
+		
+		JLabel lblActDep = new JLabel("Actividad Deportiva:");
+		lblActDep.setBounds(28, 87, 154, 15);
+		getContentPane().add(lblActDep);
+		
+		comActDep = new JComboBox<String>();
+		comActDep.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if((String)comActDep.getSelectedItem() != null)
+					textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+			}
+		});
+		comActDep.setBounds(28, 116, 138, 22);
+		getContentPane().add(comActDep);
 
 	}
 	
-	public void inicializarLista() {
-		a=false;
-		lblLista.setText("Institucion:");
-		DefaultListModel<String> modelo = new DefaultListModel<String>();
+	public void inicializarComboBoxInstituciones() {
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<String>();
 		ArrayList<String> instituciones = icon.listarInstituciones();
 		for (String s : instituciones) {
 			modelo.addElement(s);
 		}
-		list.setModel(modelo);
-	}	
+		comInst.setModel(modelo);
+	}
 	
-	public void cambiarListaActividadDeportiva() {
-		lblLista.setText("Actividad Deportiva:");
-		DefaultListModel<String> modelo = new DefaultListModel<String>();
-		ArrayList<String> actividadesDeportivas = icon.listarActividadesDeportivas(list.getSelectedValue());
-		ArrayList<String> aa = new ArrayList<String>();
-		for (String a : aa) {
-			modelo.addElement(a);
+	public void cambiarComboBoxActividadesDep() {
+		DefaultComboBoxModel<String> modelo2 = new DefaultComboBoxModel<String>();
+		ArrayList<String> actDeps = icon.listarActividadesDeportivas((String)comInst.getSelectedItem());
+		for (String a : actDeps) {
+			modelo2.addElement(a);
 		}
-		list.setModel(modelo);
+		comActDep.setModel(modelo2);
+		if((String)comActDep.getSelectedItem() != null)
+			textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
 	}
 }

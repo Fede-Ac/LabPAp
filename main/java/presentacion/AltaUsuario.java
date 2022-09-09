@@ -9,6 +9,7 @@ import excepciones.FechaInvalidaEx;
 import excepciones.NoExisteInstitucionDepEx;
 import excepciones.UsuarioRepetidoEx;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
@@ -20,6 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
+
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
@@ -30,6 +33,10 @@ import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
 import javax.swing.SpinnerListModel;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 public class AltaUsuario extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
@@ -39,7 +46,6 @@ public class AltaUsuario extends JInternalFrame {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtEmail;
-	private JTextField txtInstitucion;
 	private JTextField txtSitioWeb;
 	private JTextArea txtrBiografia;
 	private JTextArea txtrDescripcion;
@@ -52,6 +58,10 @@ public class AltaUsuario extends JInternalFrame {
 	private JLabel lblDia;
 	private JLabel lblMes;
 	private JLabel lblAnio;
+	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
+	private JComboBox<String> comInst;
+	private JLabel lblInstitucion;
 
 	/**
 	 * Launch the application.
@@ -66,6 +76,12 @@ public class AltaUsuario extends JInternalFrame {
 	 */
 
 	public AltaUsuario(IControladorUsuario iCU) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				limpiarFormulario();
+			}
+		});
 		//
 		this.icon = iCU;
 		setResizable(false);
@@ -167,30 +183,6 @@ public class AltaUsuario extends JInternalFrame {
 		txtEmail.setBounds(24, 116, 164, 20);
 		getContentPane().add(txtEmail);
 
-		txtInstitucion = new JTextField();
-		txtInstitucion.setEnabled(false);
-		txtInstitucion.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtInstitucion.getText().equals("")) {
-					txtInstitucion.setForeground(Color.GRAY);
-					txtInstitucion.setText("Institucion");
-				}
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtInstitucion.getForeground().equals(Color.GRAY)) 
-					txtInstitucion.setText("");
-				txtInstitucion.setForeground(Color.black);
-			}
-		});
-		txtInstitucion.setText("Institucion");
-		txtInstitucion.setForeground(Color.GRAY);
-		txtInstitucion.setColumns(10);
-		txtInstitucion.setBounds(246, 54, 164, 20);
-		getContentPane().add(txtInstitucion);
-
 		txtSitioWeb = new JTextField();
 		txtSitioWeb.setEnabled(false);
 		txtSitioWeb.addFocusListener(new FocusAdapter() {
@@ -212,67 +204,75 @@ public class AltaUsuario extends JInternalFrame {
 		txtSitioWeb.setText("Sitio web (opcional)");
 		txtSitioWeb.setForeground(Color.GRAY);
 		txtSitioWeb.setColumns(10);
-		txtSitioWeb.setBounds(246, 85, 164, 20);
+		txtSitioWeb.setBounds(246, 111, 164, 20);
 		getContentPane().add(txtSitioWeb);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(246, 142, 164, 50);
+		getContentPane().add(scrollPane);
+		
+				txtrBiografia = new JTextArea();
+				scrollPane.setViewportView(txtrBiografia);
+				txtrBiografia.setLineWrap(true);
+				txtrBiografia.setEnabled(false);
+				txtrBiografia.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusLost(FocusEvent e) {
+						if (txtrBiografia.getText().equals("")) {
+							txtrBiografia.setForeground(Color.GRAY);
+							txtrBiografia.setText("Biografia (opcional)");
+						}
+					}
 
-		txtrBiografia = new JTextArea();
-		txtrBiografia.setLineWrap(true);
-		txtrBiografia.setEnabled(false);
-		txtrBiografia.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtrBiografia.getText().equals("")) {
-					txtrBiografia.setForeground(Color.GRAY);
-					txtrBiografia.setText("Biografia (opcional)");
-				}
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtrBiografia.getForeground().equals(Color.GRAY)) 
-					txtrBiografia.setText("");
-				txtrBiografia.setForeground(Color.black);
-			}
-		});
+					@Override
+					public void focusGained(FocusEvent e) {
+						if (txtrBiografia.getForeground().equals(Color.GRAY)) 
+							txtrBiografia.setText("");
+						txtrBiografia.setForeground(Color.black);
+					}
+				});
 		txtrBiografia.setColumns(10);
 		txtrBiografia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtrBiografia.setText("Biografia (opcional)");
 		txtrBiografia.setForeground(Color.GRAY);
-		txtrBiografia.setBounds(246, 117, 164, 75);
-		getContentPane().add(txtrBiografia);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(164, 228, 277, 50);
+		getContentPane().add(scrollPane_1);
+		
+				txtrDescripcion = new JTextArea();
+				scrollPane_1.setViewportView(txtrDescripcion);
+				txtrDescripcion.setLineWrap(true);
+				txtrDescripcion.setEnabled(false);
+				txtrDescripcion.addFocusListener(new FocusAdapter() {
+					@Override
+					public void focusLost(FocusEvent e) {
+						if (txtrDescripcion.getText().equals("")) {
+							txtrDescripcion.setForeground(Color.GRAY);
+							txtrDescripcion.setText("Descripcion");
+						}
+					}
 
-		txtrDescripcion = new JTextArea();
-		txtrDescripcion.setLineWrap(true);
-		txtrDescripcion.setEnabled(false);
-		txtrDescripcion.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtrDescripcion.getText().equals("")) {
-					txtrDescripcion.setForeground(Color.GRAY);
-					txtrDescripcion.setText("Descripcion");
-				}
-			}
-
-			@Override
-			public void focusGained(FocusEvent e) {
-				if (txtrDescripcion.getForeground().equals(Color.GRAY))
-					txtrDescripcion.setText("");
-				txtrDescripcion.setForeground(Color.black);
-			}
-		});
+					@Override
+					public void focusGained(FocusEvent e) {
+						if (txtrDescripcion.getForeground().equals(Color.GRAY))
+							txtrDescripcion.setText("");
+						txtrDescripcion.setForeground(Color.black);
+					}
+				});
 		txtrDescripcion.setText("Descripcion");
 		txtrDescripcion.setForeground(Color.GRAY);
 		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtrDescripcion.setColumns(10);
-		txtrDescripcion.setBounds(164, 228, 277, 50);
-		getContentPane().add(txtrDescripcion);
 
 		rdbtnSocio = new JRadioButton("Socio");
 		rdbtnSocio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnSocio.setSelected(true);
 				rdbtnProfesor.setSelected(false);
-				txtInstitucion.setEnabled(false);
+				//txtInstitucion.setEnabled(false);
+				comInst.setEnabled(false);
+				lblInstitucion.setForeground(Color.LIGHT_GRAY);
 				txtrDescripcion.setEnabled(false);
 				txtrBiografia.setEnabled(false);
 				txtSitioWeb.setEnabled(false);
@@ -288,7 +288,9 @@ public class AltaUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				rdbtnSocio.setSelected(false);
 				rdbtnProfesor.setSelected(true);
-				txtInstitucion.setEnabled(true);
+				//txtInstitucion.setEnabled(true);
+				comInst.setEnabled(true);
+				lblInstitucion.setForeground(Color.GRAY);
 				txtrDescripcion.setEnabled(true);
 				txtrBiografia.setEnabled(true);
 				txtSitioWeb.setEnabled(true);
@@ -356,11 +358,21 @@ public class AltaUsuario extends JInternalFrame {
 		lblMes.setBounds(78, 161, 44, 14);
 		getContentPane().add(lblMes);
 
-		lblAnio = new JLabel("Añio");
+		lblAnio = new JLabel("Año");
 		lblAnio.setForeground(Color.GRAY);
 		lblAnio.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblAnio.setBounds(133, 161, 44, 14);
 		getContentPane().add(lblAnio);
+		
+		comInst = new JComboBox<String>();
+		comInst.setEnabled(false);
+		comInst.setBounds(246, 76, 164, 22);
+		getContentPane().add(comInst);
+		
+		lblInstitucion = new JLabel("Institucion:");
+		lblInstitucion.setForeground(Color.LIGHT_GRAY);
+		lblInstitucion.setBounds(246, 57, 164, 14);
+		getContentPane().add(lblInstitucion);
 
 	}
 
@@ -386,7 +398,6 @@ public class AltaUsuario extends JInternalFrame {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Fecha", JOptionPane.ERROR_MESSAGE);
 		}
 
-		String institucion = this.txtInstitucion.getText();
 		String descripcion = this.txtrDescripcion.getText();
 		String sitioWeb = "";
 		String biografia = "";
@@ -397,15 +408,17 @@ public class AltaUsuario extends JInternalFrame {
 
 		DtUsuario dtU = null;
 
-		if (rdbtnSocio.isSelected()) {
-			dtU = new DtSocio(nickname, nombre, apellido, email, fecha);
-		} else if (rdbtnProfesor.isSelected()) {
-			DtInstitucionDeportiva dtInstDep = new DtInstitucionDeportiva(institucion,"","");
-			dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
-					dtInstDep);
-		}
-
 		if (checkFormulario()) {
+			
+			if (rdbtnSocio.isSelected()) {
+				dtU = new DtSocio(nickname, nombre, apellido, email, fecha);
+			} else if (rdbtnProfesor.isSelected()) {
+				
+				DtInstitucionDeportiva dtInstDep = icon.getDtinstitucionDeportiva((String)comInst.getSelectedItem());
+				dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
+						dtInstDep);
+			}
+			
 			try {
 				this.icon.altaUsuario(dtU);
 				JOptionPane.showMessageDialog(this, "El usuario se ha registrado con éxito", "Agregar Usuario",
@@ -427,7 +440,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtNickname.setText("Nickname");
 		txtApellido.setText("Apellido");
 		txtEmail.setText("Email");
-		txtInstitucion.setText("Institucion");
+		//txtInstitucion.setText("Institucion");
 		txtSitioWeb.setText("Sitio Web (opcional)");
 		txtrDescripcion.setText("Descripcion");
 		txtrBiografia.setText("Biografia (opcional)");
@@ -439,7 +452,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtNickname.setForeground(Color.GRAY);
 		txtApellido.setForeground(Color.GRAY);
 		txtEmail.setForeground(Color.GRAY);
-		txtInstitucion.setForeground(Color.GRAY);
+		//txtInstitucion.setForeground(Color.GRAY);
 		txtSitioWeb.setForeground(Color.GRAY);
 		txtrDescripcion.setForeground(Color.GRAY);
 		txtrBiografia.setForeground(Color.GRAY);
@@ -455,7 +468,7 @@ public class AltaUsuario extends JInternalFrame {
 			return false;
 		} else if (rdbtnProfesor.isSelected()) {
 			if (this.txtrDescripcion.getForeground().equals(Color.GRAY)
-					|| this.txtInstitucion.getForeground().equals(Color.GRAY)) {
+					|| this.comInst.getSelectedItem() == null) {
 				JOptionPane.showMessageDialog(this, "No puede haber campos no opcionales vacíos", "Agregar Usuario",
 						JOptionPane.ERROR_MESSAGE);
 				return false;
@@ -463,5 +476,13 @@ public class AltaUsuario extends JInternalFrame {
 		}
 		return true;
 	}
-
+	
+	public void inicializarComboBoxInstituciones() {
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<String>();
+		ArrayList<String> instituciones = icon.listarInstituciones();
+		for (String s : instituciones) {
+			modelo.addElement(s);
+		}
+		comInst.setModel(modelo);
+	}
 }

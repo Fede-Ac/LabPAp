@@ -1,5 +1,8 @@
 package interfaces;
 
+import java.util.ArrayList;
+
+import datatypes.DtInstitucionDeportiva;
 import datatypes.DtUsuario;
 import excepciones.NoExisteInstitucionDepEx;
 import excepciones.UsuarioRepetidoEx;
@@ -11,5 +14,9 @@ public interface IControladorUsuario {
 	public DtUsuario consultaUsuario(String email);
 	
 	public String[] mostrarUsuarios();
+
+	public ArrayList<String> listarInstituciones();
+
+	DtInstitucionDeportiva getDtinstitucionDeportiva(String institucion);
 }
 

@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
@@ -110,6 +112,7 @@ public class Principal {
 		JMenuItem mntmAltaUsuario = new JMenuItem("Alta Usuario");
 		mntmAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				altaUsuarioInF.inicializarComboBoxInstituciones();
 				altaUsuarioInF.setVisible(true);
 			}
 		});
@@ -142,7 +145,10 @@ public class Principal {
 		JMenuItem mntmAltaDeActividad = new JMenuItem("Alta de Actividad Deportiva");
 		mntmAltaDeActividad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				altaActividadDeportivaInF.setVisible(true);
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					altaActividadDeportivaInF.inicializarComboBoxInstituciones();
+					altaActividadDeportivaInF.setVisible(true);
+				}
 			}
 		});
 		mnActividadesDeportivas.add(mntmAltaDeActividad);
@@ -151,8 +157,17 @@ public class Principal {
 
 		JMenuItem mntmDictadoDeClases = new JMenuItem("Alta dictado de clase");
 		mntmDictadoDeClases.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				altaDictadoDeClaseInF.setVisible(true);
+			public void actionPerformed(ActionEvent e) {	
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					altaDictadoDeClaseInF.inicializarComboBoxInstituciones();
+					altaDictadoDeClaseInF.cambiarComboBoxActividadesDep();
+					altaDictadoDeClaseInF.cambiarComboBoxProfesores();
+					altaDictadoDeClaseInF.setVisible(true);
+				}else {
+					//JOptionPane.showMessageDialog(this, "No puede haber campos no opcionales vacíos", "Agregar Usuario",
+					//		JOptionPane.ERROR_MESSAGE);
+				}
+
 			}
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
@@ -160,8 +175,11 @@ public class Principal {
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				consultaActividadDepInF.inicializarLista();
-				consultaActividadDepInF.setVisible(true);
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					consultaActividadDepInF.inicializarComboBoxInstituciones();
+					consultaActividadDepInF.cambiarComboBoxActividadesDep();
+					consultaActividadDepInF.setVisible(true);
+				}
 			}
 		});
 		mnActividadesDeportivas.add(mntmConsultaActividadDep);

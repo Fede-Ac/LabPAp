@@ -50,4 +50,8 @@ public class InstitucionDeportiva {
 	public DtInstitucionDeportiva getDtInstitucionDeportiva() {
 		return new DtInstitucionDeportiva(this.nombre, this.descripcion, this.url);
 	}
+	
+	public void agregarActividadDeportiva(ActividadDeportiva a) {
+		actDeportivas.add(a);
+	}
 }

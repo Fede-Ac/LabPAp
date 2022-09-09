@@ -6,7 +6,7 @@ import excepciones.FechaInvalidaEx;
 
 public class DtFecha {
 	final int MAXANIO = 2030;
-	final int MINANIO = 1950;
+	final int MINANIO = 1920;
 	final int MINMES = 1;
 	final int MAXMES = 12;
 	final int MINDIA = 1;

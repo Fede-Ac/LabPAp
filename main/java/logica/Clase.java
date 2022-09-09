@@ -13,7 +13,8 @@ public class Clase {
 	private DtFecha fechaReg;
 	//links
 	private Profesor profe;
-	private ArrayList<Socio> socios;
+	//private ArrayList<Socio> socios;
+	private ArrayList<Registro> registros = new ArrayList<Registro>();
 	
 	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
 		super();

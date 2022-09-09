@@ -11,4 +11,5 @@ public interface IControladorClase {
 	public void addClase(String actDep, String nombreClase, DtFechaHora fechaHoraInicio, String nomProf, String URL, DtFecha fechaAlt) throws ClaseRepetidaEx, NoExistenUsuariosEx;
 	public ArrayList<String> listarInstituciones();
 	public ArrayList<String> listarActividadesDeportivas(String institucion);
+	public ArrayList<String> listarProfesores(String institucion);
 }

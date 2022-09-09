@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
+import datatypes.DtProfesor;
 import excepciones.ClaseRepetidaEx;
 import excepciones.NoExistenUsuariosEx;
 import interfaces.IControladorClase;
@@ -51,6 +52,25 @@ public class ControladorClase implements IControladorClase{
 		}
 		return actDepNombre;
 	}
+
+	@Override
+	public ArrayList<String> listarProfesores(String institucion) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		ArrayList<Usuario> usuarios = mU.listarUsuarios();
+		ArrayList<String> profesores = new ArrayList<String>();
+		for(Usuario u : usuarios) {
+			if(u instanceof Profesor) {
+				if(((Profesor) u).getInstitucion().getNombre().equals(institucion)) {
+					profesores.add(u.getNickname());
+				}
+				
+			}
+		}
+		
+		return profesores;
+	}
+	
+	
 
 
 }

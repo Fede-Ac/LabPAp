@@ -71,5 +71,24 @@ public class ControladorUsuario implements IControladorUsuario{
 		
 		return dtU;
 	}
+	
+	@Override
+	public ArrayList<String> listarInstituciones() {
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
+		ArrayList<InstitucionDeportiva> instituciones = mI.listarInstituciones();
+		ArrayList<String> institucionesNombre = new ArrayList<String>();
+		for(InstitucionDeportiva i : instituciones) {
+			institucionesNombre.add(i.getNombre());
+		}
+		return institucionesNombre;
+	}
+	@Override
+	public DtInstitucionDeportiva getDtinstitucionDeportiva(String institucion) {
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
+		InstitucionDeportiva inst = mI.buscarInstitucion(institucion);
+		DtInstitucionDeportiva dtInst = inst.getDtInstitucionDeportiva();
+		return dtInst;
+		
+	}
 
 }

@@ -10,6 +10,7 @@ import excepciones.NoExistenUsuariosEx;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,6 +27,10 @@ import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 
 
@@ -37,12 +42,12 @@ public class AltaDictadoDeClase extends JInternalFrame {
 	private JDateChooser dateFecha;
 	private JDateChooser dateFechaAlta;
 	private JLabel lblError;
-	private JTextField txtProfesor;
-	private JTextField txtInstitucion;
 	private JSpinner spinHora ;
 	private JSpinner spinMin;
 	private JLabel lblActividadDeportiva;
-	private JComboBox comActDep;
+	private JComboBox<String> comActDep;
+	private JComboBox<String> comInst;
+	private JComboBox<String> comProf;
 	
 	/**
 	 * Launch the application.
@@ -64,6 +69,12 @@ public class AltaDictadoDeClase extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public AltaDictadoDeClase(IControladorClase icon) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				limpiarFormulario();
+			}
+		});
 		//
 		this.icon = icon;
 		setResizable(true);
@@ -76,45 +87,45 @@ public class AltaDictadoDeClase extends JInternalFrame {
 
 				
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
-		lblNombreDeLa.setBounds(12, 49, 198, 15);
+		lblNombreDeLa.setBounds(12, 84, 198, 15);
 		getContentPane().add(lblNombreDeLa);
 		
 		textNombre = new JTextField();
-		textNombre.setBounds(243, 46, 114, 19);
+		textNombre.setBounds(243, 81, 114, 19);
 		getContentPane().add(textNombre);
 		textNombre.setColumns(10);
 		
 		//FECHA
 		
 		JLabel lblFecha = new JLabel("Fecha y hora de inicio");
-		lblFecha.setBounds(12, 76, 165, 15);
+		lblFecha.setBounds(12, 111, 165, 15);
 		getContentPane().add(lblFecha);
 		
 		dateFecha = new JDateChooser();
 		dateFecha.setDateFormatString("d MM y");
-		dateFecha.setBounds(61, 107, 114, 20);
+		dateFecha.setBounds(61, 142, 114, 20);
 		getContentPane().add(dateFecha);
 		
 		//URL
 		
 		JLabel lblUrl = new JLabel("URL");
-		lblUrl.setBounds(12, 188, 70, 15);
+		lblUrl.setBounds(12, 223, 70, 15);
 		getContentPane().add(lblUrl);
 		
 		textURL = new JTextField();
 		textURL.setColumns(10);
-		textURL.setBounds(243, 186, 114, 19);
+		textURL.setBounds(243, 221, 114, 19);
 		getContentPane().add(textURL);
 		
 		//FECHA ALTA
 		
 		JLabel lblFechaAlt = new JLabel("Fecha de alta");
-		lblFechaAlt.setBounds(12, 222, 137, 15);
+		lblFechaAlt.setBounds(12, 257, 137, 15);
 		getContentPane().add(lblFechaAlt);
 		
 		dateFechaAlta = new JDateChooser();
 		dateFechaAlta.setDateFormatString("d MM y");
-		dateFechaAlta.setBounds(243, 217, 114, 20);
+		dateFechaAlta.setBounds(243, 252, 114, 20);
 		getContentPane().add(dateFechaAlta);
 		
 		//INGRESAR
@@ -133,6 +144,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarFormulario();
 				dispose();
 			}
 		});
@@ -144,7 +156,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		lblError = new JLabel("");
 		lblError.setForeground(new Color(239, 41, 41));
 		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
-		lblError.setBounds(115, 186, 227, 33);
+		lblError.setBounds(112, 268, 227, 33);
 		getContentPane().add(lblError);
 		
 		//INSTITUCION
@@ -154,46 +166,51 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblProfesor = new JLabel("Profesor");
-		lblProfesor.setBounds(12, 159, 70, 15);
+		lblProfesor.setBounds(12, 194, 70, 15);
 		getContentPane().add(lblProfesor);
 		
-		txtProfesor = new JTextField();
-		txtProfesor.setBounds(243, 157, 114, 19);
-		getContentPane().add(txtProfesor);
-		txtProfesor.setColumns(10);
-		
-		txtInstitucion = new JTextField();
-		txtInstitucion.setBounds(243, 13, 114, 19);
-		getContentPane().add(txtInstitucion);
-		txtInstitucion.setColumns(10);
-		
 		spinHora = new JSpinner();
-		spinHora.setBounds(189, 107, 49, 20);
+		spinHora.setBounds(189, 142, 49, 20);
 		getContentPane().add(spinHora);
 		
 		spinMin = new JSpinner();
-		spinMin.setBounds(250, 107, 43, 20);
+		spinMin.setBounds(250, 142, 43, 20);
 		getContentPane().add(spinMin);
 		
 		JLabel label = new JLabel(":");
 		label.setFont(new Font("Dialog", Font.BOLD, 16));
-		label.setBounds(243, 112, 12, 15);
+		label.setBounds(243, 147, 12, 15);
 		getContentPane().add(label);
 		
 		lblActividadDeportiva = new JLabel("Actividad deportiva");
-		lblActividadDeportiva.setBounds(12, 259, 165, 15);
+
+		lblActividadDeportiva.setBounds(12, 51, 165, 15);
 		getContentPane().add(lblActividadDeportiva);
 		
 		comActDep = new JComboBox();
-		comActDep.setBounds(243, 259, 114, 24);
+		comActDep.setBounds(243, 46, 114, 24);
 		getContentPane().add(comActDep);
+		
+		comInst = new JComboBox();
+		comInst.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				cambiarComboBoxActividadesDep();
+				cambiarComboBoxProfesores();
+			}
+		});
+		comInst.setBounds(243, 11, 114, 22);
+		getContentPane().add(comInst);
+		
+		comProf = new JComboBox();
+		comProf.setBounds(243, 188, 114, 22);
+		getContentPane().add(comProf);
 
 	}
 	
 	
 	
 	protected void addClasePerformed(ActionEvent arg0) {
-		String nomInstDep = this.txtInstitucion.getText();
+		//String nomInstDep = (String)this.comInst.getSelectedItem();
 		String actDep = (String) this.comActDep.getSelectedItem();
 		String nombreclase = this.textNombre.getText();
 		Calendar fechaCal = this.dateFecha.getCalendar();
@@ -201,10 +218,10 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		int min = (int)this.spinMin.getValue();
 		String URL = this.textURL.getText();
 		Calendar fechaAlta = this.dateFechaAlta.getCalendar();
-		String profesor = this.txtProfesor.getText();
+		//String profesor = this.txtProfesor.getText();
+		String profesor = (String)this.comProf.getSelectedItem();
 		
-		DtFechaHora fechaHoraInicio = new DtFechaHora(fechaCal, hora, min);
-		DtFecha fechaAlt = new DtFecha(fechaAlta);
+		
 
 		if (nombreclase.isEmpty()) {
 			this.lblError.setText("Nombre no puede estar vacío");
@@ -214,10 +231,20 @@ public class AltaDictadoDeClase extends JInternalFrame {
 			this.lblError.setText("URL no puede estar vaci0");
 		}else if (dateFechaAlta.getCalendar() == null) {
 			this.lblError.setText("La fecha de alta no puede estar vacia");
+		}else if(this.comActDep.getSelectedItem() == null){
+			this.lblError.setText("Debe especificar una actividad deportiva");
+		}else if(this.comProf.getSelectedItem() == null){
+			this.lblError.setText("Debe especificar un profesor");
 		}else{
+			DtFechaHora fechaHoraInicio = new DtFechaHora(fechaCal, hora, min);
+			DtFecha fechaAlt = new DtFecha(fechaAlta);
 			try {
 				try {
 					this.icon.addClase(actDep, nombreclase,fechaHoraInicio,profesor,URL,fechaAlt);
+					JOptionPane.showMessageDialog(this, "La clase se ha registrado con éxito", "Agregar Clase",
+							JOptionPane.INFORMATION_MESSAGE);
+					limpiarFormulario();
+					setVisible(false);
 				} catch (NoExistenUsuariosEx ex) {
 					JOptionPane.showMessageDialog(this, ex.getMessage(), "Usuario", JOptionPane.ERROR_MESSAGE);
 				}
@@ -227,4 +254,54 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		}
 		
 	}
+	
+	public void inicializarComboBoxInstituciones() {
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<String>();
+		ArrayList<String> instituciones = icon.listarInstituciones();
+		for (String s : instituciones) {
+			modelo.addElement(s);
+		}
+		comInst.setModel(modelo);
+	}
+	
+	public void cambiarComboBoxActividadesDep() {
+		DefaultComboBoxModel<String> modelo2 = new DefaultComboBoxModel<String>();
+		ArrayList<String> actDeps = icon.listarActividadesDeportivas((String)comInst.getSelectedItem());
+		for (String a : actDeps) {
+			modelo2.addElement(a);
+		}
+		comActDep.setModel(modelo2);
+	}
+	
+	public void cambiarComboBoxProfesores() {
+		DefaultComboBoxModel<String> modelo3 = new DefaultComboBoxModel<String>();
+		ArrayList<String> profesores = icon.listarProfesores((String)comInst.getSelectedItem());
+		for (String p : profesores) {
+			modelo3.addElement(p);
+		}
+		comProf.setModel(modelo3);
+	}
+	
+	public boolean hayInstituciones() {
+		ArrayList<String> instituciones = icon.listarInstituciones();
+		if(!instituciones.isEmpty()) return true;
+		else {
+			JOptionPane.showMessageDialog(this, "No hay instituciones", "",
+							JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+	}
+	
+	private void limpiarFormulario() {
+		
+		this.spinHora.setValue(0);
+		this.spinMin.setValue(0);
+		this.textNombre.setText("");;
+		this.textURL.setText("");;
+		this.dateFecha.setCalendar(null);
+		this.dateFechaAlta.setCalendar(null);
+		this.lblError.setText("");	
+
+	}
+	
 }

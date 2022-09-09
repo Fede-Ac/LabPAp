@@ -7,6 +7,7 @@ import javax.swing.JInternalFrame;
 
 import java.awt.Font;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.event.InternalFrameEvent;
@@ -24,10 +25,12 @@ import interfaces.IControladorActividadDeportiva;
 
 import javax.swing.JTextArea;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JSpinner;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.UIManager;
+import javax.swing.JComboBox;
 
 public class AltaActividadDeportiva extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +41,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	private JDateChooser fechaCreacion;
 	private JSpinner duracion;
 	private JSpinner costo;
-	private JTextField nombreInst;
+	private JComboBox<String> comInst;
 	/**
 	 * Launch the application.
 	/* 
@@ -83,14 +86,9 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		
-		JLabel lblNombreInst = new JLabel("Nombre Institución");
+		JLabel lblNombreInst = new JLabel("Institución");
 		lblNombreInst.setBounds(12, 42, 140, 14);
 		getContentPane().add(lblNombreInst);
-		
-		nombreInst = new JTextField();
-		nombreInst.setBounds(170, 40, 114, 18);
-		nombreInst.setColumns(10);
-		getContentPane().add(nombreInst);
 		
 		JLabel lblDescripcion = new JLabel("Descripción");
 		lblDescripcion.setBounds(12, 80, 100, 14);
@@ -150,12 +148,16 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		costo = new JSpinner();
 		costo.setBounds(187, 174, 78, 18);
 		getContentPane().add(costo);
+		
+		comInst = new JComboBox<String>();
+		comInst.setBounds(170, 39, 114, 22);
+		getContentPane().add(comInst);
 
 	}
 	
 	protected void AddActividadActionPerformed(ActionEvent arg0) {
 		String nombre = this.nombre.getText();
-		String nombreInst = this.nombreInst.getText();
+		String nombreInst = (String)this.comInst.getSelectedItem();
 		String descripcion = this.descripcion.getText();
 		Integer duracion = (int)this.duracion.getValue();
 		Integer costo = (int)this.costo.getValue();
@@ -165,7 +167,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		
 		if (nombre.isEmpty()) {
 			this.lblError.setText("El nombre no puede estar vacío");
-		}else if (nombreInst.isEmpty()) {
+		}else if (comInst.getSelectedItem() == null) {
 			this.lblError.setText("La institución deportiva no puede estar vacía");
 		}else if (descripcion.isEmpty()) {
 			this.lblError.setText("La descripción no puede estar vacía");			
@@ -189,11 +191,19 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	
 	protected void internalFrameClosedEvent(InternalFrameEvent e) {
 		this.nombre.setText(null);
-		this.nombreInst.setText(null);
 		this.descripcion.setText(null);
 		this.duracion.setValue(0);
 		this.costo.setValue(0);
 		this.lblError.setText(null);
 		
+	}
+	
+	public void inicializarComboBoxInstituciones() {
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<String>();
+		ArrayList<String> instituciones = icon.listarInstituciones();
+		for (String s : instituciones) {
+			modelo.addElement(s);
+		}
+		comInst.setModel(modelo);
 	}
 }
