@@ -3,6 +3,7 @@ package interfaces;
 
 
 import excepciones.ActividadDepRepetidaEx;
+import excepciones.NoExisteActividadDepEx;
 
 import java.lang.Boolean;
 import java.util.ArrayList;
@@ -20,10 +21,10 @@ public interface IControladorActividadDeportiva {
 
 	public ArrayList<String> listarActividadesDeportivas(String institucion);
 	
-	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep);
+	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) throws NoExisteActividadDepEx;
 	
 	public ArrayList<String> listarClases(String clase);
 
-	DtClase getDtClase(String clase);
+	public DtClase getDtClase(String clase);
 }
                                    

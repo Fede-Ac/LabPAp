@@ -14,6 +14,9 @@ import javax.swing.JTextArea;
 
 import interfaces.IControladorActividadDeportiva;
 import javax.swing.event.ListSelectionListener;
+
+import excepciones.NoExisteActividadDepEx;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -89,7 +92,12 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxActividadesDep();
 				if((String)comActDep.getSelectedItem() != null)
-					textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+					try {
+						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+					} catch (NoExisteActividadDepEx e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 		});
 		comInst.setBounds(28, 54, 138, 22);
@@ -104,7 +112,12 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxClase();
 				if((String)comActDep.getSelectedItem() != null) {
-					textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+					try {
+						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+					} catch (NoExisteActividadDepEx e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				
 				}
 			}
@@ -122,7 +135,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			public void itemStateChanged(ItemEvent e) {
 				
 				if((String)comClase.getSelectedItem() != null)
-					textArea.setText(icon.ConsultaActividadDeportiva((String)comClase.getSelectedItem()).toString());
+					textArea2.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+			
 			}
 		});
 		comClase.setBounds(28, 181, 138, 22);
@@ -155,7 +169,12 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		}
 		comActDep.setModel(modelo2);
 		if((String)comActDep.getSelectedItem() != null)
-			textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+			try {
+				textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+			} catch (NoExisteActividadDepEx e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	public void cambiarComboBoxClase() {

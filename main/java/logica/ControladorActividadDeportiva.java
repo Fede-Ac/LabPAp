@@ -8,6 +8,7 @@ import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
+import excepciones.NoExisteActividadDepEx;
 
 public class ControladorActividadDeportiva implements IControladorActividadDeportiva{
 	public ControladorActividadDeportiva() {
@@ -70,9 +71,12 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	}
 
 	@Override
-	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) {
+	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) throws NoExisteActividadDepEx {
 		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
 		ActividadDeportiva actividad = mAD.buscarActividadDeportiva(actDep);
+		if(actividad == null) {
+			throw new NoExisteActividadDepEx("No existe la actividad deportiva");
+		}
 		DtActividadDeportiva dtActividad = actividad.getDtActividadDeportiva();
 		
 		return dtActividad;
