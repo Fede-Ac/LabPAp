@@ -185,6 +185,7 @@ public class Principal {
 					registroDictadoDeClaseInF.inicializarComboBoxInstituciones();
 					registroDictadoDeClaseInF.cambiarComboBoxActividadesDep();
 					registroDictadoDeClaseInF.cambiarComboBoxClase();
+					registroDictadoDeClaseInF.llenoSocios();
 					registroDictadoDeClaseInF.setVisible(true);
 				}
 			}

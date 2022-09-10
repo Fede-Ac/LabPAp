@@ -50,12 +50,12 @@ public class ManejadorUsuario {
 	
 	public ArrayList<Socio> listarSocio(){
 		
-		ArrayList<Socio> socios = null;
+		ArrayList<Socio> socios = new ArrayList<Socio>();
 		
-		for(Usuario u : this.usuarios){			
-			Socio s = (Socio) u;
-			if ( s instanceof Socio)
-				socios.add(s);					//Java dice que socios siempre va a ser null y por eso revienta.
+		for(Usuario u : usuarios){			
+			//Socio s = (Socio) u;
+			if ( u instanceof Socio)
+				socios.add((Socio)u);					
 		}
 		return socios;	
 	}

@@ -11,6 +11,7 @@ import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
 import excepciones.NoExisteActividadDepEx;
 import excepciones.NoExistenUsuariosEx;
+import excepciones.RegistroRepetidoEx;
 
 public class ControladorActividadDeportiva implements IControladorActividadDeportiva{
 	public ControladorActividadDeportiva() {
@@ -95,6 +96,21 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		
 		return dtActividad;
 	}
+	
+	@Override
+	public void altaRegistroDictadoDeClase(String socio, String clase) throws RegistroRepetidoEx{
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		if(mC.existeRegistro(clase, socio)) {
+			throw new RegistroRepetidoEx("Ya existe ese registro");
+		}
+		Clase c = mC.buscarClase(clase);
+		Socio s = (Socio)mU.buscarUsuarioPorNickname(socio);
+		
+		Registro r = new Registro(c, s);
+		
+	}
+	
 	@Override
 	public ArrayList<String> listarClases(String actividadDeportiva) {
 		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
@@ -119,7 +135,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		ArrayList<Socio> socios = mS.listarSocio();
 		if (socios == null)
 				throw new NoExistenUsuariosEx("No existen socios creados");
-		ArrayList<String> retorno = null;
+		ArrayList<String> retorno = new ArrayList<String>();
 		for(Socio s :socios) {
 			retorno.add(s.getNickname());
 		}

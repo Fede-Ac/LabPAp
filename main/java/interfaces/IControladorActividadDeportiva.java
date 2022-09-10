@@ -5,7 +5,7 @@ package interfaces;
 import excepciones.ActividadDepRepetidaEx;
 import excepciones.NoExisteActividadDepEx;
 import excepciones.NoExistenUsuariosEx;
-
+import excepciones.RegistroRepetidoEx;
 
 import java.lang.Boolean;
 import java.util.ArrayList;
@@ -32,5 +32,7 @@ public interface IControladorActividadDeportiva {
 	public DtClase getDtClase(String clase);
 
 	public ArrayList<String> getSocios() throws NoExistenUsuariosEx;
+
+	public void altaRegistroDictadoDeClase(String socio, String clase) throws RegistroRepetidoEx;
 }
                                    

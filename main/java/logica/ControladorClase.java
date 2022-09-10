@@ -33,6 +33,8 @@ public class ControladorClase implements IControladorClase{
 			throw new ClaseRepetidaEx("La clase de nombre: " + nombreClase + " ya existe.");
 		}
 	}
+	
+
 
 	@Override
 	public ArrayList<String> listarInstituciones() {

@@ -179,6 +179,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	
 	public void cambiarComboBoxClase() {
 		DefaultComboBoxModel<String> modelo3 = new DefaultComboBoxModel<String>();
+		if((String)comActDep.getSelectedItem() != null) {
 		ArrayList<String> clas = icon.listarClases((String)comActDep.getSelectedItem());
 		for (String c : clas) {
 			modelo3.addElement(c);
@@ -186,5 +187,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comClase.setModel(modelo3);
 		if((String)comClase.getSelectedItem() != null)
 		textArea2.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+		}
 	}
 }

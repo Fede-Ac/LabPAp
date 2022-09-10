@@ -34,6 +34,20 @@ public class ManejadorClase {
 		return clase;
 	}
 	
+	public boolean existeRegistro(String clase, String socio) {
+		if(!existeClase(clase)) {
+			return false;
+		}
+		Clase c = buscarClase(clase);
+		ArrayList<Registro> registros = c.getRegistros();
+		for(Registro r : registros) {
+			if (r.getSocio().getNickname().equals(socio)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public void add(Clase clase) {
 		clases.add(clase);		
 	}

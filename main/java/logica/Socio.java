@@ -9,7 +9,7 @@ import datatypes.DtUsuario;
 
 public class Socio extends Usuario{
 	//link
-	private ArrayList<Clase> clases;
+	private ArrayList<Registro> registros = new ArrayList<Registro>();
 	
 	public Socio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super(nickname, nombre, apellido, email, fechaNac);
@@ -18,6 +18,14 @@ public class Socio extends Usuario{
 	@Override
 	public DtUsuario consulta(Usuario uS) {
 		return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getDtFechaNac());
+	}
+	
+	public ArrayList<Registro> getRegistros(){
+		return registros;
+	}
+	
+	public void agregarRegistro(Registro r) {
+		registros.add(r);
 	}
 
 	public DtSocio getDtSocio() {

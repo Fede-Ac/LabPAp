@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import java.awt.List;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.InternalFrameAdapter;
@@ -14,8 +15,10 @@ import javax.swing.event.InternalFrameEvent;
 
 import com.toedter.calendar.JDateChooser;
 
+import excepciones.ActividadDepRepetidaEx;
 import excepciones.NoExisteActividadDepEx;
 import excepciones.NoExistenUsuariosEx;
+import excepciones.RegistroRepetidoEx;
 import interfaces.IControladorActividadDeportiva;
 
 import javax.swing.DefaultComboBoxModel;
@@ -24,6 +27,10 @@ import java.awt.ScrollPane;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
 
 public class RegistroDictadoDeClase extends JInternalFrame {
 
@@ -35,6 +42,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
 	private JComboBox<String> comSocios;
+	private JLabel lblError;
 	//private JScrollPane scrollPane;
 	//private JTextArea textArea;
 
@@ -62,6 +70,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
 				//list.clearSelection();
+				lblError.setText("");
 			}
 		});
 		this.icon = icon;
@@ -69,7 +78,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		setIconifiable(true);
 		setClosable(true);
 		setTitle("Registro de Dictado de Clase");
-		setBounds(100, 100, 440, 331);
+		setBounds(100, 100, 440, 362);
 		getContentPane().setLayout(null);
 		
 		//INSTITUCION
@@ -97,14 +106,15 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		//ACTIVIDADES
 		
 		JLabel lblActDep = new JLabel("Actividad Deportiva:");
-		lblActDep.setBounds(30, 32, 86, 14);
+		lblActDep.setBounds(30, 43, 166, 14);
 		getContentPane().add(lblActDep);
 		
 		comActDep = new JComboBox<String>();
-		comActDep.setBounds(223, 28, 140, 22);
+		comActDep.setBounds(223, 39, 140, 22);
 		comActDep.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxClase();
+				/*
 				if((String)comActDep.getSelectedItem() != null) {
 					try {
 						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
@@ -114,6 +124,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 					}
 				
 				}
+				*/
 			}
 		});
 		getContentPane().add(comActDep);
@@ -121,11 +132,11 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		//CLASES
 		
 		JLabel lblClases = new JLabel("Clases:");
-		lblClases.setBounds(30, 58, 86, 14);
+		lblClases.setBounds(30, 66, 86, 14);
 		getContentPane().add(lblClases);
 		
 		comClase = new JComboBox<String>();
-		comClase.setBounds(223, 62, 140, 22);
+		comClase.setBounds(223, 70, 140, 22);
 		comClase.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
@@ -140,11 +151,11 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		//DATOS DE CLASE
 		
 		JLabel lblDatos = new JLabel("Datos");
-		lblDatos.setBounds(30, 94, 46, 14);
+		lblDatos.setBounds(30, 107, 46, 14);
 		getContentPane().add(lblDatos);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(223, 90, 140, 97);
+		scrollPane_1.setBounds(223, 103, 140, 97);
 		getContentPane().add(scrollPane_1);
 		
 		textArea = new JTextArea();
@@ -154,37 +165,77 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		//SOCIOS
 		
 		JLabel lblNewLabel_4 = new JLabel("Socios");
-		lblNewLabel_4.setBounds(30, 188, 46, 14);
+		lblNewLabel_4.setBounds(30, 211, 46, 14);
 		getContentPane().add(lblNewLabel_4);
 		
 		comSocios = new JComboBox<String>();
-		comSocios.setBounds(223, 188, 140, 22);
+		comSocios.setBounds(223, 211, 140, 22);
 		getContentPane().add(comSocios);
 		
 		//FECHA
 		
 		JLabel lblNewLabel_5 = new JLabel("Fecha");
-		lblNewLabel_5.setBounds(30, 217, 46, 14);
+		lblNewLabel_5.setVisible(false);
+		lblNewLabel_5.setBounds(30, 240, 46, 14);
 		getContentPane().add(lblNewLabel_5);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(223, 221, 140, 20);
+		dateChooser.setVisible(false);
+		dateChooser.setBounds(223, 244, 140, 20);
 		dateChooser.setDateFormatString("d MM y");
 		getContentPane().add(dateChooser);
 		
 		//CANCELAR
 		
 		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setBounds(30, 267, 107, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				lblError.setText("");
+				
+			}
+		});
+		btnNewButton.setBounds(30, 275, 107, 23);
 		getContentPane().add(btnNewButton);
 		
 		//ACEPTAR
 		
 		JButton btnNewButton_1 = new JButton("Acceptar");
-		btnNewButton_1.setBounds(295, 267, 107, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aceptarActionPerformed(e);
+			}
+		});
+		btnNewButton_1.setBounds(295, 275, 107, 23);
 		getContentPane().add(btnNewButton_1);
 		
+		lblError = new JLabel("");
+		lblError.setForeground(new Color(239, 41, 41));
+		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
+		lblError.setBounds(30, 240, 227, 24);
+		getContentPane().add(lblError);
 		
+		
+	}
+	
+	private void aceptarActionPerformed(ActionEvent e) {
+		
+		if (comClase.getSelectedItem() == null) {
+			this.lblError.setText("Tiene que especificar una clase");
+		}else if (comSocios.getSelectedItem() == null) {
+			this.lblError.setText("Tiene que especificar un socio");
+		}else {
+			String clase = (String)comClase.getSelectedItem();
+			String socio = (String)comSocios.getSelectedItem();
+			try {
+				this.icon.altaRegistroDictadoDeClase(socio, clase);
+				JOptionPane.showMessageDialog(this, "Se a registrado el socio con éxito", "Registro dictado de clase",
+						JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			}catch(RegistroRepetidoEx ex){
+				this.lblError.setText(ex.getMessage());
+			}
+		}
 	}
 	
 	//COMBO BOX INSTITUCIONES
@@ -207,6 +258,8 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 			modelo2.addElement(a);
 		}
 		comActDep.setModel(modelo2);
+		
+		/*
 		if((String)comActDep.getSelectedItem() != null)
 			try {
 				textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
@@ -214,12 +267,14 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		 */
 	}
 	
 	//COMBO BOX CLASE
 	
 	public void cambiarComboBoxClase() {
 		DefaultComboBoxModel<String> modelo3 = new DefaultComboBoxModel<String>();
+		if((String)comActDep.getSelectedItem() != null) {
 		ArrayList<String> clas = icon.listarClases((String)comActDep.getSelectedItem());
 		for (String c : clas) {
 			modelo3.addElement(c);
@@ -227,6 +282,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		comClase.setModel(modelo3);
 		if((String)comClase.getSelectedItem() != null)
 			textArea.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+		}
 	}
 	
 	public void llenoSocios() {

@@ -64,6 +64,14 @@ public class Clase {
 	public void setDtFechaAlta(DtFecha fechaReg) {
 		this.fechaReg = fechaReg;
 	}
+	
+	public ArrayList<Registro> getRegistros(){
+		return registros;
+	}
+	
+	public void agregarRegistro(Registro r) {
+		registros.add(r);
+	}
 
 	public DtClase getDtClase() {
 		DtClase dt = new DtClase(nombre, fechaInicio, profe.getDtProfesor(), url, fechaReg);
