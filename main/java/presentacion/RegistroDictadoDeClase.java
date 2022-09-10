@@ -15,6 +15,7 @@ import javax.swing.event.InternalFrameEvent;
 import com.toedter.calendar.JDateChooser;
 
 import excepciones.NoExisteActividadDepEx;
+import excepciones.NoExistenUsuariosEx;
 import interfaces.IControladorActividadDeportiva;
 
 import javax.swing.DefaultComboBoxModel;
@@ -35,7 +36,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comClase;
 	private JComboBox<String> comSocios;
 	//private JScrollPane scrollPane;
-	private JTextArea textArea2;
+	//private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -56,13 +57,14 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 	
 	 * Create the frame.
 	 */
-	public RegistroDictadoDeClase(IControladorActividadDeportiva ico) {
+	public RegistroDictadoDeClase(IControladorActividadDeportiva icon) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
 				//list.clearSelection();
 			}
 		});
+		this.icon = icon;
 		setResizable(true);
 		setIconifiable(true);
 		setClosable(true);
@@ -73,10 +75,11 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		//INSTITUCION
 		
 		lblInstitucion = new JLabel("Institución:");
-		lblInstitucion.setBounds(30, 28, 86, 14);
+		lblInstitucion.setBounds(30, 12, 86, 14);
 		getContentPane().add(lblInstitucion);
 		
 		comInst = new JComboBox<String>();
+		comInst.setBounds(223, 8, 140, 22);
 		comInst.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxActividadesDep();
@@ -89,16 +92,16 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 					}
 			}
 		});
-		comInst.setBounds(223, 28, 140, 22);
 		getContentPane().add(comInst);
 		
 		//ACTIVIDADES
 		
 		JLabel lblActDep = new JLabel("Actividad Deportiva:");
-		lblActDep.setBounds(30, 61, 86, 14);
+		lblActDep.setBounds(30, 32, 86, 14);
 		getContentPane().add(lblActDep);
 		
 		comActDep = new JComboBox<String>();
+		comActDep.setBounds(223, 28, 140, 22);
 		comActDep.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxClase();
@@ -113,40 +116,40 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 				}
 			}
 		});
-		comActDep.setBounds(223, 61, 140, 22);
 		getContentPane().add(comActDep);
 		
 		//CLASES
 		
 		JLabel lblClases = new JLabel("Clases:");
-		lblClases.setBounds(30, 94, 86, 14);
+		lblClases.setBounds(30, 58, 86, 14);
 		getContentPane().add(lblClases);
 		
 		comClase = new JComboBox<String>();
+		comClase.setBounds(223, 62, 140, 22);
 		comClase.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
 				if((String)comClase.getSelectedItem() != null)
-					textArea2.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+					textArea.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+					llenoSocios();
 			
 			}
 		});
-		comClase.setBounds(223, 94, 140, 22);
 		getContentPane().add(comClase);
 		
 		//DATOS DE CLASE
 		
 		JLabel lblDatos = new JLabel("Datos");
-		lblDatos.setBounds(30, 127, 46, 14);
+		lblDatos.setBounds(30, 94, 46, 14);
 		getContentPane().add(lblDatos);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(223, 125, 140, 57);
+		scrollPane_1.setBounds(223, 90, 140, 97);
 		getContentPane().add(scrollPane_1);
 		
 		textArea = new JTextArea();
-		textArea.setEditable(false);
 		scrollPane_1.setViewportView(textArea);
+		textArea.setEditable(false);
 		
 		//SOCIOS
 		
@@ -155,9 +158,6 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_4);
 		
 		comSocios = new JComboBox<String>();
-		
-		
-		
 		comSocios.setBounds(223, 188, 140, 22);
 		getContentPane().add(comSocios);
 		
@@ -168,8 +168,8 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		getContentPane().add(lblNewLabel_5);
 		
 		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setDateFormatString("d MM y");
 		dateChooser.setBounds(223, 221, 140, 20);
+		dateChooser.setDateFormatString("d MM y");
 		getContentPane().add(dateChooser);
 		
 		//CANCELAR
@@ -226,6 +226,20 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		}
 		comClase.setModel(modelo3);
 		if((String)comClase.getSelectedItem() != null)
-		textArea2.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+			textArea.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
+	}
+	
+	public void llenoSocios() {
+		DefaultComboBoxModel<String> modelo4 = new DefaultComboBoxModel<String>();
+		try {
+			ArrayList<String> socios = icon.getSocios();
+			for(String c: socios) {
+				modelo4.addElement(c);
+			}
+			comSocios.setModel(modelo4);
+		} catch (NoExistenUsuariosEx e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

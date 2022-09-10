@@ -1,6 +1,7 @@
 package logica;
 
 import interfaces.IControladorActividadDeportiva;
+//import interfaces.Socio;
 
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
 import excepciones.NoExisteActividadDepEx;
+import excepciones.NoExistenUsuariosEx;
 
 public class ControladorActividadDeportiva implements IControladorActividadDeportiva{
 	public ControladorActividadDeportiva() {
@@ -110,6 +112,19 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		Clase cl = mC.buscarClase(clase);
 		DtClase dt = cl.getDtClase();
 		return dt;
+	}
+	@Override
+	public ArrayList<String> getSocios() throws NoExistenUsuariosEx{
+		ManejadorUsuario mS = ManejadorUsuario.getInstancia();
+		ArrayList<Socio> socios = mS.listarSocio();
+		if (socios == null)
+				throw new NoExistenUsuariosEx("No existen socios creados");
+		ArrayList<String> retorno = null;
+		for(Socio s :socios) {
+			retorno.add(s.getNickname());
+		}
+		return retorno;
+		
 	}
 	
 }
