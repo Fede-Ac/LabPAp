@@ -5,6 +5,7 @@ import interfaces.IControladorActividadDeportiva;
 import java.util.ArrayList;
 
 import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import excepciones.ActividadDepRepetidaEx;
 
@@ -76,7 +77,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		
 		return dtActividad;
 	}
-	
+	@Override
 	public ArrayList<String> listarClases(String actividadDeportiva) {
 		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
 		ActividadDeportiva actDep = mA.buscarActividadDeportiva(actividadDeportiva);
@@ -86,6 +87,13 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 			actClasNombre.add(i.getNombre());
 		}
 		return actClasNombre;
+	}
+	@Override
+	public DtClase getDtClase(String clase) {
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		Clase cl = mC.buscarClase(clase);
+		DtClase dt = cl.getDtClase();
+		return dt;
 	}
 	
 }

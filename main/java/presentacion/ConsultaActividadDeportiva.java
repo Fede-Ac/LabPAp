@@ -30,6 +30,8 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 	private JComboBox<String> comInst;
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
+	private JScrollPane scrollPane;
+	private JTextArea textArea2;
 	
 	/**
 	 * Launch the application.
@@ -71,7 +73,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblInstitucion);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(194, 52, 213, 151);
+		scrollPane_1.setBounds(194, 52, 213, 86);
 		getContentPane().add(scrollPane_1);
 		
 		textArea = new JTextArea();
@@ -100,8 +102,11 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comActDep = new JComboBox<String>();
 		comActDep.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if((String)comActDep.getSelectedItem() != null)
+				cambiarComboBoxClase();
+				if((String)comActDep.getSelectedItem() != null) {
 					textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+				
+				}
 			}
 		});
 		comActDep.setBounds(28, 116, 138, 22);
@@ -115,12 +120,21 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comClase = new JComboBox<String>();
 		comClase.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
+				
 				if((String)comClase.getSelectedItem() != null)
 					textArea.setText(icon.ConsultaActividadDeportiva((String)comClase.getSelectedItem()).toString());
 			}
 		});
 		comClase.setBounds(28, 181, 138, 22);
 		getContentPane().add(comClase);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(194, 149, 213, 86);
+		getContentPane().add(scrollPane);
+		
+		textArea2 = new JTextArea();
+		textArea2.setEditable(false);
+		scrollPane.setViewportView(textArea2);
 
 	}
 	
@@ -152,6 +166,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		}
 		comClase.setModel(modelo3);
 		if((String)comClase.getSelectedItem() != null)
-			textArea.setText(icon.ConsultaActividadDeportiva((String)comClase.getSelectedItem()).toString());
+		textArea2.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
 	}
 }

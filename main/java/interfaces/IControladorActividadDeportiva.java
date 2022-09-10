@@ -8,6 +8,7 @@ import java.lang.Boolean;
 import java.util.ArrayList;
 
 import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
 import datatypes.DtFecha;
 
 public interface IControladorActividadDeportiva {
@@ -22,5 +23,7 @@ public interface IControladorActividadDeportiva {
 	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep);
 	
 	public ArrayList<String> listarClases(String clase);
+
+	DtClase getDtClase(String clase);
 }
                                    

@@ -188,6 +188,7 @@ public class Principal {
 				if(altaDictadoDeClaseInF.hayInstituciones()) {
 					consultaActividadDepInF.inicializarComboBoxInstituciones();
 					consultaActividadDepInF.cambiarComboBoxActividadesDep();
+					consultaActividadDepInF.cambiarComboBoxClase();
 					consultaActividadDepInF.setVisible(true);
 				}
 			}

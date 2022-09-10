@@ -47,9 +47,9 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		lblNewLabel.setBounds(30, 28, 86, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(223, 28, 140, 22);
-		getContentPane().add(comboBox);
+		JComboBox comInst = new JComboBox();
+		comInst.setBounds(223, 28, 140, 22);
+		getContentPane().add(comInst);
 		
 		//ACTIVIDADES
 		
@@ -57,9 +57,9 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		lblNewLabel_1.setBounds(30, 61, 86, 14);
 		getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(223, 61, 140, 22);
-		getContentPane().add(comboBox_1);
+		JComboBox comActDep = new JComboBox();
+		comActDep.setBounds(223, 61, 140, 22);
+		getContentPane().add(comActDep);
 		
 		//CLASES
 		
@@ -67,9 +67,9 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		lblNewLabel_2.setBounds(30, 94, 86, 14);
 		getContentPane().add(lblNewLabel_2);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(223, 94, 140, 22);
-		getContentPane().add(comboBox_2);
+		JComboBox comClases = new JComboBox();
+		comClases.setBounds(223, 94, 140, 22);
+		getContentPane().add(comClases);
 		
 		//DATOS DE CLASE
 		
@@ -87,9 +87,9 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		lblNewLabel_4.setBounds(30, 188, 46, 14);
 		getContentPane().add(lblNewLabel_4);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(223, 188, 140, 22);
-		getContentPane().add(comboBox_3);
+		JComboBox comSocios = new JComboBox();
+		comSocios.setBounds(223, 188, 140, 22);
+		getContentPane().add(comSocios);
 		
 		//FECHA
 		

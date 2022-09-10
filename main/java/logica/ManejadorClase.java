@@ -25,6 +25,15 @@ public class ManejadorClase {
 		return existe;
 	}
 	
+	public Clase buscarClase(String nombre) {
+		Clase clase=null;
+		for(Clase c: clases) {
+			if (c.getNombre().equals(nombre))
+				clase = c;
+		}
+		return clase;
+	}
+	
 	public void add(Clase clase) {
 		clases.add(clase);		
 	}
