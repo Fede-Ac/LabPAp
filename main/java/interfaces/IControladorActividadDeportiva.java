@@ -23,6 +23,8 @@ public interface IControladorActividadDeportiva {
 	
 	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) throws NoExisteActividadDepEx;
 	
+	public DtActividadDeportiva RegistroDictadoDeClase(String regClas) throws NoExisteActividadDepEx;
+	
 	public ArrayList<String> listarClases(String clase);
 
 	public DtClase getDtClase(String clase);

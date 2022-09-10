@@ -30,7 +30,9 @@ public class Principal {
 	private ConsultaUsuario consultaUsuarioInF;
 
 	private ConsultaActividadDeportiva consultaActividadDepInF;
-
+	
+	private RegistroDictadoDeClase registroDictadoDeClaseInF;
+ 
 	// private RegistroDictadoDeClase regDictadoDeClase;
 
 	/**
@@ -89,6 +91,10 @@ public class Principal {
 		altaDictadoDeClaseInF = new AltaDictadoDeClase(iConClase);
 		altaDictadoDeClaseInF.setVisible(false);
 		frame.getContentPane().add(altaDictadoDeClaseInF);
+		
+		registroDictadoDeClaseInF = new RegistroDictadoDeClase(iConActDep);
+		registroDictadoDeClaseInF.setVisible(false);
+		frame.getContentPane().add(registroDictadoDeClaseInF);
 
 		// fin crear instancia
 	}
@@ -172,15 +178,18 @@ public class Principal {
 		});
 		mnDictadoDeClases.add(mntmDictadoDeClases);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Registro dictado de clase");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem mntmRegistroDictadoDeClase = new JMenuItem("Registro dictado de clase");
+		mntmRegistroDictadoDeClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(altaDictadoDeClaseInF.hayInstituciones()) {
-					
+					registroDictadoDeClaseInF.inicializarComboBoxInstituciones();
+					registroDictadoDeClaseInF.cambiarComboBoxActividadesDep();
+					registroDictadoDeClaseInF.cambiarComboBoxClase();
+					registroDictadoDeClaseInF.setVisible(true);
 				}
 			}
 		});
-		mnDictadoDeClases.add(mntmNewMenuItem);
+		mnDictadoDeClases.add(mntmRegistroDictadoDeClase);
 
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {

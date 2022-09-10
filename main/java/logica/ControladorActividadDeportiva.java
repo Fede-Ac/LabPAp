@@ -81,6 +81,18 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		
 		return dtActividad;
 	}
+	
+	@Override
+	public DtActividadDeportiva RegistroDictadoDeClase(String regClas) throws NoExisteActividadDepEx{
+		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva actividad = mAD.buscarActividadDeportiva(regClas);
+		if(actividad == null) {
+			throw new NoExisteActividadDepEx("No existe la actividad deportiva");
+		}
+		DtActividadDeportiva dtActividad = actividad.getDtActividadDeportiva();
+		
+		return dtActividad;
+	}
 	@Override
 	public ArrayList<String> listarClases(String actividadDeportiva) {
 		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();

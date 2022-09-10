@@ -47,6 +47,16 @@ public class ManejadorUsuario {
 	public ArrayList<Usuario> listarUsuarios(){
 		return usuarios;
 	}
+	
+	public ArrayList<Socio> listarSocio(){
+		ArrayList<Socio> socios = null;
+		for(Usuario u : this.usuarios){
+			Socio s = (Socio) u;
+			if (s != null)
+				socios.add(s);
+		}
+		return socios;
+	}
 
 }
 	
