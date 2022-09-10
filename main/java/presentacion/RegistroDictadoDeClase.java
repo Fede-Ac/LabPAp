@@ -9,6 +9,8 @@ import java.awt.List;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -32,7 +34,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
 	private JComboBox<String> comSocios;
-	private JScrollPane scrollPane;
+	//private JScrollPane scrollPane;
 	private JTextArea textArea2;
 
 	/**
@@ -54,7 +56,13 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 	
 	 * Create the frame.
 	 */
-	public RegistroDictadoDeClase() {
+	public RegistroDictadoDeClase(IControladorActividadDeportiva ico) {
+		addInternalFrameListener(new InternalFrameAdapter() {
+			@Override
+			public void internalFrameClosed(InternalFrameEvent e) {
+				//list.clearSelection();
+			}
+		});
 		setResizable(true);
 		setIconifiable(true);
 		setClosable(true);
@@ -74,7 +82,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 				cambiarComboBoxActividadesDep();
 				if((String)comActDep.getSelectedItem() != null)
 					try {
-						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -96,7 +104,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 				cambiarComboBoxClase();
 				if((String)comActDep.getSelectedItem() != null) {
 					try {
-						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -201,7 +209,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		comActDep.setModel(modelo2);
 		if((String)comActDep.getSelectedItem() != null)
 			try {
-				textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
+				textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 			} catch (NoExisteActividadDepEx e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
