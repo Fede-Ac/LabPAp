@@ -64,6 +64,6 @@ public class DtFecha {
 	}
 	@Override
 	public String toString() {
-		return "Fecha: " + dia + "/" + mes + "/" + anio;
+		return dia + "/" + mes + "/" + anio;
 	}
 }

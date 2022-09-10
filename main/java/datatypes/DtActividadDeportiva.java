@@ -49,7 +49,7 @@ public class DtActividadDeportiva {
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + "\nDescripción: " + descripcion + "\nDuración: " + duracion
-				+ "\nCosto: " + costo + "\nFecha Registro: " + fechaReg + "\nClases=" + clases;
+				+ "\nCosto: " + costo + "\nFecha Registro: " + fechaReg;
 	}
 	
 	

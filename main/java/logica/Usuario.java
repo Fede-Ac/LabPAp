@@ -53,6 +53,6 @@ public abstract class Usuario {
 	public void setDtFechaNac(DtFecha fechaNac) {
 		this.fechaNac = fechaNac;
 	}
-	public abstract DtUsuario consulta(Usuario uS);
+	//public abstract DtUsuario consulta(Usuario uS);
 	
 }

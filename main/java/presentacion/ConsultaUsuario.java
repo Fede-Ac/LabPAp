@@ -124,9 +124,13 @@ public class ConsultaUsuario extends JInternalFrame {
 		nickSelected = listaUsuarios.getSelectedValue();
 	}
 	public void selectedFromListActionPerformed (ActionEvent arg0){
-		this.textAreaInformacion.setVisible(true);
-		DtUsuario dtu = icon.consultaUsuario(nickSelected);
-		this.textAreaInformacion.setText(dtu.toString());		
+		nickSelected = listaUsuarios.getSelectedValue();
+		if(listaUsuarios.getSelectedValue() != null) {
+			this.textAreaInformacion.setVisible(true);
+			DtUsuario dtu = icon.consultaUsuario(nickSelected);
+			this.textAreaInformacion.setText(dtu.toString());		
+		}
+		
 	}
 	public void limpiarTextAreaActionPerformed(ActionEvent arg0){
 		this.textAreaInformacion.setText("");

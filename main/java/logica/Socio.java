@@ -3,6 +3,7 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
@@ -15,10 +16,10 @@ public class Socio extends Usuario{
 		super(nickname, nombre, apellido, email, fechaNac);
 	}
 
-	@Override
-	public DtUsuario consulta(Usuario uS) {
-		return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getDtFechaNac());
-	}
+	//@Override
+	//public DtUsuario consulta(Usuario uS) {
+	//	return new DtSocio(uS.getNickname(),uS.getNombre(),uS.getApellido(),uS.getEmail(),uS.getDtFechaNac());
+	//}
 	
 	public ArrayList<Registro> getRegistros(){
 		return registros;
@@ -29,6 +30,11 @@ public class Socio extends Usuario{
 	}
 
 	public DtSocio getDtSocio() {
-		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac());
+		
+		ArrayList<DtClase> clases = new ArrayList<DtClase>();
+		for(Registro r : registros) {
+			clases.add(r.getClase().getDtClase()); 
+		}
+		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac(), clases);
 	}
 }

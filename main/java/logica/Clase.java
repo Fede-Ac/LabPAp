@@ -23,6 +23,7 @@ public class Clase {
 		this.profe = profe;
 		this.url = url;
 		this.fechaReg = fechaReg;
+		profe.agregarClase(this);
 	}
 
 	public String getNombre() {
@@ -74,7 +75,11 @@ public class Clase {
 	}
 
 	public DtClase getDtClase() {
-		DtClase dt = new DtClase(nombre, fechaInicio, profe.getDtProfesor(), url, fechaReg);
+		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva actDep = mAD.buscarActividadDeportivaPorClase(this);
+		String actDepNombre = actDep.getNombre();
+		
+		DtClase dt = new DtClase(nombre, fechaInicio, profe.getNickname(), url, fechaReg, actDepNombre);
 		return dt;
 	}
 	

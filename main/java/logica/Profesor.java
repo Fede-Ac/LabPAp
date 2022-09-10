@@ -2,6 +2,7 @@ package logica;
 
 import java.util.ArrayList;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
@@ -13,7 +14,7 @@ public class Profesor extends Usuario {
 	private String sitioWeb;//opcional
 	//links
 	private InstitucionDeportiva institucion;	
-	private ArrayList<Clase> clases;
+	private ArrayList<Clase> clases = new ArrayList<Clase>();
 
 	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fecha, String descripcion,
 			String biografia, String sitioWeb, InstitucionDeportiva institucion) {
@@ -64,9 +65,19 @@ public class Profesor extends Usuario {
 		return clases;
 	}
 	
+	public void agregarClase(Clase c) {
+		clases.add(c);
+	}
+	
 	public DtProfesor getDtProfesor() {
+		
+		ArrayList<DtClase> dtClases = new ArrayList<DtClase>();
+		for(Clase c : clases) {
+			dtClases.add(c.getDtClase());
+		}
+		
 		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac(), this.descripcion,
-				this.biografia, this.sitioWeb, this.institucion.getDtInstitucionDeportiva());
+				this.biografia, this.sitioWeb, this.institucion.getDtInstitucionDeportiva(), dtClases);
 	}
 	
 	public DtProfesor consultaProfesor(Profesor prof) {
@@ -76,15 +87,15 @@ public class Profesor extends Usuario {
 		return retorno;
 	}
 
-	@Override
-	public DtUsuario consulta(Usuario uS) {
+	//@Override
+	//public DtUsuario consulta(Usuario uS) {
 
-		DtProfesor dtP;
-		dtP = new DtProfesor(uS.getNickname(), uS.getNombre(), uS.getApellido(), uS.getEmail(),
-				uS.getDtFechaNac(), this.biografia, this.descripcion, this.sitioWeb,
-				new DtInstitucionDeportiva(((Profesor) uS).getInstitucion().getNombre(),
-						((Profesor) uS).getInstitucion().getDescripcion(), ((Profesor) uS).getInstitucion().getUrl()));
+	//	DtProfesor dtP;
+	//	dtP = new DtProfesor(uS.getNickname(), uS.getNombre(), uS.getApellido(), uS.getEmail(),
+	//			uS.getDtFechaNac(), this.biografia, this.descripcion, this.sitioWeb,
+	//			new DtInstitucionDeportiva(((Profesor) uS).getInstitucion().getNombre(),
+	//					((Profesor) uS).getInstitucion().getDescripcion(), ((Profesor) uS).getInstitucion().getUrl()));
 
-		return dtP;
-	}
+	//	return dtP;
+	//}
 }

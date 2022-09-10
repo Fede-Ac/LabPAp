@@ -1,16 +1,34 @@
 package datatypes;
 
+import java.util.ArrayList;
+
 public class DtSocio extends DtUsuario{
 
-	public DtSocio(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
+	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
+	
+	public DtSocio(String nickname, String nombre, String apellido, String email, DtFecha fecha, ArrayList<DtClase> clases) {
 		super(nickname, nombre, apellido, email, fecha);
+		this.clases = clases;
 	}
 
 	@Override
 	public String toString() {
-		return "SOCIO \nNICK: " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: "
+		String datos = "SOCIO \nNICK: " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: "
 				+ getApellido() + "\nCorreo electrónico: " + getEmail() +
-				"\nFecha de Nacimiento: " + fechaNac.toString();
+				"\nFecha de Nacimiento: " + fechaNac.toString()+ "\nClases en las que esta registrado: \n";
+		
+		String datosClase = "";
+		for(DtClase c : clases) {
+			datosClase = datosClase + c.getNombre() + " - " + c.getActDep() + "\n";
+		}
+		
+		if(datosClase == "") {
+			datosClase = "No esta registrado a ninguna clase";
+		}
+		
+		datos = datos + datosClase;
+		
+		return datos;
 	}
 
 	

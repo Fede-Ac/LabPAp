@@ -62,11 +62,13 @@ public class ControladorUsuario implements IControladorUsuario{
 		
 		if (uS instanceof Profesor) {
 			Profesor p = (Profesor) uS;
-			 dtU = new DtProfesor(p.getNickname(),p.getNombre(),p.getApellido(),p.getEmail(),p.getDtFechaNac(),p.getBiografia(),p.getDescripcion(),p.getSitioWeb(), new DtInstitucionDeportiva(p.getInstitucion().getNombre(),p.getInstitucion().getDescripcion(),p.getInstitucion().getUrl()));
+			 //dtU = new DtProfesor(p.getNickname(),p.getNombre(),p.getApellido(),p.getEmail(),p.getDtFechaNac(),p.getBiografia(),p.getDescripcion(),p.getSitioWeb(), new DtInstitucionDeportiva(p.getInstitucion().getNombre(),p.getInstitucion().getDescripcion(),p.getInstitucion().getUrl()));
+			dtU = p.getDtProfesor();
 		}	
 		else {
 			Socio s = (Socio) uS;
-			dtU = new DtSocio(s.getNickname(),s.getNombre(),s.getApellido(),s.getEmail(),s.getDtFechaNac());
+			//dtU = new DtSocio(s.getNickname(),s.getNombre(),s.getApellido(),s.getEmail(),s.getDtFechaNac());
+			dtU = s.getDtSocio();
 		}
 		
 		return dtU;

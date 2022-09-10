@@ -52,7 +52,7 @@ public class DtFechaHora extends DtFecha{
 	
 	@Override
 	public String toString() {
-		return "Fecha: " + getDia() + "/" + getMes() + "/" + getAnio() + " hora: " + hora + ":" + min + ":" + seg;
+		return getDia() + "/" + getMes() + "/" + getAnio() + " " + hora + ":" + min + ":" + seg;
 	}
 
 }

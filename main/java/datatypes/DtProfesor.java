@@ -1,18 +1,23 @@
 package datatypes;
 
+import java.util.ArrayList;
+
+
 public class DtProfesor extends DtUsuario{
 	private String descripcion;
 	private String biografia;
 	private String sitioWeb;
 	private DtInstitucionDeportiva institucion;
+	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
 
 	public DtProfesor(String nickname, String nombre, String apellido, String email, DtFecha fecha, String descripcion,
-			String biografia, String sitioWeb, DtInstitucionDeportiva institucion) {
+			String biografia, String sitioWeb, DtInstitucionDeportiva institucion, ArrayList<DtClase> clases) {
 		super(nickname, nombre, apellido, email, fecha);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
 		this.institucion = institucion;
+		this.clases = clases;
 	}
 
 	public DtProfesor(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
@@ -37,10 +42,23 @@ public class DtProfesor extends DtUsuario{
 	@Override
 	public String toString() {
 		
-		return "PROFESOR:\nNickname : " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: " + getApellido() + "\nEmail: " + getEmail() 
-				+ "\nFecha de Nacimiento: " + fechaNac.toString()
-				+ "\nDescripción: " + descripcion + "\nBiografía: " + biografia + "\nSitioWeb: " + sitioWeb
-				+ "\nInstitución: \n" + institucion.toString();
+		String datos ="PROFESOR:\nNickname : " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: " + getApellido() + "\nEmail: " + getEmail() 
+		+ "\nFecha de Nacimiento: " + fechaNac.toString()
+		+ "\nDescripción: " + descripcion + "\nBiografía: " + biografia + "\nSitioWeb: " + sitioWeb
+		+ "\nInstitución: " + institucion.getNombre()+ "\nClases que dicta: \n";
+		
+		String datosClase = "";
+		for(DtClase c : clases) {
+			datosClase = datosClase + c.getNombre() + " - " + c.getActDep() + "\n";
+		}
+		
+		if(datosClase == "") {
+			datosClase = "No dicta clases";
+		}
+		
+		datos = datos + datosClase;
+		
+		return datos;
 	}
 	
 

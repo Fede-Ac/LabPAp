@@ -3,17 +3,19 @@ package datatypes;
 public class DtClase {
 	private String nombre;//unico
 	private DtFechaHora fechaInicio;
-	private DtProfesor profe;
+	private String profe;
 	private String url;
 	private DtFecha fechaReg;
+	private String actDep;
 	
-	public DtClase(String nombre, DtFechaHora fechaInicio, DtProfesor profe, String url, DtFecha fechaReg) {
+	public DtClase(String nombre, DtFechaHora fechaInicio, String profe, String url, DtFecha fechaReg, String actDep) {
 		super();
 		this.nombre = nombre;
 		this.fechaInicio = fechaInicio;
 		this.profe = profe;
 		this.url = url;
 		this.fechaReg = fechaReg;
+		this.actDep = actDep;
 	}
 	
 	public String getNombre() {
@@ -24,7 +26,7 @@ public class DtClase {
 		return fechaInicio;
 	}
 
-	public DtProfesor getProfe() {
+	public String getProfe() {
 		return profe;
 	}
 
@@ -34,6 +36,10 @@ public class DtClase {
 
 	public DtFecha getFechaReg() {
 		return fechaReg;
+	}
+	
+	public String getActDep() {
+		return actDep;
 	}
 
 	@Override

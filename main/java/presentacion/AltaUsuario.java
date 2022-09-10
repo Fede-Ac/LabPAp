@@ -31,6 +31,7 @@ import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
+import datatypes.DtClase;
 
 import javax.swing.SpinnerListModel;
 import javax.swing.JComboBox;
@@ -409,14 +410,15 @@ public class AltaUsuario extends JInternalFrame {
 		DtUsuario dtU = null;
 
 		if (checkFormulario()) {
-			
+			ArrayList<DtClase> clasesVacia = new ArrayList<DtClase>(); 
 			if (rdbtnSocio.isSelected()) {
-				dtU = new DtSocio(nickname, nombre, apellido, email, fecha);
+				dtU = new DtSocio(nickname, nombre, apellido, email, fecha, clasesVacia);
 			} else if (rdbtnProfesor.isSelected()) {
 				
 				DtInstitucionDeportiva dtInstDep = icon.getDtinstitucionDeportiva((String)comInst.getSelectedItem());
+				
 				dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
-						dtInstDep);
+						dtInstDep, clasesVacia);
 			}
 			
 			try {

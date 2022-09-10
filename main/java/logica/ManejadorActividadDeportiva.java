@@ -34,6 +34,19 @@ public class ManejadorActividadDeportiva {
 		return actDep;
 	}
 	
+	public ActividadDeportiva buscarActividadDeportivaPorClase(Clase clase) {
+		ActividadDeportiva actDep=null;
+		for(ActividadDeportiva a: actDeportivas) {
+			ArrayList<Clase> clases = a.getClases();
+			for(Clase c : clases) {
+				if (c.getNombre().equals(clase.getNombre()))
+					actDep = a;
+			}
+			
+		}
+		return actDep;
+	}
+	
 	public void add(ActividadDeportiva actDep) {
 		actDeportivas.add(actDep);		
 	}
