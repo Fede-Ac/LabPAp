@@ -2,19 +2,31 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 
+@Entity
 public class ActividadDeportiva {
+	@Id
 	private String nombre;//unico
 	private String descripcion;
 	private int duracion;
 	private Float costo;
 	private DtFecha fechaReg;
 	//links
+	@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
+	
+	public ActividadDeportiva() {
+		super();
+	}
 
 	public ActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg) {
 		super();

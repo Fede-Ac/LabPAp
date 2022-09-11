@@ -3,14 +3,24 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 
+@Entity
 public class Socio extends Usuario{
 	//link
+	@OneToMany(mappedBy="socio",cascade=CascadeType.ALL,orphanRemoval=true)
 	private ArrayList<Registro> registros = new ArrayList<Registro>();
+	
+	public Socio() {
+		super();
+	}
 	
 	public Socio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super(nickname, nombre, apellido, email, fechaNac);

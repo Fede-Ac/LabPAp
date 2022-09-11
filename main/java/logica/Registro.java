@@ -2,13 +2,43 @@ package logica;
 
 import java.util.Calendar;
 
-import datatypes.DtFecha;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import datatypes.DtFecha;
+import persistencia.RegistroID;
+
+@Entity
+@IdClass(RegistroID.class)
 public class Registro {
-	private DtFecha fechaReg;
+	
 	//links (ver cuando se haga el CU)
+	@Id
+	@ManyToOne
+	@JoinColumn(
+			insertable=false, 
+			updatable=false
+	)
 	private Clase clase;
+	@Id
+	@ManyToOne
+	@JoinColumn(
+			insertable=false, 
+			updatable=false
+	)
 	private Socio socio;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar fechaReg;
+	
+	public Registro() {
+		super();
+	}
 	
 	public Registro(Clase clase, Socio socio) {
 		super();
@@ -17,10 +47,10 @@ public class Registro {
 		this.clase.agregarRegistro(this);
 		this.socio.agregarRegistro(this);
 		Calendar c = Calendar.getInstance();
-		fechaReg = new DtFecha(c);
+		this.fechaReg = c;
 	}
 
-	public DtFecha getDtFechaReg() {
+	public Calendar getDtFechaReg() {
 		return fechaReg;
 	}
 

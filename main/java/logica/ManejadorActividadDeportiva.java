@@ -2,6 +2,11 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import persistencia.Conexion;
+
 public class ManejadorActividadDeportiva {
 	private static ManejadorActividadDeportiva instancia = null;
 	
@@ -26,17 +31,36 @@ public class ManejadorActividadDeportiva {
 	}
 	
 	public ActividadDeportiva buscarActividadDeportiva(String nombre) {
+		//Conexion conexion = Conexion.getInstancia();
+		//EntityManager em = conexion.getEntityManager();
+		
+		//ActividadDeportiva actDep = em.find(ActividadDeportiva.class, nombre);
+		
+		
 		ActividadDeportiva actDep=null;
 		for(ActividadDeportiva a: actDeportivas) {
 			if (a.getNombre().equals(nombre))
 				actDep = a;
 		}
+		
 		return actDep;
 	}
 	
 	public ActividadDeportiva buscarActividadDeportivaPorClase(Clase clase) {
+		//Conexion conexion = Conexion.getInstancia();
+		//EntityManager em = conexion.getEntityManager();
+		
+		//Query query = em.createQuery("select s from Socio s");
+		//ArrayList<ActividadDeportiva> actDeportivas = (ArrayList<ActividadDeportiva>) query.getResultList();
+		
+		
+		
 		ActividadDeportiva actDep=null;
 		for(ActividadDeportiva a: actDeportivas) {
+			
+			
+			
+			
 			ArrayList<Clase> clases = a.getClases();
 			for(Clase c : clases) {
 				if (c.getNombre().equals(clase.getNombre()))
@@ -48,6 +72,13 @@ public class ManejadorActividadDeportiva {
 	}
 	
 	public void add(ActividadDeportiva actDep) {
-		actDeportivas.add(actDep);		
+		actDeportivas.add(actDep);	
+		//Conexion conexion = Conexion.getInstancia();
+		//EntityManager em = conexion.getEntityManager();
+		//em.getTransaction().begin();
+		
+		//em.persist(actDep);
+		
+		//em.getTransaction().commit();
 	}
 }

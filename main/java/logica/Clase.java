@@ -2,11 +2,18 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
 
+@Entity
 public class Clase {
+	@Id
 	private String nombre;//unico
 	private DtFechaHora fechaInicio;
 	private String url;
@@ -14,8 +21,15 @@ public class Clase {
 	//links
 	private Profesor profe;
 	//private ArrayList<Socio> socios;
+	@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
 	private ArrayList<Registro> registros = new ArrayList<Registro>();
 	
+	
+	
+	public Clase() {
+		super();
+	}
+
 	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;

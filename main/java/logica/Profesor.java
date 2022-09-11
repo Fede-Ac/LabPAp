@@ -2,19 +2,31 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 
+@Entity
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String biografia;//opcional
 	private String sitioWeb;//opcional
 	//links
+	@ManyToOne
 	private InstitucionDeportiva institucion;	
+	@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<Clase> clases = new ArrayList<Clase>();
+
+	public Profesor() {
+		super();
+	}
 
 	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fecha, String descripcion,
 			String biografia, String sitioWeb, InstitucionDeportiva institucion) {

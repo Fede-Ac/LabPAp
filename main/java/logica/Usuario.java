@@ -1,9 +1,14 @@
 package logica;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import datatypes.DtFecha;
 import datatypes.DtUsuario;
 
+@Entity
 public abstract class Usuario {
+	@Id
 	private String nickname;//unico
 	private String nombre;
 	private String apellido;
