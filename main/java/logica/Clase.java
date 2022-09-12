@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,14 +22,13 @@ public class Clase {
 	@Transient
 	private DtFechaHora fechaInicio;
 	private String url;
-	@Transient
-	private DtFecha fechaReg;
+	private Calendar fechaReg;
 	//links
 	@Transient
 	private Profesor profe;
 	//private ArrayList<Socio> socios;
-	//@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
-	private ArrayList<Registro> registros = new ArrayList<Registro>();
+	@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
+	private List<Registro> registros = new ArrayList<Registro>();
 	
 	
 	
@@ -40,7 +42,9 @@ public class Clase {
 		this.fechaInicio = fechaInicio;
 		this.profe = profe;
 		this.url = url;
-		this.fechaReg = fechaReg;
+		Calendar cal = new GregorianCalendar(fechaReg.getAnio(),fechaReg.getMes(),fechaReg.getDia());
+		
+		this.fechaReg = cal;
 		profe.agregarClase(this);
 	}
 
@@ -77,15 +81,15 @@ public class Clase {
 	}
 
 	public DtFecha getDtFechaAlta() {
-		return fechaReg;
+		return null;
 	}
 
 	public void setDtFechaAlta(DtFecha fechaReg) {
-		this.fechaReg = fechaReg;
+		//this.fechaReg = fechaReg;
 	}
 	
 	public ArrayList<Registro> getRegistros(){
-		return registros;
+		return null;
 	}
 	
 	public void agregarRegistro(Registro r) {
@@ -97,8 +101,8 @@ public class Clase {
 		ActividadDeportiva actDep = mAD.buscarActividadDeportivaPorClase(this);
 		String actDepNombre = actDep.getNombre();
 		
-		DtClase dt = new DtClase(nombre, fechaInicio, profe.getNickname(), url, fechaReg, actDepNombre);
-		return dt;
+		//DtClase dt = new DtClase(nombre, fechaInicio, profe.getNickname(), url, fechaReg, actDepNombre);
+		return null;
 	}
 	
 }

@@ -13,9 +13,9 @@
 		<class>logica.ActividadDeportiva</class>
 		
 		<class>logica.Clase</class>
-		<!--
+		
 		<class>logica.Registro</class>
-		-->
+		
 		
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
