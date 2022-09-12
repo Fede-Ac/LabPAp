@@ -50,8 +50,9 @@ public class Registro {
 		this.fechaReg = c;
 	}
 
-	public Calendar getDtFechaReg() {
-		return fechaReg;
+	public DtFecha getDtFechaReg() {
+		DtFecha dtF = new DtFecha(fechaReg);
+		return dtF;
 	}
 
 	public Clase getClase() {

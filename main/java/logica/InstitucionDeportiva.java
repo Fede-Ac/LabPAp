@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,9 +18,9 @@ public class InstitucionDeportiva {
 	private String descripcion;
 	private String url;
 	//links
-	@OneToMany(cascade = CascadeType.ALL)
-	private ArrayList<ActividadDeportiva> actDeportivas = new ArrayList<>();
-	private ArrayList<Profesor> profesores;
+	//@OneToMany(cascade = CascadeType.ALL)
+	private List<ActividadDeportiva> actDeportivas = new ArrayList<>();
+	//private ArrayList<Profesor> profesores;
 
 	
 	
@@ -59,7 +60,7 @@ public class InstitucionDeportiva {
 	}
 
 	public ArrayList<ActividadDeportiva> getActDeportivas() {
-		return actDeportivas;
+		return (ArrayList<ActividadDeportiva>)actDeportivas;
 	}
 	
 	public DtInstitucionDeportiva getDtInstitucionDeportiva() {

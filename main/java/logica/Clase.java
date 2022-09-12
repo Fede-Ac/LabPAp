@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,14 +18,14 @@ import datatypes.DtFechaHora;
 public class Clase {
 	@Id
 	private String nombre;//unico
-	private DtFechaHora fechaInicio;
+	private Calendar fechaInicio;
 	private String url;
-	private DtFecha fechaReg;
+	private Calendar fechaReg;
 	//links
 	private Profesor profe;
 	//private ArrayList<Socio> socios;
 	@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
-	private ArrayList<Registro> registros = new ArrayList<Registro>();
+	private List<Registro> registros = new ArrayList<Registro>();
 	
 	
 	
@@ -33,10 +36,13 @@ public class Clase {
 	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
-		this.fechaInicio = fechaInicio;
+		Calendar c = new GregorianCalendar(fechaInicio.getAnio(),fechaInicio.getMes(),fechaInicio.getDia(),fechaInicio.getHora(),fechaInicio.getMin());
+		this.fechaInicio = c;
 		this.profe = profe;
 		this.url = url;
-		this.fechaReg = fechaReg;
+		Calendar c2 = new GregorianCalendar(fechaReg.getAnio(), fechaReg.getMes(), fechaReg.getDia());
+		this.fechaReg = c2;
+
 		profe.agregarClase(this);
 	}
 
@@ -49,11 +55,14 @@ public class Clase {
 	}
 
 	public DtFechaHora getDtFechaInicio() {
-		return fechaInicio;
+		
+		DtFechaHora dtF = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
+		return dtF;
 	}
 
 	public void setDtFechaInicio(DtFechaHora fechaInicio) {
-		this.fechaInicio = fechaInicio;
+		Calendar c = new GregorianCalendar(fechaInicio.getAnio(), fechaInicio.getMes(), fechaInicio.getDia());//no da hora y minuto
+		this.fechaInicio = c;
 	}
 
 	public Profesor getProfe() {
@@ -73,15 +82,17 @@ public class Clase {
 	}
 
 	public DtFecha getDtFechaAlta() {
-		return fechaReg;
+		DtFecha dtF = new DtFecha(fechaReg);
+		return dtF;
 	}
 
 	public void setDtFechaAlta(DtFecha fechaReg) {
-		this.fechaReg = fechaReg;
+		Calendar c = new GregorianCalendar(fechaReg.getAnio(), fechaReg.getMes(), fechaReg.getDia());
+		this.fechaReg = c;
 	}
 	
 	public ArrayList<Registro> getRegistros(){
-		return registros;
+		return (ArrayList<Registro>)registros;
 	}
 	
 	public void agregarRegistro(Registro r) {
@@ -93,7 +104,9 @@ public class Clase {
 		ActividadDeportiva actDep = mAD.buscarActividadDeportivaPorClase(this);
 		String actDepNombre = actDep.getNombre();
 		
-		DtClase dt = new DtClase(nombre, fechaInicio, profe.getNickname(), url, fechaReg, actDepNombre);
+		DtFecha dtF = new DtFecha(fechaReg);
+		DtFechaHora dtFH = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
+		DtClase dt = new DtClase(nombre, dtFH, profe.getNickname(), url, dtF, actDepNombre);
 		return dt;
 	}
 	

@@ -1,27 +1,34 @@
 package logica;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 import datatypes.DtFecha;
 import datatypes.DtUsuario;
 
-@Entity
+@MappedSuperclass
 public abstract class Usuario {
 	@Id
 	private String nickname;//unico
 	private String nombre;
 	private String apellido;
 	private String email;//unico
-	private DtFecha fechaNac;
+	private Calendar fechaNac;
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		this.email = email;
-		this.fechaNac = fechaNac;
+		this.email = email;	
+		Calendar c = new GregorianCalendar(fechaNac.getAnio(), fechaNac.getMes(), fechaNac.getDia());
+		this.fechaNac = c;
 	}
 	
 	public Usuario() {
@@ -53,10 +60,12 @@ public abstract class Usuario {
 		this.email = email;
 	}
 	public DtFecha getDtFechaNac() {
-		return fechaNac;
+		DtFecha dtF = new DtFecha(fechaNac);
+		return dtF;
 	}
 	public void setDtFechaNac(DtFecha fechaNac) {
-		this.fechaNac = fechaNac;
+		Calendar c = new GregorianCalendar(fechaNac.getAnio(), fechaNac.getMes(), fechaNac.getDia());
+		this.fechaNac = c;
 	}
 	//public abstract DtUsuario consulta(Usuario uS);
 	

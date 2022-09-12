@@ -2,6 +2,7 @@ package logica;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import datatypes.DtUsuario;
 public class Socio extends Usuario{
 	//link
 	@OneToMany(mappedBy="socio",cascade=CascadeType.ALL,orphanRemoval=true)
-	private ArrayList<Registro> registros = new ArrayList<Registro>();
+	private List<Registro> registros = new ArrayList<Registro>();
 	
 	public Socio() {
 		super();
@@ -32,7 +33,7 @@ public class Socio extends Usuario{
 	//}
 	
 	public ArrayList<Registro> getRegistros(){
-		return registros;
+		return (ArrayList<Registro>)registros;
 	}
 	
 	public void agregarRegistro(Registro r) {

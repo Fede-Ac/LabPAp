@@ -1,6 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -18,10 +21,10 @@ public class ActividadDeportiva {
 	private String descripcion;
 	private int duracion;
 	private Float costo;
-	private DtFecha fechaReg;
+	private Calendar fechaReg;
 	//links
-	@OneToMany(cascade = CascadeType.ALL)
-	private ArrayList<Clase> clases = new ArrayList<Clase>();
+	//@OneToMany(cascade = CascadeType.ALL)
+	private List<Clase> clases = new ArrayList<Clase>();
 	
 	
 	public ActividadDeportiva() {
@@ -34,7 +37,10 @@ public class ActividadDeportiva {
 		this.descripcion = descripcion;
 		this.duracion = duracion;
 		this.costo = costo;
-		this.fechaReg = fechaReg;
+		
+		Calendar c = new GregorianCalendar(fechaReg.getAnio(), fechaReg.getMes(), fechaReg.getDia());
+		this.fechaReg = c;
+		
 	}
 
 	public String getNombre() {
@@ -69,16 +75,16 @@ public class ActividadDeportiva {
 		this.costo = costo;
 	}
 
-	public DtFecha getDtFechaReg() {
+	public Calendar getDtFechaReg() {
 		return fechaReg;
 	}
 
-	public void setDtFechaReg(DtFecha fechaReg) {
+	public void setDtFechaReg(Calendar fechaReg) {
 		this.fechaReg = fechaReg;
 	}
 
 	public ArrayList<Clase> getClases() {
-		return clases;
+		return (ArrayList<Clase>)clases;
 	}
 
 	public void setClases(ArrayList<Clase> clases) {
@@ -95,7 +101,9 @@ public class ActividadDeportiva {
 		for(Clase c : clases) {
 			dtClases.add(c.getDtClase());
 		}
-		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, dtClases);
+		DtFecha dtF = new DtFecha(fechaReg);
+		
+		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, dtF, dtClases);
 		return dt;
 	}
 	
