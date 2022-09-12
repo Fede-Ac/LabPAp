@@ -75,11 +75,12 @@ public class Profesor extends Usuario {
 	}
 	
 	public ArrayList<Clase> getClases() {
-		return null;
+		ArrayList<Clase> cl = new ArrayList<Clase>(clases);
+		return cl;
 	}
 	
 	public void agregarClase(Clase c) {
-		clases.add(c);
+		clases.add(c);//persistencia?
 	}
 	
 	public DtProfesor getDtProfesor() {

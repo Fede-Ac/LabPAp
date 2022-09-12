@@ -33,7 +33,8 @@ public class Socio extends Usuario{
 	//}
 	
 	public ArrayList<Registro> getRegistros(){
-		return null;
+		ArrayList<Registro> reg = new ArrayList<Registro>(registros);
+		return reg;
 	}
 	
 	public void agregarRegistro(Registro r) {
@@ -44,7 +45,7 @@ public class Socio extends Usuario{
 		
 		ArrayList<DtClase> clases = new ArrayList<DtClase>();
 		for(Registro r : registros) {
-			//clases.add(r.getClase().getDtClase()); 
+			clases.add(r.getClase().getDtClase()); 
 		}
 		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac(), clases);
 	}

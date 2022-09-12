@@ -74,7 +74,8 @@ public class ActividadDeportiva {
 	}
 
 	public DtFecha getDtFechaReg() {
-		return null;
+		DtFecha dtF = new DtFecha(fechaReg);
+		return dtF;
 	}
 
 	public void setDtFechaReg(DtFecha fechaReg) {
@@ -82,7 +83,8 @@ public class ActividadDeportiva {
 	}
 
 	public ArrayList<Clase> getClases() {
-		return null;
+		ArrayList<Clase> cl = new ArrayList<Clase>(clases);
+		return cl;
 	}
 
 	public void setClases(ArrayList<Clase> clases) {
@@ -90,7 +92,7 @@ public class ActividadDeportiva {
 	}
 
 	public void agregarClase(Clase c) {
-		clases.add(c);
+		clases.add(c);// se persiste??????
 	}
 	
 	public DtActividadDeportiva getDtActividadDeportiva() {
@@ -99,9 +101,9 @@ public class ActividadDeportiva {
 		for(Clase c : clases) {
 			dtClases.add(c.getDtClase());
 		}
-		
-		//DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, fechaReg, dtClases);
-		return null;
+		DtFecha dtF = new DtFecha(fechaReg);
+		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, dtF, dtClases);
+		return dt;
 	}
 	
 	

@@ -21,7 +21,18 @@ public class ManejadorActividadDeportiva {
 		return instancia;
 	}
 	
+	public void actualizarActividadesDeportivas() {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		
+		Query query = em.createQuery("select u from ActividadDeportiva u");
+		actDeportivas = (ArrayList<ActividadDeportiva>) query.getResultList();
+		
+		
+	}
+	
 	public boolean existeActividad(String nombre) {
+		actualizarActividadesDeportivas();
 		Boolean existe = false; 
 		for (ActividadDeportiva actDep : actDeportivas) {
 			if (actDep.getNombre().equals(nombre))
@@ -31,6 +42,7 @@ public class ManejadorActividadDeportiva {
 	}
 	
 	public ActividadDeportiva buscarActividadDeportiva(String nombre) {
+		actualizarActividadesDeportivas();
 		//Conexion conexion = Conexion.getInstancia();
 		//EntityManager em = conexion.getEntityManager();
 		
@@ -47,6 +59,7 @@ public class ManejadorActividadDeportiva {
 	}
 	
 	public ActividadDeportiva buscarActividadDeportivaPorClase(Clase clase) {
+		actualizarActividadesDeportivas();
 		//Conexion conexion = Conexion.getInstancia();
 		//EntityManager em = conexion.getEntityManager();
 		
@@ -71,14 +84,15 @@ public class ManejadorActividadDeportiva {
 		return actDep;
 	}
 	
-	public void add(ActividadDeportiva actDep) {
-		actDeportivas.add(actDep);	
-		//Conexion conexion = Conexion.getInstancia();
-		//EntityManager em = conexion.getEntityManager();
-		//em.getTransaction().begin();
+	public void add(ActividadDeportiva actDep) {	
 		
-		//em.persist(actDep);
+		//actDeportivas.add(actDep);	
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
 		
-		//em.getTransaction().commit();
+		em.persist(actDep);
+		
+		em.getTransaction().commit();
 	}
 }

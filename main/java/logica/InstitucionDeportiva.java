@@ -20,7 +20,7 @@ public class InstitucionDeportiva {
 	//links
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<ActividadDeportiva> actDeportivas = new ArrayList<>();
-	private ArrayList<Profesor> profesores;
+	//private ArrayList<Profesor> profesores;
 
 	
 	
@@ -60,7 +60,9 @@ public class InstitucionDeportiva {
 	}
 
 	public ArrayList<ActividadDeportiva> getActDeportivas() {
-		return null;
+		ArrayList<ActividadDeportiva> a = new ArrayList<ActividadDeportiva>(actDeportivas);
+		//return (ArrayList<ActividadDeportiva>)actDeportivas;
+		return a;
 	}
 	
 	public DtInstitucionDeportiva getDtInstitucionDeportiva() {

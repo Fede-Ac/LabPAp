@@ -44,8 +44,8 @@ public class Registro {
 		super();
 		this.clase = clase;
 		this.socio = socio;
-		this.clase.agregarRegistro(this);
-		this.socio.agregarRegistro(this);
+		//this.clase.agregarRegistro(this);
+		//this.socio.agregarRegistro(this);
 		Calendar c = Calendar.getInstance();
 		this.fechaReg = c;
 	}

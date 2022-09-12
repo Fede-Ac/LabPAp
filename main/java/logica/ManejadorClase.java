@@ -2,6 +2,11 @@ package logica;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import persistencia.Conexion;
+
 public class ManejadorClase {
 	private static ManejadorClase instancia = null;
 	
@@ -16,7 +21,17 @@ public class ManejadorClase {
 		return instancia;
 	}
 	
+	public void actualizarClases() {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		
+		Query query = em.createQuery("select u from Clase u");
+		clases = (ArrayList<Clase>) query.getResultList();
+		
+	}
+	
 	public boolean existeClase(String nombre) {
+		actualizarClases();
 		Boolean existe = false; 
 		for (Clase cls : clases) {
 			if (cls.getNombre().equals(nombre))
@@ -26,6 +41,7 @@ public class ManejadorClase {
 	}
 	
 	public Clase buscarClase(String nombre) {
+		actualizarClases();
 		Clase clase=null;
 		for(Clase c: clases) {
 			if (c.getNombre().equals(nombre))
@@ -35,21 +51,30 @@ public class ManejadorClase {
 	}
 	
 	public boolean existeRegistro(String clase, String socio) {
+		actualizarClases();
 		if(!existeClase(clase)) {
 			return false;
 		}
 		Clase c = buscarClase(clase);
 		ArrayList<Registro> registros = c.getRegistros();
 		for(Registro r : registros) {
-			/*if (r.getSocio().getNickname().equals(socio)) {
+			if (r.getSocio().getNickname().equals(socio)) {
 				return true;
-			}*/
+			}
 		}
 		return false;
 	}
 	
 	public void add(Clase clase) {
-		clases.add(clase);		
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		
+		em.persist(clase);
+		
+		em.getTransaction().commit();
+		//clases.add(clase);		
 	}
 
 	

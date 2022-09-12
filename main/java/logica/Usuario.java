@@ -57,7 +57,8 @@ public abstract class Usuario {
 		this.email = email;
 	}
 	public DtFecha getDtFechaNac() {
-		return null;
+		DtFecha dtF = new DtFecha(fechaNac);
+		return dtF;
 	}
 	public void setDtFechaNac(DtFecha fechaNac) {
 		//this.fechaNac = fechaNac;

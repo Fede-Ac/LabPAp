@@ -19,8 +19,7 @@ import datatypes.DtFechaHora;
 public class Clase {
 	@Id
 	private String nombre;//unico
-	@Transient
-	private DtFechaHora fechaInicio;
+	private Calendar fechaInicio;
 	private String url;
 	private Calendar fechaReg;
 	//links
@@ -39,7 +38,8 @@ public class Clase {
 	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
 		super();
 		this.nombre = nombre;
-		this.fechaInicio = fechaInicio;
+		Calendar c = new GregorianCalendar(fechaInicio.getAnio(),fechaInicio.getMes(),fechaInicio.getDia(),fechaInicio.getHora(),fechaInicio.getMin());
+		this.fechaInicio = c;
 		this.profe = profe;
 		this.url = url;
 		Calendar cal = new GregorianCalendar(fechaReg.getAnio(),fechaReg.getMes(),fechaReg.getDia());
@@ -57,11 +57,13 @@ public class Clase {
 	}
 
 	public DtFechaHora getDtFechaInicio() {
-		return fechaInicio;
+		DtFechaHora dtF = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
+		return dtF;
 	}
 
 	public void setDtFechaInicio(DtFechaHora fechaInicio) {
-		this.fechaInicio = fechaInicio;
+		Calendar c = new GregorianCalendar(fechaInicio.getAnio(), fechaInicio.getMes(), fechaInicio.getDia(), fechaInicio.getHora(), fechaInicio.getMin());
+		this.fechaInicio = c;
 	}
 
 	public Profesor getProfe() {
@@ -81,19 +83,25 @@ public class Clase {
 	}
 
 	public DtFecha getDtFechaAlta() {
-		return null;
+		DtFecha dtF = new DtFecha(fechaReg);
+		return dtF;
 	}
 
 	public void setDtFechaAlta(DtFecha fechaReg) {
-		//this.fechaReg = fechaReg;
+		Calendar c = new GregorianCalendar(fechaReg.getAnio(), fechaReg.getMes(), fechaReg.getDia());
+		this.fechaReg = c;
 	}
 	
 	public ArrayList<Registro> getRegistros(){
-		return null;
+		ArrayList<Registro> reg = new ArrayList<Registro>(registros);
+		return reg;
 	}
 	
-	public void agregarRegistro(Registro r) {
+	public void agregarSocioPorRegistro(Socio s) {
+		//registros.add(r);
+		Registro r = new Registro(this, s);
 		registros.add(r);
+		s.agregarRegistro(r);
 	}
 
 	public DtClase getDtClase() {
@@ -101,8 +109,10 @@ public class Clase {
 		ActividadDeportiva actDep = mAD.buscarActividadDeportivaPorClase(this);
 		String actDepNombre = actDep.getNombre();
 		
-		//DtClase dt = new DtClase(nombre, fechaInicio, profe.getNickname(), url, fechaReg, actDepNombre);
-		return null;
+		DtFecha dtF = new DtFecha(fechaReg);
+		DtFechaHora dtFH = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
+		DtClase dt = new DtClase(nombre, dtFH, profe.getNickname(), url, dtF, actDepNombre);
+		return dt;
 	}
 	
 }

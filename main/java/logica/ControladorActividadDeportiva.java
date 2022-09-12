@@ -2,8 +2,11 @@ package logica;
 
 import interfaces.IControladorActividadDeportiva;
 //import interfaces.Socio;
+import persistencia.Conexion;
 
 import java.util.ArrayList;
+
+import javax.persistence.EntityManager;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
@@ -106,8 +109,14 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		}
 		Clase c = mC.buscarClase(clase);
 		Socio s = (Socio)mU.buscarUsuarioPorNickname(socio);
+		c.agregarSocioPorRegistro(s);
 		
-		//Registro r = new Registro(c, s);
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(c);
+		em.getTransaction().commit();
+
 		
 	}
 	
