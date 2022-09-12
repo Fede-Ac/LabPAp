@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,8 +24,8 @@ public abstract class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		//Calendar cal = new Calendar(/*fechaNac.getAnio(),fechaNac.getMes(),fechaNac.getDia()*/);
-		//this.fechaNac = cal;
+		Calendar cal = new GregorianCalendar(fechaNac.getAnio(),fechaNac.getMes(),fechaNac.getDia());
+		this.fechaNac = cal;
 	}
 	
 	public Usuario() {

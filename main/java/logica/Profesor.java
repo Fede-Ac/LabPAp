@@ -1,6 +1,7 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,16 +14,16 @@ import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 
-//@Entity
+@Entity
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String biografia;//opcional
 	private String sitioWeb;//opcional
 	//links
-	//@ManyToOne
+	@ManyToOne
 	private InstitucionDeportiva institucion;	
-	//@OneToMany(cascade = CascadeType.ALL)
-	private ArrayList<Clase> clases = new ArrayList<Clase>();
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Clase> clases = new ArrayList<Clase>();
 
 	public Profesor() {
 		super();
@@ -74,7 +75,7 @@ public class Profesor extends Usuario {
 	}
 	
 	public ArrayList<Clase> getClases() {
-		return clases;
+		return null;
 	}
 	
 	public void agregarClase(Clase c) {

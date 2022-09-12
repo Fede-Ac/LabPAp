@@ -13,9 +13,8 @@ import javax.persistence.TemporalType;
 import datatypes.DtFecha;
 import persistencia.RegistroID;
 
-
 public class Registro {
-
+	
 	private Calendar fechaReg;
 	
 	public Registro() {
