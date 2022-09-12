@@ -6,19 +6,23 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
 
-//@Entity
+@Entity
 public class Clase {
-	//@Id
+	@Id
 	private String nombre;//unico
+	@Transient
 	private DtFechaHora fechaInicio;
 	private String url;
+	@Transient
 	private DtFecha fechaReg;
 	//links
+	@Transient
 	private Profesor profe;
 	//private ArrayList<Socio> socios;
 	//@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
