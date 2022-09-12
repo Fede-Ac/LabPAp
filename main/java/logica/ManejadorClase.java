@@ -41,9 +41,9 @@ public class ManejadorClase {
 		Clase c = buscarClase(clase);
 		ArrayList<Registro> registros = c.getRegistros();
 		for(Registro r : registros) {
-			if (r.getSocio().getNickname().equals(socio)) {
+			/*if (r.getSocio().getNickname().equals(socio)) {
 				return true;
-			}
+			}*/
 		}
 		return false;
 	}

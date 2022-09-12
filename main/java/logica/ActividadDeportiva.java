@@ -11,16 +11,16 @@ import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 
-@Entity
+//@Entity
 public class ActividadDeportiva {
-	@Id
+	//@Id
 	private String nombre;//unico
 	private String descripcion;
 	private int duracion;
 	private Float costo;
 	private DtFecha fechaReg;
 	//links
-	@OneToMany(cascade = CascadeType.ALL)
+	//@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<Clase> clases = new ArrayList<Clase>();
 	
 	

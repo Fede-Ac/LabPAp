@@ -17,7 +17,7 @@ public class InstitucionDeportiva {
 	private String descripcion;
 	private String url;
 	//links
-	@OneToMany(cascade = CascadeType.ALL)
+	//@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<ActividadDeportiva> actDeportivas = new ArrayList<>();
 	private ArrayList<Profesor> profesores;
 

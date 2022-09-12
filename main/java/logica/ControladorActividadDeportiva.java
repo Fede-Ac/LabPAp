@@ -107,7 +107,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		Clase c = mC.buscarClase(clase);
 		Socio s = (Socio)mU.buscarUsuarioPorNickname(socio);
 		
-		Registro r = new Registro(c, s);
+		//Registro r = new Registro(c, s);
 		
 	}
 	

@@ -11,9 +11,9 @@ import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
 
-@Entity
+//@Entity
 public class Clase {
-	@Id
+	//@Id
 	private String nombre;//unico
 	private DtFechaHora fechaInicio;
 	private String url;
@@ -21,7 +21,7 @@ public class Clase {
 	//links
 	private Profesor profe;
 	//private ArrayList<Socio> socios;
-	@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
+	//@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
 	private ArrayList<Registro> registros = new ArrayList<Registro>();
 	
 	

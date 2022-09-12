@@ -13,6 +13,17 @@ import javax.persistence.TemporalType;
 import datatypes.DtFecha;
 import persistencia.RegistroID;
 
+
+public class Registro {
+
+	private Calendar fechaReg;
+	
+	public Registro() {
+		super();
+	}
+}
+
+/*
 @Entity
 @IdClass(RegistroID.class)
 public class Registro {
@@ -62,4 +73,4 @@ public class Registro {
 		return socio;
 	}
 
-}
+}*/

@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,7 +15,7 @@ public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private String email;//unico
-	private DtFecha fechaNac;
+	private Calendar fechaNac;
 	
 	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
 		super();
@@ -21,7 +23,8 @@ public abstract class Usuario {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		this.fechaNac = fechaNac;
+		//Calendar cal = new Calendar(/*fechaNac.getAnio(),fechaNac.getMes(),fechaNac.getDia()*/);
+		//this.fechaNac = cal;
 	}
 	
 	public Usuario() {
@@ -53,10 +56,10 @@ public abstract class Usuario {
 		this.email = email;
 	}
 	public DtFecha getDtFechaNac() {
-		return fechaNac;
+		return null;
 	}
 	public void setDtFechaNac(DtFecha fechaNac) {
-		this.fechaNac = fechaNac;
+		//this.fechaNac = fechaNac;
 	}
 	//public abstract DtUsuario consulta(Usuario uS);
 	

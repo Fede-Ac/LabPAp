@@ -13,15 +13,15 @@ import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtUsuario;
 
-@Entity
+//@Entity
 public class Profesor extends Usuario {
 	private String descripcion;
 	private String biografia;//opcional
 	private String sitioWeb;//opcional
 	//links
-	@ManyToOne
+	//@ManyToOne
 	private InstitucionDeportiva institucion;	
-	@OneToMany(cascade = CascadeType.ALL)
+	//@OneToMany(cascade = CascadeType.ALL)
 	private ArrayList<Clase> clases = new ArrayList<Clase>();
 
 	public Profesor() {
