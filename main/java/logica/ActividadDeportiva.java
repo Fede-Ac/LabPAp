@@ -23,7 +23,7 @@ public class ActividadDeportiva {
 	private Float costo;
 	private Calendar fechaReg;
 	//links
-	//@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
 	
 	
