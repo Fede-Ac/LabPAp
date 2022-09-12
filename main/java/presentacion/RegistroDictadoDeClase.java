@@ -92,6 +92,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 		comInst.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxActividadesDep();
+				cambiarComboBoxClase();
 				if((String)comActDep.getSelectedItem() != null)
 					try {
 						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());

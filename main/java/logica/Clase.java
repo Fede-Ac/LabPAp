@@ -23,8 +23,9 @@ public class Clase {
 	private String url;
 	private Calendar fechaReg;
 	//links
-	@Transient
-	private Profesor profe;
+	//@Transient
+	//private Profesor profe;
+	private String profesorNickname;
 	//private ArrayList<Socio> socios;
 	@OneToMany(mappedBy="clase",cascade=CascadeType.ALL,orphanRemoval=true)
 	private List<Registro> registros = new ArrayList<Registro>();
@@ -40,7 +41,8 @@ public class Clase {
 		this.nombre = nombre;
 		Calendar c = new GregorianCalendar(fechaInicio.getAnio(),fechaInicio.getMes(),fechaInicio.getDia(),fechaInicio.getHora(),fechaInicio.getMin());
 		this.fechaInicio = c;
-		this.profe = profe;
+		//this.profe = profe;
+		this.profesorNickname = profe.getNickname();
 		this.url = url;
 		Calendar cal = new GregorianCalendar(fechaReg.getAnio(),fechaReg.getMes(),fechaReg.getDia());
 		
@@ -66,12 +68,12 @@ public class Clase {
 		this.fechaInicio = c;
 	}
 
-	public Profesor getProfe() {
-		return profe;
+	public String getProfesorNickname() {
+		return profesorNickname;
 	}
 
-	public void setProfe(Profesor profe) {
-		this.profe = profe;
+	public void setProfesorNickname(String profe) {
+		this.profesorNickname = profe;
 	}
 
 	public String getUrl() {
@@ -111,7 +113,7 @@ public class Clase {
 		
 		DtFecha dtF = new DtFecha(fechaReg);
 		DtFechaHora dtFH = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
-		DtClase dt = new DtClase(nombre, dtFH, profe.getNickname(), url, dtF, actDepNombre);
+		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre);
 		return dt;
 	}
 	

@@ -91,6 +91,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 		comInst.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxActividadesDep();
+				cambiarComboBoxClase();
 				if((String)comActDep.getSelectedItem() != null)
 					try {
 						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
