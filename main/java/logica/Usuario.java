@@ -61,7 +61,8 @@ public abstract class Usuario {
 		return dtF;
 	}
 	public void setDtFechaNac(DtFecha fechaNac) {
-		//this.fechaNac = fechaNac;
+		Calendar cal = new GregorianCalendar(fechaNac.getAnio(),fechaNac.getMes(),fechaNac.getDia());
+		this.fechaNac = cal;
 	}
 	//public abstract DtUsuario consulta(Usuario uS);
 	

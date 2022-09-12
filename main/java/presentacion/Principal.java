@@ -32,6 +32,8 @@ public class Principal {
 	private ConsultaActividadDeportiva consultaActividadDepInF;
 	
 	private RegistroDictadoDeClase registroDictadoDeClaseInF;
+	
+	private ModificarDatosUsuario modificarDatosUsuarioInF;
  
 	// private RegistroDictadoDeClase regDictadoDeClase;
 
@@ -95,6 +97,10 @@ public class Principal {
 		registroDictadoDeClaseInF = new RegistroDictadoDeClase(iConActDep);
 		registroDictadoDeClaseInF.setVisible(false);
 		frame.getContentPane().add(registroDictadoDeClaseInF);
+		
+		modificarDatosUsuarioInF = new ModificarDatosUsuario(iConUser);
+		modificarDatosUsuarioInF.setVisible(false);
+		frame.getContentPane().add(modificarDatosUsuarioInF);
 
 		// fin crear instancia
 	}
@@ -133,6 +139,19 @@ public class Principal {
 			}
 		});
 		mnUsuarios.add(mntmConsultaUsuaro);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Modificar Usuario");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(modificarDatosUsuarioInF.hayUsuarios()) {
+					modificarDatosUsuarioInF.inicializarComboBoxUsuarios();
+					modificarDatosUsuarioInF.cargarDatosUsuario();
+					modificarDatosUsuarioInF.setVisible(true);
+				}
+				
+			}
+		});
+		mnUsuarios.add(mntmNewMenuItem);
 
 		JMenu mnInstitucionesDeportivas = new JMenu("Instituciones Deportivas");
 		menuBar.add(mnInstitucionesDeportivas);

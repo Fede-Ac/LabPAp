@@ -1,5 +1,6 @@
 package logica;
 
+import datatypes.DtFecha;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
@@ -7,8 +8,11 @@ import datatypes.DtUsuario;
 import excepciones.NoExisteInstitucionDepEx;
 import excepciones.UsuarioRepetidoEx;
 import interfaces.IControladorUsuario;
+import persistencia.Conexion;
 
 import java.util.ArrayList;
+
+import javax.persistence.EntityManager;
 
 
 public class ControladorUsuario implements IControladorUsuario{
@@ -41,6 +45,30 @@ public class ControladorUsuario implements IControladorUsuario{
 		}
 		
 		mU.agregarUsuario(uN);
+	}
+	
+	@Override
+	public void modificarUsuario(DtUsuario dtU) {
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario uN = mU.buscarUsuarioPorNickname(dtU.getNickname());
+		
+		uN.setNombre(dtU.getNombre());
+		uN.setApellido(dtU.getApellido());
+		uN.setDtFechaNac(dtU.getFecha());
+		
+		if(uN instanceof Profesor) {
+			((Profesor) uN).setSitioWeb(((DtProfesor) dtU).getSitioWeb());
+			((Profesor) uN).setBiografia(((DtProfesor) dtU).getBiografia());
+			((Profesor) uN).setDescripcion(((DtProfesor) dtU).getDescripcion());
+		}
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		
+		em.persist(uN);
+		
+		em.getTransaction().commit();
 	}
 	
 	public String[] mostrarUsuarios(){ // Retorna un set(String): ArrayList
