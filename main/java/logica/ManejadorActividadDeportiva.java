@@ -14,6 +14,17 @@ public class ManejadorActividadDeportiva {
 	
 	private ManejadorActividadDeportiva() {}
 	
+	
+	public void actualizarActividadDep() {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		
+		Query query = em.createQuery("select u from ActividadDeportiva u");
+		actDeportivas = (ArrayList<ActividadDeportiva>) query.getResultList();
+		
+	}
+	
+	
 	public static ManejadorActividadDeportiva getInstancia() {
 		if(instancia == null) {
 			instancia = new ManejadorActividadDeportiva();
@@ -22,6 +33,7 @@ public class ManejadorActividadDeportiva {
 	}
 	
 	public boolean existeActividad(String nombre) {
+		actualizarActividadDep();
 		Boolean existe = false; 
 		for (ActividadDeportiva actDep : actDeportivas) {
 			if (actDep.getNombre().equals(nombre))
@@ -36,7 +48,7 @@ public class ManejadorActividadDeportiva {
 		
 		//ActividadDeportiva actDep = em.find(ActividadDeportiva.class, nombre);
 		
-		
+		actualizarActividadDep();
 		ActividadDeportiva actDep=null;
 		for(ActividadDeportiva a: actDeportivas) {
 			if (a.getNombre().equals(nombre))
@@ -53,7 +65,7 @@ public class ManejadorActividadDeportiva {
 		//Query query = em.createQuery("select s from Socio s");
 		//ArrayList<ActividadDeportiva> actDeportivas = (ArrayList<ActividadDeportiva>) query.getResultList();
 		
-		
+		actualizarActividadDep();
 		
 		ActividadDeportiva actDep=null;
 		for(ActividadDeportiva a: actDeportivas) {
