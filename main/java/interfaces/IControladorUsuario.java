@@ -2,10 +2,8 @@ package interfaces;
 
 import java.util.ArrayList;
 
-import datatypes.DtFecha;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtUsuario;
-import excepciones.FechaInvalidaEx;
 import excepciones.NoExisteInstitucionDepEx;
 import excepciones.UsuarioRepetidoEx;
 

@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import datatypes.DtFecha;
 import persistencia.RegistroID;
 
 @Entity

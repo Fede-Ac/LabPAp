@@ -1,23 +1,17 @@
 package presentacion;
 
-import java.awt.Component;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import interfaces.IControladorActividadDeportiva;
-import javax.swing.event.ListSelectionListener;
 
 import excepciones.NoExisteActividadDepEx;
 
-import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.JComboBox;

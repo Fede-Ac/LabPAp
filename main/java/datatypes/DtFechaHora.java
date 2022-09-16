@@ -21,9 +21,9 @@ public class DtFechaHora extends DtFecha{
 		super(anio, mes, dia);
 		if (hora >= MAXHORA && hora <=MINHORA) {
 			throw new HoraInvalidaEx("La hora ingresada es inválida. Rango permitido: " + MINHORA +"-" +MAXHORA);
-		}else if (min >= MINMIN && min <= MAXMIN) {
+		}else if (min >= MAXMIN && min <= MINMIN) {
 			throw new HoraInvalidaEx("Los minutos ingresados son inválidos. Rango permitido: " + MINMIN +"-" +MAXMIN);
-		}else if (seg >= MINSEG && seg <= MAXSEG) {
+		}else if (seg >= MAXSEG && seg <= MINSEG) {
 			throw new HoraInvalidaEx("Los segundos ingresados son inválidos. Rango permitido: " + MINSEG +"-" +MAXSEG);
 		}
 		this.hora = hora;

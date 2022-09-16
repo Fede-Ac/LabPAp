@@ -5,14 +5,29 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
+import datatypes.DtClase;
+import datatypes.DtFecha;
+import datatypes.DtFechaHora;
+import datatypes.DtInstitucionDeportiva;
+import datatypes.DtProfesor;
+import datatypes.DtSocio;
+import datatypes.DtUsuario;
+import excepciones.ActividadDepRepetidaEx;
+import excepciones.ClaseRepetidaEx;
+import excepciones.FechaInvalidaEx;
+import excepciones.HoraInvalidaEx;
+import excepciones.InstitucionDepRepetidaEx;
+import excepciones.NoExisteInstitucionDepEx;
+import excepciones.NoExistenUsuariosEx;
+import excepciones.UsuarioRepetidoEx;
 import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
 import interfaces.IControladorClase;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Principal {
@@ -37,8 +52,7 @@ public class Principal {
 	
 	private ModificarActividadDeportiva modificarActividadDeportivaInf;
  
-	// private RegistroDictadoDeClase regDictadoDeClase;
-
+	private ModificarInstitucionDep modificarInstitucionDep;
 	/**
 	 * Launch the application.
 	 */
@@ -108,7 +122,12 @@ public class Principal {
 		modificarActividadDeportivaInf.setVisible(false);
 		frame.getContentPane().add(modificarActividadDeportivaInf);
 
+		modificarInstitucionDep = new ModificarInstitucionDep(iConIntDep);
+		modificarInstitucionDep.setVisible(false);
+		frame.getContentPane().add(modificarInstitucionDep);
 		// fin crear instancia
+		
+		//cargaDatos(iConUser, iConIntDep, iConActDep, iConClase);//cargar datos de prueba
 	}
 
 	/**
@@ -169,6 +188,15 @@ public class Principal {
 			}
 		});
 		mnInstitucionesDeportivas.add(mntmAltaInstitucinDep);
+		
+		JMenuItem mntmModificarInsititucinDep = new JMenuItem("Modificar insititución Dep.");
+		mntmModificarInsititucinDep.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modificarInstitucionDep.inicializarComboBoxInstituciones();
+				modificarInstitucionDep.setVisible(true);
+			}
+		});
+		mnInstitucionesDeportivas.add(mntmModificarInsititucinDep);
 
 		JMenu mnActividadesDeportivas = new JMenu("Actividades Deportivas");
 		menuBar.add(mnActividadesDeportivas);
@@ -243,5 +271,63 @@ public class Principal {
 		});
 		mnActividadesDeportivas.add(mntmNewMenuItem_1);
 
+	}
+	
+	private void cargaDatos(IControladorUsuario iConUser, IControladorInstitucionDep iConIntDep, IControladorActividadDeportiva iConActDep, IControladorClase iConClase) {
+		//CARGA USUARIOS
+		try {
+			iConUser.altaUsuario(new DtSocio("xXpepeXx", "Pedro", "Marti", "pepe@gmail.com", new DtFecha(1990,5,5), null));
+			iConUser.altaUsuario(new DtSocio("superFranx", "Franco", "Moti", "franx@gmail.com", new DtFecha(1993,7,1), null));
+			iConUser.altaUsuario(new DtSocio("xXjuanXx", "Juan", "pacos", "juan@gmail.com", new DtFecha(1999,10,6), null));
+			iConUser.altaUsuario(new DtSocio("xXstaxXx", "Fran", "davil", "stax@gmail.com", new DtFecha(1995,1,10), null));
+			iConUser.altaUsuario(new DtSocio("Marix", "Maria", "da Cruz", "maria@gmail.com", new DtFecha(1991,12,9), null));
+			iConUser.altaUsuario(new DtSocio("Fionex", "Fiorella", "Benit", "fionez@gmail.com", new DtFecha(1990,10,5), null));
+		} catch (UsuarioRepetidoEx | NoExisteInstitucionDepEx | FechaInvalidaEx e1) {
+			e1.printStackTrace();
+		}
+		//CARGA INSTITUCIONES DEPORTIVAS
+		try {
+			iConIntDep.addInstitucionDep("institucion1", "primera institucion", "www://inst1.com");
+			iConIntDep.addInstitucionDep("institucion2", "segunda institucion", "www://inst2.com");
+			iConIntDep.addInstitucionDep("institucion3", "tercera institucion", "www://inst3.com");
+			iConIntDep.addInstitucionDep("institucion4", "cuarta institucion", "www://inst4.com");
+			iConIntDep.addInstitucionDep("institucion5", "", "");
+		} catch (InstitucionDepRepetidaEx e) {
+			e.printStackTrace();
+		}
+		//CARGA PROFESORES
+		try {
+			iConUser.altaUsuario(new DtProfesor("masterMaster", "Juan", "da cun", "majuda@gmail.com", new DtFecha(1980,5,5), "Muy extricto", "Alto", "", new DtInstitucionDeportiva("institucion3", "tercera institucion", "www://inst3.com"), null));
+			iConUser.altaUsuario(new DtProfesor("ElPrrrofe", "Franco", "Rodriguez", "elrodir@gmail.com", new DtFecha(1975,1,7), "Muy bajito", "Bajo", "", new DtInstitucionDeportiva("institucion3", "tercera institucion", "www://inst3.com"), null));
+			iConUser.altaUsuario(new DtProfesor("Carlax", "Carla", "Dianis", "carlax@gmail.com", new DtFecha(1981,3,1), "Puntual", "", "", new DtInstitucionDeportiva("institucion2", "segunda institucion", "www://inst2.com"), null));
+		} catch (UsuarioRepetidoEx | NoExisteInstitucionDepEx | FechaInvalidaEx e1) {
+			e1.printStackTrace();
+		}
+		//CARGA ACTIVIDADES DEPORTIVAS
+		try {
+			try {
+				iConActDep.AltaActividadDeportiva("actividad1", "institucion2", "actividad divertida", 60, 500, new DtFecha(2019,12,14));
+				iConActDep.AltaActividadDeportiva("actividad2", "institucion2", "actividad fugaz", 10, 100, new DtFecha(2022,9,9));
+				iConActDep.AltaActividadDeportiva("actividad3", "institucion3", "actividad de larga duración", 180, 1500, new DtFecha(2022,1,10));
+				iConActDep.AltaActividadDeportiva("actividad4", "institucion4", "", 30, 800, new DtFecha(2020,12,20));
+				iConActDep.AltaActividadDeportiva("actividad5", "institucion3", "actividad variada", 60, 700, new DtFecha(2020,9,15));
+				iConActDep.AltaActividadDeportiva("actividad6", "institucion2", "para mayores", 30, 300, new DtFecha(2019,7,10));
+				iConActDep.AltaActividadDeportiva("actividad7", "institucion4", "Jovenes y niños", 60, 500, new DtFecha(2022,7,5));
+				iConActDep.AltaActividadDeportiva("actividad8", "institucion2", "Alta resisencia", 60, 1000, new DtFecha(2021,4,5));
+			} catch (FechaInvalidaEx e) {
+				e.printStackTrace();
+			}
+		} catch (ActividadDepRepetidaEx e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			iConClase.addClase("actividad1", "Hora de divertirse", new DtFechaHora(2022,10,15,18,30,30), "Carlax", "www://clasevirtual1.com", new DtFecha(2022,9,15));
+			iConClase.addClase("actividad3", "Hasta agotarnos", new DtFechaHora(2022,9,20,17,30,30), "ElPrrrofe", "www://clasevirtual2.com", new DtFecha(2022,9,14));
+			iConClase.addClase("actividad5", "diversion y vaiedad", new DtFechaHora(2022,10,1,14,30,30), "masterMaster", "www://clasevirtual3.com", new DtFecha(2022,9,13));
+			iConClase.addClase("actividad2", "a correr", new DtFechaHora(2022,9,28,15,30,30), "Carlax", "www://clasevirtual4.com", new DtFecha(2022,9,15));
+		} catch (ClaseRepetidaEx | NoExistenUsuariosEx | HoraInvalidaEx | FechaInvalidaEx e) {
+			e.printStackTrace();
+		}
 	}
 }

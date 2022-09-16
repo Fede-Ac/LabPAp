@@ -4,8 +4,6 @@ import javax.swing.JInternalFrame;
 
 import javax.swing.JComboBox;
 
-import java.awt.List;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -15,7 +13,6 @@ import javax.swing.event.InternalFrameEvent;
 
 import com.toedter.calendar.JDateChooser;
 
-import excepciones.ActividadDepRepetidaEx;
 import excepciones.NoExisteActividadDepEx;
 import excepciones.NoExistenUsuariosEx;
 import excepciones.RegistroRepetidoEx;
@@ -23,7 +20,6 @@ import interfaces.IControladorActividadDeportiva;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import java.awt.ScrollPane;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
