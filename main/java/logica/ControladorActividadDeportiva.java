@@ -151,5 +151,40 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		return retorno;
 		
 	}
+	@Override
+	public ArrayList<String> getActividadesDeportivas(){
+		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
+		ArrayList<ActividadDeportiva> actDeps = mA.listarActividadesDeportivas();
+		ArrayList<String> retorno = new ArrayList<String>();
+		for(ActividadDeportiva a :actDeps) {
+			retorno.add(a.getNombre());
+		}
+		return retorno;
+
+	}
+	@Override
+	public DtActividadDeportiva getDtActividadDeportiva(String actDep) {
+		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva ad = mA.buscarActividadDeportiva(actDep);
+		DtActividadDeportiva dtAD = ad.getDtActividadDeportiva();
+		return dtAD;
+	}
+	@Override
+	public void modificarActividadDeportiva(DtActividadDeportiva dtA) {
+		ManejadorActividadDeportiva mA = ManejadorActividadDeportiva.getInstancia();
+		ActividadDeportiva ad = mA.buscarActividadDeportiva(dtA.getNombre());
+		
+		ad.setDescripcion(dtA.getDescripcion());
+		ad.setCosto(dtA.getCosto());
+		ad.setDuracion(dtA.getDuracion());
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		
+		em.persist(ad);
+		
+		em.getTransaction().commit();
+	}
 	
 }

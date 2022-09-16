@@ -34,6 +34,8 @@ public class Principal {
 	private RegistroDictadoDeClase registroDictadoDeClaseInF;
 	
 	private ModificarDatosUsuario modificarDatosUsuarioInF;
+	
+	private ModificarActividadDeportiva modificarActividadDeportivaInf;
  
 	// private RegistroDictadoDeClase regDictadoDeClase;
 
@@ -101,6 +103,10 @@ public class Principal {
 		modificarDatosUsuarioInF = new ModificarDatosUsuario(iConUser);
 		modificarDatosUsuarioInF.setVisible(false);
 		frame.getContentPane().add(modificarDatosUsuarioInF);
+		
+		modificarActividadDeportivaInf = new ModificarActividadDeportiva(iConActDep);
+		modificarActividadDeportivaInf.setVisible(false);
+		frame.getContentPane().add(modificarActividadDeportivaInf);
 
 		// fin crear instancia
 	}
@@ -223,6 +229,19 @@ public class Principal {
 			}
 		});
 		mnActividadesDeportivas.add(mntmConsultaActividadDep);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar Actividad Dep.");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(modificarActividadDeportivaInf.hayActividadesDeportivas()) {
+					modificarActividadDeportivaInf.inicializarComboBoxActDep();
+					modificarActividadDeportivaInf.cargarDatosActDep();
+					modificarActividadDeportivaInf.setVisible(true);
+					
+				}
+			}
+		});
+		mnActividadesDeportivas.add(mntmNewMenuItem_1);
 
 	}
 }

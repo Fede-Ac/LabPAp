@@ -34,5 +34,11 @@ public interface IControladorActividadDeportiva {
 	public ArrayList<String> getSocios() throws NoExistenUsuariosEx;
 
 	public void altaRegistroDictadoDeClase(String socio, String clase) throws RegistroRepetidoEx;
+
+	public ArrayList<String> getActividadesDeportivas();
+
+	public DtActividadDeportiva getDtActividadDeportiva(String actDep);
+
+	public void modificarActividadDeportiva(DtActividadDeportiva dtA);
 }
                                    

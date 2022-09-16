@@ -95,4 +95,9 @@ public class ManejadorActividadDeportiva {
 		
 		em.getTransaction().commit();
 	}
+	
+	public ArrayList<ActividadDeportiva> listarActividadesDeportivas(){
+		actualizarActividadesDeportivas();
+		return actDeportivas;
+	}
 }
