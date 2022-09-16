@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import datatypes.DtFecha;
-import datatypes.DtUsuario;
 
 @Entity
 public abstract class Usuario {

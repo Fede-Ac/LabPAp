@@ -10,9 +10,7 @@ import javax.persistence.OneToMany;
 
 import datatypes.DtClase;
 import datatypes.DtFecha;
-import datatypes.DtInstitucionDeportiva;
 import datatypes.DtProfesor;
-import datatypes.DtUsuario;
 
 @Entity
 public class Profesor extends Usuario {

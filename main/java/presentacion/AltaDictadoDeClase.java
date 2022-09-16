@@ -18,7 +18,6 @@ import java.awt.event.ActionEvent;
 import interfaces.IControladorClase;
 
 import com.toedter.calendar.JDateChooser;
-import com.toedter.components.JSpinField;
 
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
@@ -26,17 +25,14 @@ import datatypes.DtFechaHora;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-
-
 public class AltaDictadoDeClase extends JInternalFrame {
 	private static final long serialVersionUID = 1L;
-	private IControladorClase icon;//
+	private IControladorClase icon;
 	private JTextField textNombre;
 	private JTextField textURL;
 	private JDateChooser dateFecha;
@@ -83,9 +79,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		setTitle("Agregar una clase");
 		setBounds(100, 100, 391, 365);
 		getContentPane().setLayout(null);
-		//
-
-				
+		//		
 		JLabel lblNombreDeLa = new JLabel("Nombre de la clase");
 		lblNombreDeLa.setBounds(12, 84, 198, 15);
 		getContentPane().add(lblNombreDeLa);
@@ -133,7 +127,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		JButton btnIngresar = new JButton("Ingresar");
 		btnIngresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				addClasePerformed(e);//para facilitar
+				addClasePerformed(e);
 			}
 		});
 		btnIngresar.setBounds(240, 299, 117, 25);
@@ -187,11 +181,11 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		lblActividadDeportiva.setBounds(12, 51, 165, 15);
 		getContentPane().add(lblActividadDeportiva);
 		
-		comActDep = new JComboBox();
+		comActDep = new JComboBox<String>();
 		comActDep.setBounds(243, 46, 114, 24);
 		getContentPane().add(comActDep);
 		
-		comInst = new JComboBox();
+		comInst = new JComboBox<String>();
 		comInst.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxActividadesDep();
@@ -201,7 +195,7 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		comInst.setBounds(243, 11, 114, 22);
 		getContentPane().add(comInst);
 		
-		comProf = new JComboBox();
+		comProf = new JComboBox<String>();
 		comProf.setBounds(243, 188, 114, 22);
 		getContentPane().add(comProf);
 
@@ -210,7 +204,6 @@ public class AltaDictadoDeClase extends JInternalFrame {
 	
 	
 	protected void addClasePerformed(ActionEvent arg0) {
-		//String nomInstDep = (String)this.comInst.getSelectedItem();
 		String actDep = (String) this.comActDep.getSelectedItem();
 		String nombreclase = this.textNombre.getText();
 		Calendar fechaCal = this.dateFecha.getCalendar();
@@ -218,7 +211,6 @@ public class AltaDictadoDeClase extends JInternalFrame {
 		int min = (int)this.spinMin.getValue();
 		String URL = this.textURL.getText();
 		Calendar fechaAlta = this.dateFechaAlta.getCalendar();
-		//String profesor = this.txtProfesor.getText();
 		String profesor = (String)this.comProf.getSelectedItem();
 		
 		

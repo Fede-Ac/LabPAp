@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtSocio;
-import datatypes.DtUsuario;
 
 @Entity
 public class Socio extends Usuario{

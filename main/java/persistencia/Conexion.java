@@ -4,9 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import interfaces.Fabrica;
-//import interfaces.IControlador;
-//import logica.Controlador;
 
 public class Conexion {
 	private static Conexion instancia = null;

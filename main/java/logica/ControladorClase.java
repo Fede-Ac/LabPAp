@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
-import datatypes.DtProfesor;
 import excepciones.ClaseRepetidaEx;
 import excepciones.NoExistenUsuariosEx;
 import interfaces.IControladorClase;

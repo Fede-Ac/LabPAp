@@ -1,6 +1,9 @@
 package logica;
 
 import interfaces.IControladorInstitucionDep;
+
+import java.util.ArrayList;
+
 import excepciones.InstitucionDepRepetidaEx;
 
 public class ControladorInstitucionDep implements IControladorInstitucionDep {
@@ -17,6 +20,17 @@ public class ControladorInstitucionDep implements IControladorInstitucionDep {
 		}else{
 			throw new InstitucionDepRepetidaEx("La institución de nombre: " + nombre + " ya existe.");
 		}
+	}
+	
+	@Override
+	public ArrayList<String> listarInstituciones() {
+		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
+		ArrayList<InstitucionDeportiva> instituciones = mI.listarInstituciones();
+		ArrayList<String> institucionesNombre = new ArrayList<String>();
+		for(InstitucionDeportiva i : instituciones) {
+			institucionesNombre.add(i.getNombre());
+		}
+		return institucionesNombre;
 	}
 
 }

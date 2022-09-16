@@ -1,7 +1,5 @@
 package presentacion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -12,13 +10,12 @@ import javax.swing.SpinnerNumberModel;
 
 import datatypes.DtClase;
 import datatypes.DtFecha;
-import datatypes.DtInstitucionDeportiva;
+
 import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import excepciones.FechaInvalidaEx;
-import excepciones.NoExisteInstitucionDepEx;
-import excepciones.UsuarioRepetidoEx;
+
 import interfaces.IControladorUsuario;
 
 import java.awt.Color;
@@ -76,6 +73,11 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public ModificarDatosUsuario(IControladorUsuario iCU) {
+		//this.icon = icon;
+		setResizable(true);
+		setIconifiable(true);
+		setClosable(true);
+		setTitle("Modificar datos del usuario");
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
