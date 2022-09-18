@@ -9,4 +9,6 @@ public interface IControladorInstitucionDep {
 
 	public ArrayList<String> listarInstituciones();
 
+	public void updateInstDep(String nombre, String desc, String url);
+
 }

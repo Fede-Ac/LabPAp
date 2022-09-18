@@ -65,6 +65,11 @@ public class ManejadorInstitucionDep {
 		actualizarInstitucionDep();
 		return instDeportivas;
 	}
+
+	public void updateInstitucionDep(InstitucionDeportiva instDep) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

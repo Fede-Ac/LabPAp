@@ -3,6 +3,7 @@ package presentacion;
 import javax.swing.JInternalFrame;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
@@ -119,7 +120,14 @@ public class ModificarInstitucionDep extends JInternalFrame {
 	}
 	
 	protected void updateInstDepActionPerformed (ActionEvent e){
-		
+		String nombre = this.textNombre.getText();
+		String desc = this.textDescripcion.getText();
+		String url = this.textUrl.getText();
+		if(nombre == "" || desc == "" || url == "") {
+			JOptionPane.showMessageDialog(this, "No puede haber capos vacios", "Modificar institución deportiva", JOptionPane.ERROR_MESSAGE);
+		}else {
+			icon.updateInstDep(nombre,desc,url);
+		}
 	}
 	
 	public void inicializarComboBoxInstituciones() {

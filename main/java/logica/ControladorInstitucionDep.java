@@ -33,4 +33,13 @@ public class ControladorInstitucionDep implements IControladorInstitucionDep {
 		return institucionesNombre;
 	}
 
+	@Override
+	public void updateInstDep(String nombre, String desc, String url) {
+		ManejadorInstitucionDep mid = ManejadorInstitucionDep.getInstancia();
+		InstitucionDeportiva instDep = mid.buscarInstitucion(nombre);
+		instDep.setDescripcion(desc);
+		instDep.setUrl(url);
+		mid.updateInstitucionDep(instDep);
+	}
+
 }
