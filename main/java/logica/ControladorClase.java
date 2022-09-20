@@ -1,7 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
 import excepciones.ClaseRepetidaEx;
@@ -88,6 +90,29 @@ public class ControladorClase implements IControladorClase{
 	}
 	
 	
+	public ArrayList<DtClase> rankingClases(){
+		
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		ArrayList<Clase>ranking  = mC.getClases();
+		
+		//Sorting (bubble)
+		
+		for(int i=0;i<ranking.size();i++) {
+			for(int j=0;j<ranking.size()-i-1;j++) {
+				if(ranking.get(j).getCantRegistros()<ranking.get(j+1).getCantRegistros()) {
+					 Collections.swap(ranking, i, j);
+				}
+			}
+		}
+		ArrayList<DtClase> rankingRet = new ArrayList<DtClase>();
+			for(Clase c : ranking) {
+				rankingRet.add(c.getDtClase());
+			}
+			
+		
+		return rankingRet;
+	}	
+		
 
 
 }

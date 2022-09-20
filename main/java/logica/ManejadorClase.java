@@ -76,7 +76,15 @@ public class ManejadorClase {
 		em.getTransaction().commit();
 		//clases.add(clase);		
 	}
-
 	
+	public ArrayList<Clase> getClases(){
+		actualizarClases();
+		ArrayList<Clase> retorno = new ArrayList<Clase>();
+		
+		for(Clase c : clases) {
+			retorno.add(c);
+		}
+		return retorno;
+	}
 
 }

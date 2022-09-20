@@ -115,5 +115,8 @@ public class Clase {
 		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre);
 		return dt;
 	}
+	public Integer getCantRegistros() {
+		return registros.size();
+	}
 	
 }
