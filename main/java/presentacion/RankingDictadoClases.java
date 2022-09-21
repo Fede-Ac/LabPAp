@@ -44,6 +44,7 @@ public class RankingDictadoClases extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public RankingDictadoClases(IControladorClase icon) {
+		this.icon = icon;
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 		setResizable(true);
@@ -78,7 +79,8 @@ public class RankingDictadoClases extends JInternalFrame {
 		List<DtClase> clases = icon.rankingClases();
 		int i = 1;
 		for (DtClase dtc : clases) {
-			textArea.append(i + "- " + dtc.toString() + "\n");
+			textArea.append(i + "- " + dtc.toString() + "\n\n _____________________\n\n");
+			i++;
 		}
 		
 		//textArea.setText(icon.rankingClases().toString());
