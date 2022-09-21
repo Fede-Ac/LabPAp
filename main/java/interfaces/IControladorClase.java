@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import datatypes.DtClase;
 import datatypes.DtFecha;
 import datatypes.DtFechaHora;
 import excepciones.ClaseRepetidaEx;
@@ -13,4 +14,5 @@ public interface IControladorClase {
 	public ArrayList<String> listarActividadesDeportivas(String institucion);
 	public ArrayList<String> listarProfesores(String institucion);
 	public ArrayList<String> listarClases(String clase);
+	public ArrayList<DtClase> rankingClases();
 }

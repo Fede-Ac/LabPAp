@@ -53,6 +53,8 @@ public class Principal {
 	private ModificarActividadDeportiva modificarActividadDeportivaInf;
  
 	private ModificarInstitucionDep modificarInstitucionDep;
+	
+	private RankingDictadoClases rankingDictadoClases;
 	/**
 	 * Launch the application.
 	 */
@@ -125,6 +127,10 @@ public class Principal {
 		modificarInstitucionDep = new ModificarInstitucionDep(iConIntDep);
 		modificarInstitucionDep.setVisible(false);
 		frame.getContentPane().add(modificarInstitucionDep);
+		
+		rankingDictadoClases = new RankingDictadoClases(iConClase);
+		rankingDictadoClases.setVisible(false);
+		frame.getContentPane().add(rankingDictadoClases);
 		// fin crear instancia
 		
 		//cargaDatos(iConUser, iConIntDep, iConActDep, iConClase);//cargar datos de prueba
@@ -158,8 +164,9 @@ public class Principal {
 		JMenuItem mntmConsultaUsuaro = new JMenuItem("Consulta Usuario");
 		mntmConsultaUsuaro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				consultaUsuarioInF.inicializarLista();
 				consultaUsuarioInF.setVisible(true);
+				consultaUsuarioInF.inicializarLista();
+				
 
 			}
 		});
@@ -244,6 +251,18 @@ public class Principal {
 			}
 		});
 		mnDictadoDeClases.add(mntmRegistroDictadoDeClase);
+		
+		JMenuItem mntmRankingClases = new JMenuItem("Ranking de dicatos de clases");
+		mntmRankingClases.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					rankingDictadoClases.llenarRanking();
+					rankingDictadoClases.setVisible(true);			
+					
+				}
+			}
+		});
+		mnDictadoDeClases.add(mntmRankingClases);
 
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
