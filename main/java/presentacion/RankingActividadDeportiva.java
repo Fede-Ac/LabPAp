@@ -33,14 +33,11 @@ public class RankingActividadDeportiva extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private IControladorActividadDeportiva icon;
-	private JLabel lblActividadesDeportivas;
 	private JScrollPane actividadesDeportivas;
-	private JList<String> listActividades = new JList<String>();
-	private JScrollPane dataActividades;
-	private JTextArea textAreaActividades = new JTextArea();
 	private JButton btnOk;
-	private String actividadSelected;
-	private List list;
+	private String[] columnNames = { "Actividad Deportiva", "N° de clases", "Costo", "Descripción"};
+	private String[][] datosTabla;
+	private JTable table;
 	
 	/**
 	 * Launch the application.
@@ -70,29 +67,14 @@ public class RankingActividadDeportiva extends JInternalFrame {
 		icon = icad;
 		
 		actividadesDeportivas = new JScrollPane();
-		actividadesDeportivas.setBounds(35, 38, 364, 295);
+		actividadesDeportivas.setBounds(35, 38, 521, 295);
 		getContentPane().add(actividadesDeportivas);
-		actividadesDeportivas.setViewportView(listActividades);
 		
-		lblActividadesDeportivas = new JLabel("Actividades Deportivas");
-		actividadesDeportivas.setColumnHeaderView(lblActividadesDeportivas);
-		
-		list = new List();
-		actividadesDeportivas.setRowHeaderView(list);
-		listActividades.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				actividadSelectedAcionPerformed(arg0);
-			}
-		});
-		
-		dataActividades = new JScrollPane();
-		dataActividades.setBounds(438, 38, 87, 295);
-		getContentPane().add(dataActividades);
-		
+		datosTabla = inicializarLista();
+		table = new JTable(datosTabla, columnNames);
+		actividadesDeportivas.setViewportView(table);
 
-		dataActividades.setViewportView(textAreaActividades);
-		textAreaActividades.setVisible(false);
-		textAreaActividades.setEditable(false);
+		
 		
 		btnOk = new JButton("Aceptar");
 		btnOk.addActionListener(new ActionListener() {
@@ -105,8 +87,54 @@ public class RankingActividadDeportiva extends JInternalFrame {
 
 	}
 	
+	public String[][] inicializarLista(){
+		ArrayList<String> a = icon.getActividadesDeportivas();
+		String[][] data = new String[a.size()+1][4];
+		try {
+			DtActividadDeportiva dtad, dtadnew = icon.ConsultaActividadDeportiva(a.get(1));
+			boolean yaAgregado = false;
+			int cont = 0, numClass = 0, numClassNew;
+			
+			while(cont <= a.size()-1) {
+				for(String s : a) {
+					yaAgregado = false;
+					dtad = icon.ConsultaActividadDeportiva(s);
+					ArrayList<String> clases = icon.listarClases(dtad.getNombre());
+					numClassNew = clases.size();
+					
+					//Comprueba si la actividad no fue agregada al string data
+					for(int i = 0; i <= cont; i++) {
+						if (dtad.getNombre() == data[i][0]) {
+							yaAgregado = true;
+						}
+					}
+					
+					//Si la actividad no está en data y su cantidad de clases es menor que la de la última actividad, se agrega a data
+					if (numClassNew <= numClass && yaAgregado == false) {
+						dtadnew = icon.ConsultaActividadDeportiva(s);
+						numClass = numClassNew; 
+					}
+					
+
+				}
+				
+				data[cont][0] = dtadnew.getNombre();
+				data[cont][1] = String.valueOf(icon.listarClases(dtadnew.getNombre()).size());
+				data[cont][2] = String.valueOf(dtadnew.getCosto());
+				data[cont][3] = dtadnew.getDescripcion();
+				cont++;
+			}
+			
+		}
+		catch(NoExisteActividadDepEx e) {
+			e.printStackTrace();
+		}
+		return data;
+	}
+
 	
 	
+	/*
 	public void inicializarLista() {
 		
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
@@ -116,10 +144,6 @@ public class RankingActividadDeportiva extends JInternalFrame {
 		}
 		listActividades.setModel(modelo);
 	}	
-	
-	public void actividadSelectedAcionPerformed(ListSelectionEvent e){
-		actividadSelected = listActividades.getSelectedValue();
-	}
 	
 	public void selectedFromListActionPerformed (ActionEvent arg0) throws NoExisteActividadDepEx{
 		actividadSelected = listActividades.getSelectedValue();
@@ -135,10 +159,7 @@ public class RankingActividadDeportiva extends JInternalFrame {
 		this.textAreaActividades.setText("");
 		JOptionPane.showMessageDialog(this.textAreaActividades, "Area de texto Limpiada con exito","Limpiar Area",JOptionPane.INFORMATION_MESSAGE);
 	}
-	
-	public void AceptarActionPerformed() {
-		this.setVisible(false);
-	}
+
 	
 	class Sortbyroll implements Comparator<DefaultListModel<String>>
 	{
@@ -148,5 +169,11 @@ public class RankingActividadDeportiva extends JInternalFrame {
 	    {
 	        return a.rollno - b.rollno;
 	    }
+	}
+	
+	*/
+	
+	public void AceptarActionPerformed() {
+		this.setVisible(false);
 	}
 }
