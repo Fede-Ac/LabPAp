@@ -88,16 +88,6 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		return dtActividad;
 	}
 	
-	@Override
-	public void ModificarActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fecha) throws NoExisteActividadDepEx {
-		ManejadorActividadDeportiva mad = ManejadorActividadDeportiva.getInstancia();
-		ActividadDeportiva actDep = mad.buscarActividadDeportiva(nombre);
-		actDep.setDescripcion(descripcion);
-		actDep.setDuracion(duracion);
-		actDep.setCosto(costo);
-		actDep.setDtFechaReg(fecha);
-		mad.updateActividadDeportiva(actDep);
-	}
 	
 	@Override
 	public DtActividadDeportiva RegistroDictadoDeClase(String regClas) throws NoExisteActividadDepEx{

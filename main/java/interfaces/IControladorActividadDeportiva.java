@@ -25,8 +25,6 @@ public interface IControladorActividadDeportiva {
 	
 	public DtActividadDeportiva ConsultaActividadDeportiva(String actDep) throws NoExisteActividadDepEx;
 	
-	public void ModificarActividadDeportiva(String nombre, String descripcion, int duracion, float costo, DtFecha fecha) throws NoExisteActividadDepEx;
-	
 	public DtActividadDeportiva RegistroDictadoDeClase(String regClas) throws NoExisteActividadDepEx;
 	
 	public ArrayList<String> listarClases(String clase);

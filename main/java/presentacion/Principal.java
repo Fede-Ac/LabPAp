@@ -51,6 +51,8 @@ public class Principal {
 	private ModificarDatosUsuario modificarDatosUsuarioInF;
 	
 	private ModificarActividadDeportiva modificarActividadDeportivaInf;
+	
+	private RankingActividadDeportiva rankingActividadDeportivaInF;
  
 	private ModificarInstitucionDep modificarInstitucionDep;
 	/**
@@ -121,6 +123,10 @@ public class Principal {
 		modificarActividadDeportivaInf = new ModificarActividadDeportiva(iConActDep);
 		modificarActividadDeportivaInf.setVisible(false);
 		frame.getContentPane().add(modificarActividadDeportivaInf);
+		
+		rankingActividadDeportivaInF = new RankingActividadDeportiva(iConActDep);
+		rankingActividadDeportivaInF.setVisible(false);
+		frame.getContentPane().add(rankingActividadDeportivaInF);
 
 		modificarInstitucionDep = new ModificarInstitucionDep(iConIntDep);
 		modificarInstitucionDep.setVisible(false);
@@ -270,6 +276,17 @@ public class Principal {
 			}
 		});
 		mnActividadesDeportivas.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmRankingDeActividades = new JMenuItem("Ranking de Actividades Dep.");
+		mntmRankingDeActividades.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				if(modificarActividadDeportivaInf.hayActividadesDeportivas()) {
+					rankingActividadDeportivaInF.inicializarLista();
+					rankingActividadDeportivaInF.setVisible(true);
+				}
+			}
+		});
+		mnActividadesDeportivas.add(mntmRankingDeActividades);
 
 	}
 	
