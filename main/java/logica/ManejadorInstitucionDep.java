@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import datatypes.DtInstitucionDeportiva;
 import persistencia.Conexion;
 
 public class ManejadorInstitucionDep {
@@ -66,10 +67,4 @@ public class ManejadorInstitucionDep {
 		return instDeportivas;
 	}
 
-	public void updateInstitucionDep(InstitucionDeportiva instDep) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 }

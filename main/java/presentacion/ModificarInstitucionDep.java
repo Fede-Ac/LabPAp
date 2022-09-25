@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import datatypes.DtInstitucionDeportiva;
 import interfaces.IControladorInstitucionDep;
 
 public class ModificarInstitucionDep extends JInternalFrame {
@@ -120,13 +121,14 @@ public class ModificarInstitucionDep extends JInternalFrame {
 	}
 	
 	protected void updateInstDepActionPerformed (ActionEvent e){
-		String nombre = this.textNombre.getText();
+		String nombre = (String) this.comboInstitucion.getSelectedItem();
 		String desc = this.textDescripcion.getText();
 		String url = this.textUrl.getText();
 		if(nombre == "" || desc == "" || url == "") {
 			JOptionPane.showMessageDialog(this, "No puede haber capos vacios", "Modificar institución deportiva", JOptionPane.ERROR_MESSAGE);
 		}else {
-			icon.updateInstDep(nombre,desc,url);
+			DtInstitucionDeportiva dtInstDep = new DtInstitucionDeportiva(nombre, desc, url);
+			icon.updateInstDep(dtInstDep);
 		}
 	}
 	

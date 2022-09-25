@@ -1,9 +1,13 @@
 package logica;
 
 import interfaces.IControladorInstitucionDep;
+import persistencia.Conexion;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
+import datatypes.DtInstitucionDeportiva;
 import excepciones.InstitucionDepRepetidaEx;
 
 public class ControladorInstitucionDep implements IControladorInstitucionDep {
@@ -34,12 +38,18 @@ public class ControladorInstitucionDep implements IControladorInstitucionDep {
 	}
 
 	@Override
-	public void updateInstDep(String nombre, String desc, String url) {
+	public void updateInstDep(DtInstitucionDeportiva dtInstDep) {
 		ManejadorInstitucionDep mid = ManejadorInstitucionDep.getInstancia();
-		InstitucionDeportiva instDep = mid.buscarInstitucion(nombre);
-		instDep.setDescripcion(desc);
-		instDep.setUrl(url);
-		mid.updateInstitucionDep(instDep);
+		InstitucionDeportiva instDep = mid.buscarInstitucion(dtInstDep.getNombre());
+		instDep.setDescripcion(dtInstDep.getDescripcion());
+		instDep.setUrl(dtInstDep.getUrl());
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		
+		em.persist(instDep);
+		
+		em.getTransaction().commit();
 	}
 
 }

@@ -2,6 +2,7 @@ package interfaces;
 
 import java.util.ArrayList;
 
+import datatypes.DtInstitucionDeportiva;
 import excepciones.InstitucionDepRepetidaEx;
 
 public interface IControladorInstitucionDep {
@@ -9,6 +10,6 @@ public interface IControladorInstitucionDep {
 
 	public ArrayList<String> listarInstituciones();
 
-	public void updateInstDep(String nombre, String desc, String url);
+	public void updateInstDep(DtInstitucionDeportiva dtInstDep);
 
 }
