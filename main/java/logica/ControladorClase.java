@@ -100,7 +100,7 @@ public class ControladorClase implements IControladorClase{
 		for(int i=0;i<ranking.size();i++) {
 			for(int j=0;j<ranking.size()-i-1;j++) {
 				if(ranking.get(j).getCantRegistros()<ranking.get(j+1).getCantRegistros()) {
-					 Collections.swap(ranking, i, j);
+					 Collections.swap(ranking, j, j+1);
 				}
 			}
 		}

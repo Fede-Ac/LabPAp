@@ -7,8 +7,9 @@ public class DtClase {
 	private String url;
 	private DtFecha fechaReg;
 	private String actDep;
+	private int cantRegistros;
 	
-	public DtClase(String nombre, DtFechaHora fechaInicio, String profe, String url, DtFecha fechaReg, String actDep) {
+	public DtClase(String nombre, DtFechaHora fechaInicio, String profe, String url, DtFecha fechaReg, String actDep, int cantRegistros) {
 		super();
 		this.nombre = nombre;
 		this.fechaInicio = fechaInicio;
@@ -16,6 +17,7 @@ public class DtClase {
 		this.url = url;
 		this.fechaReg = fechaReg;
 		this.actDep = actDep;
+		this.cantRegistros = cantRegistros;
 	}
 	
 	public String getNombre() {
@@ -45,7 +47,7 @@ public class DtClase {
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + "\nFecha de inicio: " + fechaInicio + "\nProfesor: " + profe + "\nUrl: " + url
-				+ "\nFecha de registro: " + fechaReg.toString();
+				+ "\nFecha de registro: " + fechaReg.toString() + "\nRegistros: " + cantRegistros;
 	}
 
 	

@@ -112,7 +112,7 @@ public class Clase {
 		
 		DtFecha dtF = new DtFecha(fechaReg);
 		DtFechaHora dtFH = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
-		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre);
+		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre, registros.size());
 		return dt;
 	}
 	public Integer getCantRegistros() {
