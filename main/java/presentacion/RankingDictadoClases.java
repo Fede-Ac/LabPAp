@@ -59,7 +59,7 @@ public class RankingDictadoClases extends JInternalFrame {
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				getContentPane().setVisible(false);				
+				dispose();	
 			}
 		});
 		btnVolver.setBounds(311, 231, 117, 25);
@@ -78,6 +78,7 @@ public class RankingDictadoClases extends JInternalFrame {
 	public void llenarRanking() {
 		List<DtClase> clases = icon.rankingClases();
 		int i = 1;
+		textArea.setText(null);
 		for (DtClase dtc : clases) {
 			textArea.append(i + "- " + dtc.toString() + "\n\n _____________________\n\n");
 			i++;

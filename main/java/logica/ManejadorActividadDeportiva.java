@@ -70,16 +70,19 @@ public class ManejadorActividadDeportiva {
 		
 		ActividadDeportiva actDep=null;
 		for(ActividadDeportiva a: actDeportivas) {
-			
-			
-			
-			
 			ArrayList<Clase> clases = a.getClases();
 			for(Clase c : clases) {
-				if (c.getNombre().equals(clase.getNombre()))
+				if (c.getNombre().equals(clase.getNombre())) {
 					actDep = a;
+					if (actDep == null) {
+						System.out.print(1);
+					}
+				}
 			}
 			
+		}
+		if (actDep == null) {
+			System.out.print(1);
 		}
 		return actDep;
 	}

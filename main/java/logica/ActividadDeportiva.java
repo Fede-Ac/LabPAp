@@ -7,12 +7,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
 import datatypes.DtFecha;
+import persistencia.Conexion;
 
 @Entity
 public class ActividadDeportiva {
@@ -92,7 +94,13 @@ public class ActividadDeportiva {
 	}
 
 	public void agregarClase(Clase c) {
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
 		clases.add(c);// se persiste??????
+		em.getTransaction().begin();
+		em.persist(this);
+		em.getTransaction().commit();
+		
 	}
 	
 	public DtActividadDeportiva getDtActividadDeportiva() {
