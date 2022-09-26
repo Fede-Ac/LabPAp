@@ -53,6 +53,8 @@ public class Principal {
 	private ModificarActividadDeportiva modificarActividadDeportivaInf;
  
 	private ModificarInstitucionDep modificarInstitucionDep;
+	
+	private ConsultaDictadoDeClase consultaDictadoDeClaseInF;
 	/**
 	 * Launch the application.
 	 */
@@ -125,6 +127,10 @@ public class Principal {
 		modificarInstitucionDep = new ModificarInstitucionDep(iConIntDep);
 		modificarInstitucionDep.setVisible(false);
 		frame.getContentPane().add(modificarInstitucionDep);
+		
+		consultaDictadoDeClaseInF = new ConsultaDictadoDeClase(iConActDep);
+		consultaDictadoDeClaseInF.setVisible(false);
+		frame.getContentPane().add(consultaDictadoDeClaseInF);
 		// fin crear instancia
 		
 		//cargaDatos(iConUser, iConIntDep, iConActDep, iConClase);//cargar datos de prueba
@@ -243,7 +249,22 @@ public class Principal {
 				}
 			}
 		});
+		
+		
 		mnDictadoDeClases.add(mntmRegistroDictadoDeClase);
+		
+		JMenuItem mntmConsultaDictadoDeClase = new JMenuItem("Consulta dictado de clase");
+		mntmConsultaDictadoDeClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(altaDictadoDeClaseInF.hayInstituciones()) {
+					consultaDictadoDeClaseInF.inicializarComboBoxInstituciones();
+					consultaDictadoDeClaseInF.cambiarComboBoxActividadesDep();
+					consultaDictadoDeClaseInF.cambiarComboBoxClase();
+					consultaDictadoDeClaseInF.setVisible(true);
+				}
+			}
+		});
+		mnDictadoDeClases.add(mntmConsultaDictadoDeClase);
 
 		JMenuItem mntmConsultaActividadDep = new JMenuItem("Consulta Actividad Dep.");
 		mntmConsultaActividadDep.addActionListener(new ActionListener() {
@@ -256,6 +277,8 @@ public class Principal {
 				}
 			}
 		});
+		
+		
 		mnActividadesDeportivas.add(mntmConsultaActividadDep);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Modificar Actividad Dep.");

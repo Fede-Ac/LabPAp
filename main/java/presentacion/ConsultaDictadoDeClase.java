@@ -36,28 +36,7 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
 	private JLabel lblError;
-	//private JScrollPane scrollPane;
-	//private JTextArea textArea;
 
-	/**
-	 * Launch the application.
-	 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistroDictadoDeClase frame = new RegistroDictadoDeClase();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	
-	 * Create the frame.
-	 */
 	public ConsultaDictadoDeClase(IControladorActividadDeportiva icon) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
@@ -70,7 +49,7 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 		setResizable(true);
 		setIconifiable(true);
 		setClosable(true);
-		setTitle("Registro de Dictado de Clase");
+		setTitle("Consulta Dictado De Clase");
 		setBounds(100, 100, 440, 379);
 		getContentPane().setLayout(null);
 		
@@ -108,17 +87,6 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 		comActDep.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				cambiarComboBoxClase();
-				/*
-				if((String)comActDep.getSelectedItem() != null) {
-					try {
-						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
-					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				
-				}
-				*/
 			}
 		});
 		getContentPane().add(comActDep);
@@ -136,7 +104,6 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 				
 				if((String)comClase.getSelectedItem() != null)
 					textArea.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
-					llenoSocios();
 			
 			}
 		});
