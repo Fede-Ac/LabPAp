@@ -281,7 +281,7 @@ public class Principal {
 		mntmRankingDeActividades.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(modificarActividadDeportivaInf.hayActividadesDeportivas()) {
-					rankingActividadDeportivaInF.inicializarLista();
+					rankingActividadDeportivaInF.inicializarLista2();
 					rankingActividadDeportivaInF.setVisible(true);
 				}
 			}
@@ -289,7 +289,7 @@ public class Principal {
 		mnActividadesDeportivas.add(mntmRankingDeActividades);
 
 	}
-	
+	/*
 	private void cargaDatos(IControladorUsuario iConUser, IControladorInstitucionDep iConIntDep, IControladorActividadDeportiva iConActDep, IControladorClase iConClase) {
 		//CARGA USUARIOS
 		try {
@@ -346,5 +346,5 @@ public class Principal {
 		} catch (ClaseRepetidaEx | NoExistenUsuariosEx | HoraInvalidaEx | FechaInvalidaEx e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 }

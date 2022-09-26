@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
 
 import datatypes.DtActividadDeportiva;
 import interfaces.IControladorActividadDeportiva;
@@ -70,9 +71,9 @@ public class RankingActividadDeportiva extends JInternalFrame {
 		actividadesDeportivas.setBounds(35, 38, 521, 295);
 		getContentPane().add(actividadesDeportivas);
 		
-		datosTabla = inicializarLista();
-		table = new JTable(datosTabla, columnNames);
-		actividadesDeportivas.setViewportView(table);
+		inicializarLista2();
+		//table = new JTable(datosTabla, columnNames);
+		//actividadesDeportivas.setViewportView(table);
 
 		
 		
@@ -131,7 +132,19 @@ public class RankingActividadDeportiva extends JInternalFrame {
 		}
 		return data;
 	}
-
+	
+	public void inicializarLista2(){
+		ArrayList<DtActividadDeportiva> actividades = icon.rankingActividadesDeportivas();
+		String[][] data = new String[actividades.size()][4];
+		for(int row = 0; row < actividades.size()/*-1*/; row++) {
+			data[row][0] = actividades.get(row).getNombre();
+			data[row][1] = String.valueOf(icon.listarClases(actividades.get(row).getNombre()).size());
+			data[row][2] = String.valueOf(actividades.get(row).getCosto());
+			data[row][3] = actividades.get(row).getDescripcion();
+		}
+		table = new JTable(data, columnNames);
+		actividadesDeportivas.setViewportView(table);
+	}
 	
 	
 	/*

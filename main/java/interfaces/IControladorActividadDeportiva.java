@@ -40,5 +40,7 @@ public interface IControladorActividadDeportiva {
 	public DtActividadDeportiva getDtActividadDeportiva(String actDep);
 
 	public void modificarActividadDeportiva(DtActividadDeportiva dtA);
+
+	public ArrayList<DtActividadDeportiva> rankingActividadesDeportivas();
 }
                                    

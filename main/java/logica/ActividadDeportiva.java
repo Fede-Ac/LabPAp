@@ -106,6 +106,10 @@ public class ActividadDeportiva {
 		return dt;
 	}
 	
+	public int getCantClases() {
+		return clases.size();
+	}
+	
 	
 	
 	
