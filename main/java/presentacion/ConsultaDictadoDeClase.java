@@ -36,13 +36,14 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
 	private JLabel lblError;
+	private JLabel lblError2;
 
 	public ConsultaDictadoDeClase(IControladorActividadDeportiva icon) {
 		addInternalFrameListener(new InternalFrameAdapter() {
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
 				//list.clearSelection();
-				lblError.setText("");
+				lblError2.setText("");
 			}
 		});
 		this.icon = icon;
@@ -130,12 +131,17 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				lblError.setText("");
+				lblError2.setText("");
 				
 			}
 		});
 		btnNewButton.setBounds(278, 299, 107, 23);
 		getContentPane().add(btnNewButton);
+		
+		lblError2 = new JLabel("");
+		lblError2.setForeground(new Color(255, 0, 0));
+		lblError2.setBounds(30, 261, 46, 14);
+		getContentPane().add(lblError2);
 		
 		
 		
@@ -187,5 +193,4 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 			textArea.setText(icon.getDtClase((String)comClase.getSelectedItem()).toString());
 		}
 	}
-	
 }
