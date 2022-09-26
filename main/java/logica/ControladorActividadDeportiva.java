@@ -5,6 +5,7 @@ import interfaces.IControladorActividadDeportiva;
 import persistencia.Conexion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.persistence.EntityManager;
 
@@ -87,6 +88,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		
 		return dtActividad;
 	}
+	
 	
 	@Override
 	public DtActividadDeportiva RegistroDictadoDeClase(String regClas) throws NoExisteActividadDepEx{
@@ -185,6 +187,29 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		em.persist(ad);
 		
 		em.getTransaction().commit();
+	}
+	@Override
+	public ArrayList<DtActividadDeportiva> rankingActividadesDeportivas(){
+		
+		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
+		ArrayList<ActividadDeportiva>ranking  = mAD.listarActividadesDeportivas();
+			
+		//Sorting (bubble)
+			
+		for(int i=0;i<ranking.size();i++) {
+			for(int j=0;j<ranking.size()-i-1;j++) {
+				if(ranking.get(j).getCantClases()<ranking.get(j+1).getCantClases()) {
+					 Collections.swap(ranking, j, j+1);
+				}
+			}
+		}
+		ArrayList<DtActividadDeportiva> rankingRet = new ArrayList<DtActividadDeportiva>();
+			for(ActividadDeportiva a : ranking) {
+				rankingRet.add(a.getDtActividadDeportiva());
+			}
+				
+			
+		return rankingRet;
 	}
 	
 }
