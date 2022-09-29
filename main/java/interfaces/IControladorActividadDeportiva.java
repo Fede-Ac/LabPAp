@@ -17,7 +17,7 @@ import datatypes.DtFecha;
 public interface IControladorActividadDeportiva {
 	public Boolean existeInstitucionD(String nombreInst);
 	
-	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha) throws ActividadDepRepetidaEx;
+	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha, String picture) throws ActividadDepRepetidaEx;
 
 	public ArrayList<String> listarInstituciones();
 

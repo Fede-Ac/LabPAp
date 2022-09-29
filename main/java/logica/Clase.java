@@ -21,6 +21,7 @@ public class Clase {
 	private Calendar fechaInicio;
 	private String url;
 	private Calendar fechaReg;
+	private String picture;
 	//links
 	//@Transient
 	//private Profesor profe;
@@ -35,7 +36,7 @@ public class Clase {
 		super();
 	}
 
-	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg) {
+	public Clase(String nombre, DtFechaHora fechaInicio, Profesor profe, String url, DtFecha fechaReg, String picture) {
 		super();
 		this.nombre = nombre;
 		Calendar c = new GregorianCalendar(fechaInicio.getAnio(),fechaInicio.getMes(),fechaInicio.getDia(),fechaInicio.getHora(),fechaInicio.getMin());
@@ -46,6 +47,7 @@ public class Clase {
 		Calendar cal = new GregorianCalendar(fechaReg.getAnio(),fechaReg.getMes(),fechaReg.getDia());
 		
 		this.fechaReg = cal;
+		this.picture = picture;
 		profe.agregarClase(this);
 	}
 
@@ -93,6 +95,14 @@ public class Clase {
 		this.fechaReg = c;
 	}
 	
+	public String getPicture() {
+		return picture;
+	}
+	
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
 	public ArrayList<Registro> getRegistros(){
 		ArrayList<Registro> reg = new ArrayList<Registro>(registros);
 		return reg;
@@ -112,7 +122,7 @@ public class Clase {
 		
 		DtFecha dtF = new DtFecha(fechaReg);
 		DtFechaHora dtFH = new DtFechaHora(fechaInicio, fechaInicio.get(Calendar.HOUR), fechaInicio.get(Calendar.MINUTE));
-		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre, registros.size());
+		DtClase dt = new DtClase(nombre, dtFH, profesorNickname, url, dtF, actDepNombre, registros.size(), picture);
 		return dt;
 	}
 	public Integer getCantRegistros() {

@@ -42,6 +42,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 	private JSpinner duracion;
 	private JSpinner costo;
 	private JComboBox<String> comInst;
+	private JTextField textPicture;
 	/**
 	 * Launch the application.
 	/* 
@@ -82,37 +83,49 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(lblNombre);
 		
 		nombre = new JTextField();
-		nombre.setBounds(170, 10, 114, 18);
+		nombre.setBounds(70, 10, 114, 18);
 		getContentPane().add(nombre);
 		nombre.setColumns(10);
 		
 		JLabel lblNombreInst = new JLabel("Institución");
-		lblNombreInst.setBounds(12, 42, 140, 14);
+		lblNombreInst.setBounds(222, 12, 140, 14);
 		getContentPane().add(lblNombreInst);
 		
+		comInst = new JComboBox<String>();
+		comInst.setBounds(310, 8, 114, 22);
+		getContentPane().add(comInst);
+		
 		JLabel lblDescripcion = new JLabel("Descripción");
-		lblDescripcion.setBounds(12, 80, 100, 14);
+		lblDescripcion.setBounds(12, 38, 100, 14);
 		getContentPane().add(lblDescripcion);
 		
 		descripcion = new JTextArea();
 		descripcion.setBackground(UIManager.getColor("Button.disabledToolBarBorderBackground"));
-		descripcion.setBounds(141, 80, 193, 52);
+		descripcion.setBounds(135, 40, 193, 52);
 		getContentPane().add(descripcion);
 		
 		JLabel lblDuracion = new JLabel("Duración (minutos)");
-		lblDuracion.setBounds(12, 144, 152, 14);
+		lblDuracion.setBounds(12, 104, 152, 14);
 		getContentPane().add(lblDuracion);
 		
+		duracion = new JSpinner();
+		duracion.setBounds(187, 104, 78, 18);
+		getContentPane().add(duracion);
+		
 		JLabel lblCosto = new JLabel("Costo ($ UYU)");
-		lblCosto.setBounds(12, 176, 114, 14);
+		lblCosto.setBounds(12, 130, 114, 14);
 		getContentPane().add(lblCosto);
 		
+		costo = new JSpinner();
+		costo.setBounds(187, 128, 78, 18);
+		getContentPane().add(costo);
+		
 		JLabel lblAltaActividad = new JLabel("Fecha de alta");
-		lblAltaActividad.setBounds(12, 209, 100, 14);
+		lblAltaActividad.setBounds(12, 156, 100, 14);
 		getContentPane().add(lblAltaActividad);
 		
 		fechaCreacion = new JDateChooser();
-		fechaCreacion.setBounds(185, 204, 120, 19);
+		fechaCreacion.setBounds(187, 156, 120, 19);
 		fechaCreacion.setDateFormatString("d/MM/y");
 		getContentPane().add(fechaCreacion);
 		
@@ -127,7 +140,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		getContentPane().add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(99, 259, 98, 24);
+		btnCancelar.setBounds(69, 259, 114, 24);
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -141,17 +154,14 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		lblError.setFont(new Font("Dialog", Font.PLAIN, 10));
 		getContentPane().add(lblError);
 		
-		duracion = new JSpinner();
-		duracion.setBounds(187, 142, 78, 18);
-		getContentPane().add(duracion);
+		JLabel lblUrlDeImagen = new JLabel("URL de imagen");
+		lblUrlDeImagen.setBounds(12, 182, 100, 14);
+		getContentPane().add(lblUrlDeImagen);
 		
-		costo = new JSpinner();
-		costo.setBounds(187, 174, 78, 18);
-		getContentPane().add(costo);
-		
-		comInst = new JComboBox<String>();
-		comInst.setBounds(170, 39, 114, 22);
-		getContentPane().add(comInst);
+		textPicture = new JTextField();
+		textPicture.setBounds(187, 180, 120, 18);
+		getContentPane().add(textPicture);
+		textPicture.setColumns(10);
 
 	}
 	
@@ -162,6 +172,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		Integer duracion = (int)this.duracion.getValue();
 		Integer costo = (int)this.costo.getValue();
 		Calendar fechaCal = this.fechaCreacion.getCalendar();
+		String picture = this.textPicture.getText();
 		
 		DtFecha fecha = new DtFecha(fechaCal);
 		
@@ -177,9 +188,11 @@ public class AltaActividadDeportiva extends JInternalFrame {
 			this.lblError.setText("El costo no puede ser menor a cero");
 		}else if (fechaCreacion.getCalendar() == null) {
 			this.lblError.setText("La fecha no puede estar vacía");
+		}else if (picture.isEmpty()) {
+			this.lblError.setText("La imagen no puede estar vacía");
 		}else{
 			try {
-				this.icon.AltaActividadDeportiva(nombre,nombreInst,descripcion,duracion,costo,fecha);
+				this.icon.AltaActividadDeportiva(nombre,nombreInst,descripcion,duracion,costo,fecha, picture);
 				JOptionPane.showMessageDialog(this, "La actividad deportiva se ha registrado con éxito", "Actividad deportiva",
 						JOptionPane.INFORMATION_MESSAGE);
 				dispose();
@@ -194,6 +207,7 @@ public class AltaActividadDeportiva extends JInternalFrame {
 		this.descripcion.setText(null);
 		this.duracion.setValue(0);
 		this.costo.setValue(0);
+		this.textPicture.setText(null);
 		this.lblError.setText(null);
 		
 	}

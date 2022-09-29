@@ -52,6 +52,8 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	private JButton btnCancelar;
 	private JButton btnAceptar;
 	private DtUsuario dtUsuario;
+	private JTextField txtContrasea;
+	private JTextField txtpfp;
 
 	/**
 	 * Launch the application.
@@ -96,48 +98,92 @@ public class ModificarDatosUsuario extends JInternalFrame {
 				cargarDatosUsuario();
 			}
 		});
-		comUsr.setBounds(18, 31, 164, 22);
-		getContentPane().add(comUsr);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
 		lblUsuario.setForeground(new Color(128, 128, 128));
-		lblUsuario.setBounds(18, 15, 121, 14);
+		lblUsuario.setBounds(18, 5, 121, 14);
 		getContentPane().add(lblUsuario);
+		comUsr.setBounds(18, 21, 164, 22);
+		getContentPane().add(comUsr);
+		
+		JLabel lblNickname = new JLabel("Nickname:");
+		lblNickname.setForeground(new Color(128, 128, 128));
+		lblNickname.setBounds(18, 54, 131, 14);
+		getContentPane().add(lblNickname);
+		
+		txtNickname = new JTextField();
+		txtNickname.setEnabled(false);
+		txtNickname.setForeground(Color.BLACK);
+		txtNickname.setColumns(10);
+		txtNickname.setBounds(18, 68, 164, 20);
+		getContentPane().add(txtNickname);
+		
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setForeground(new Color(128, 128, 128));
+		lblEmail.setBounds(18, 99, 131, 14);
+		getContentPane().add(lblEmail);
+		
+		txtEmail = new JTextField();
+		txtEmail.setEnabled(false);
+		txtEmail.setForeground(Color.BLACK);
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(18, 114, 164, 20);
+		getContentPane().add(txtEmail);
+		
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setForeground(new Color(128, 128, 128));
+		lblNombre.setBounds(18, 145, 131, 14);
+		getContentPane().add(lblNombre);
 		
 		txtNombre = new JTextField();
 		txtNombre.setForeground(new Color(0, 0, 0));
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(18, 168, 164, 20);
+		txtNombre.setBounds(18, 158, 164, 20);
 		getContentPane().add(txtNombre);
+		
+		JLabel lblApellido = new JLabel("Apellido:");
+		lblApellido.setForeground(new Color(128, 128, 128));
+		lblApellido.setBounds(18, 189, 131, 14);
+		getContentPane().add(lblApellido);
 		
 		txtApellido = new JTextField();
 		txtApellido.setForeground(new Color(0, 0, 0));
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(18, 213, 164, 20);
+		txtApellido.setBounds(18, 203, 164, 20);
 		getContentPane().add(txtApellido);
 		
 		JLabel lblFechaDeNacimiento = new JLabel("Fecha de nacimiento:");
 		lblFechaDeNacimiento.setForeground(Color.GRAY);
-		lblFechaDeNacimiento.setBounds(18, 252, 153, 14);
+		lblFechaDeNacimiento.setBounds(18, 232, 153, 14);
 		getContentPane().add(lblFechaDeNacimiento);
-		
-		JLabel lblAnio = new JLabel("Año");
-		lblAnio.setForeground(Color.GRAY);
-		lblAnio.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblAnio.setBounds(127, 266, 44, 14);
-		getContentPane().add(lblAnio);
-		
-		JLabel lblMes = new JLabel("Mes");
-		lblMes.setForeground(Color.GRAY);
-		lblMes.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblMes.setBounds(72, 266, 44, 14);
-		getContentPane().add(lblMes);
 		
 		JLabel lblDia = new JLabel("Dia");
 		lblDia.setForeground(Color.GRAY);
 		lblDia.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDia.setBounds(18, 266, 44, 14);
+		lblDia.setBounds(18, 246, 44, 14);
 		getContentPane().add(lblDia);
+		
+		spinnerDia = new JSpinner();
+		spinnerDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+		spinnerDia.setBounds(18, 260, 44, 20);
+		getContentPane().add(spinnerDia);
+		
+		JLabel lblMes = new JLabel("Mes");
+		lblMes.setForeground(Color.GRAY);
+		lblMes.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblMes.setBounds(72, 246, 44, 14);
+		getContentPane().add(lblMes);
+		
+		spinnerMes = new JSpinner();
+		spinnerMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinnerMes.setBounds(72, 260, 44, 20);
+		getContentPane().add(spinnerMes);
+		
+		JLabel lblAnio = new JLabel("Año");
+		lblAnio.setForeground(Color.GRAY);
+		lblAnio.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblAnio.setBounds(127, 246, 44, 14);
+		getContentPane().add(lblAnio);
 		
 		spinnerAnio = new JSpinner();
 		spinnerAnio.setModel(new SpinnerListModel(new String[] { "1920", "1921", "1922", "1923", "1924", "1925", "1926",
@@ -149,18 +195,8 @@ public class ModificarDatosUsuario extends JInternalFrame {
 				"1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004",
 				"2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017",
 				"2018", "2019", "2020", "2021", "2022" }));
-		spinnerAnio.setBounds(127, 280, 55, 20);
+		spinnerAnio.setBounds(127, 260, 55, 20);
 		getContentPane().add(spinnerAnio);
-		
-		spinnerMes = new JSpinner();
-		spinnerMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinnerMes.setBounds(72, 280, 44, 20);
-		getContentPane().add(spinnerMes);
-		
-		spinnerDia = new JSpinner();
-		spinnerDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinnerDia.setBounds(18, 280, 44, 20);
-		getContentPane().add(spinnerDia);
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -168,7 +204,59 @@ public class ModificarDatosUsuario extends JInternalFrame {
 				modificarUsuarioAceptarActionPerformed(e);
 			}
 		});
-		btnAceptar.setBounds(84, 328, 98, 23);
+		
+		JLabel lblInstitucion = new JLabel("Institucion:");
+		lblInstitucion.setForeground(Color.GRAY);
+		lblInstitucion.setBounds(241, 5, 131, 14);
+		getContentPane().add(lblInstitucion);
+		
+		txtInstitucion = new JTextField();
+		txtInstitucion.setForeground(Color.BLACK);
+		txtInstitucion.setEnabled(false);
+		txtInstitucion.setColumns(10);
+		txtInstitucion.setBounds(241, 21, 164, 20);
+		getContentPane().add(txtInstitucion);
+		
+		JLabel lblSitioWebopcional = new JLabel("Sitio web (opcional):");
+		lblSitioWebopcional.setForeground(Color.GRAY);
+		lblSitioWebopcional.setBounds(241, 54, 131, 14);
+		getContentPane().add(lblSitioWebopcional);
+		
+		txtSitioWeb = new JTextField();
+		txtSitioWeb.setEnabled(false);
+		txtSitioWeb.setForeground(new Color(0, 0, 0));
+		txtSitioWeb.setColumns(10);
+		txtSitioWeb.setBounds(241, 68, 164, 20);
+		getContentPane().add(txtSitioWeb);
+		
+		JLabel lblBiografiaopcional = new JLabel("Biografia (opcional):");
+		lblBiografiaopcional.setForeground(Color.GRAY);
+		lblBiografiaopcional.setBounds(241, 99, 131, 14);
+		getContentPane().add(lblBiografiaopcional);
+		
+		txtrBiografia = new JTextArea();
+		txtrBiografia.setEnabled(false);
+		txtrBiografia.setLineWrap(true);
+		txtrBiografia.setForeground(new Color(0, 0, 0));
+		txtrBiografia.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtrBiografia.setColumns(10);
+		txtrBiografia.setBounds(241, 114, 162, 64);
+		getContentPane().add(txtrBiografia);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setForeground(Color.GRAY);
+		lblDescripcion.setBounds(241, 189, 131, 14);
+		getContentPane().add(lblDescripcion);
+		
+		txtrDescripcion = new JTextArea();
+		txtrDescripcion.setEnabled(false);
+		txtrDescripcion.setLineWrap(true);
+		txtrDescripcion.setForeground(new Color(0, 0, 0));
+		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtrDescripcion.setColumns(10);
+		txtrDescripcion.setBounds(241, 203, 162, 77);
+		getContentPane().add(txtrDescripcion);
+		btnAceptar.setBounds(84, 338, 98, 23);
 		getContentPane().add(btnAceptar);
 		
 		btnCancelar = new JButton("Cancelar");
@@ -178,94 +266,32 @@ public class ModificarDatosUsuario extends JInternalFrame {
 				setVisible(false);
 			}
 		});
-		btnCancelar.setBounds(241, 328, 98, 23);
+		btnCancelar.setBounds(241, 338, 98, 23);
 		getContentPane().add(btnCancelar);
 		
-		txtrDescripcion = new JTextArea();
-		txtrDescripcion.setEnabled(false);
-		txtrDescripcion.setLineWrap(true);
-		txtrDescripcion.setForeground(new Color(0, 0, 0));
-		txtrDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtrDescripcion.setColumns(10);
-		txtrDescripcion.setBounds(241, 214, 162, 66);
-		getContentPane().add(txtrDescripcion);
+		JLabel lblContrasea = new JLabel("Contraseña:");
+		lblContrasea.setForeground(Color.GRAY);
+		lblContrasea.setBounds(18, 292, 153, 14);
+		getContentPane().add(lblContrasea);
 		
-		txtrBiografia = new JTextArea();
-		txtrBiografia.setEnabled(false);
-		txtrBiografia.setLineWrap(true);
-		txtrBiografia.setForeground(new Color(0, 0, 0));
-		txtrBiografia.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtrBiografia.setColumns(10);
-		txtrBiografia.setBounds(241, 122, 162, 66);
-		getContentPane().add(txtrBiografia);
+		txtContrasea = new JTextField();
+		txtContrasea.setForeground(new Color(0, 0, 0));
+		txtContrasea.setBounds(18, 308, 164, 18);
+		getContentPane().add(txtContrasea);
+		txtContrasea.setColumns(10);
 		
-		txtSitioWeb = new JTextField();
-		txtSitioWeb.setEnabled(false);
-		txtSitioWeb.setForeground(new Color(0, 0, 0));
-		txtSitioWeb.setColumns(10);
-		txtSitioWeb.setBounds(241, 78, 164, 20);
-		getContentPane().add(txtSitioWeb);
+		JLabel lblpfp = new JLabel("Foto de perfil:");
+		lblpfp.setForeground(Color.GRAY);
+		lblpfp.setBounds(241, 292, 153, 14);
+		getContentPane().add(lblpfp);
 		
-		JLabel lblNickname = new JLabel("Nickname:");
-		lblNickname.setForeground(new Color(128, 128, 128));
-		lblNickname.setBounds(18, 64, 131, 14);
-		getContentPane().add(lblNickname);
+		txtpfp = new JTextField();
+		txtpfp.setForeground(new Color(0, 0, 0));
+		txtpfp.setColumns(10);
+		txtpfp.setBounds(241, 308, 164, 18);
+		getContentPane().add(txtpfp);
 		
-		txtEmail = new JTextField();
-		txtEmail.setEnabled(false);
-		txtEmail.setForeground(Color.BLACK);
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(18, 124, 164, 20);
-		getContentPane().add(txtEmail);
-		
-		txtNickname = new JTextField();
-		txtNickname.setEnabled(false);
-		txtNickname.setForeground(Color.BLACK);
-		txtNickname.setColumns(10);
-		txtNickname.setBounds(18, 78, 164, 20);
-		getContentPane().add(txtNickname);
-		
-		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setForeground(new Color(128, 128, 128));
-		lblEmail.setBounds(18, 109, 131, 14);
-		getContentPane().add(lblEmail);
-		
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setForeground(new Color(128, 128, 128));
-		lblNombre.setBounds(18, 155, 131, 14);
-		getContentPane().add(lblNombre);
-		
-		JLabel lblApellido = new JLabel("Apellido:");
-		lblApellido.setForeground(new Color(128, 128, 128));
-		lblApellido.setBounds(18, 199, 131, 14);
-		getContentPane().add(lblApellido);
-		
-		JLabel lblDescripcion = new JLabel("Descripcion");
-		lblDescripcion.setForeground(Color.GRAY);
-		lblDescripcion.setBounds(241, 199, 131, 14);
-		getContentPane().add(lblDescripcion);
-		
-		JLabel lblBiografiaopcional = new JLabel("Biografia (opcional):");
-		lblBiografiaopcional.setForeground(Color.GRAY);
-		lblBiografiaopcional.setBounds(241, 107, 131, 14);
-		getContentPane().add(lblBiografiaopcional);
-		
-		JLabel lblSitioWebopcional = new JLabel("Sitio web (opcional):");
-		lblSitioWebopcional.setForeground(Color.GRAY);
-		lblSitioWebopcional.setBounds(241, 64, 131, 14);
-		getContentPane().add(lblSitioWebopcional);
-		
-		txtInstitucion = new JTextField();
-		txtInstitucion.setForeground(Color.BLACK);
-		txtInstitucion.setEnabled(false);
-		txtInstitucion.setColumns(10);
-		txtInstitucion.setBounds(241, 33, 164, 20);
-		getContentPane().add(txtInstitucion);
-		
-		JLabel lblInstitucion = new JLabel("Institucion:");
-		lblInstitucion.setForeground(Color.GRAY);
-		lblInstitucion.setBounds(241, 19, 131, 14);
-		getContentPane().add(lblInstitucion);
+	
 
 	}
 	
@@ -273,6 +299,8 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		String nickname = this.txtNickname.getText();
 		String nombre = this.txtNombre.getText();
 		String apellido = this.txtApellido.getText();
+		String contrasenia = this.txtContrasea.getText();
+		String pfp = this.txtpfp.getText();
 
 		int dia = (int) spinnerDia.getValue();
 		int mes = (int) spinnerMes.getValue();
@@ -300,11 +328,11 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		if (checkFormulario()) {
 			ArrayList<DtClase> clasesVacia = new ArrayList<DtClase>(); 
 			if (dtUsuario instanceof DtSocio) {
-				dtU = new DtSocio(nickname, nombre, apellido, null, fecha, clasesVacia);
+				dtU = new DtSocio(nickname, nombre, apellido, null, contrasenia, pfp, fecha, clasesVacia);
 			} else if (dtUsuario instanceof DtProfesor) {
 				
 				
-				dtU = new DtProfesor(nickname, nombre, apellido, null, fecha, descripcion, biografia, sitioWeb,
+				dtU = new DtProfesor(nickname, nombre, apellido, null, contrasenia, pfp, fecha, descripcion, biografia, sitioWeb,
 						null, clasesVacia);
 			}
 			
@@ -321,7 +349,7 @@ public class ModificarDatosUsuario extends JInternalFrame {
 	}
 	
 	private boolean checkFormulario() {
-		if (this.txtNombre.getText().isEmpty() || this.txtApellido.getText().isEmpty()) {
+		if (this.txtNombre.getText().isEmpty() || this.txtApellido.getText().isEmpty() || this.txtContrasea.getText().isEmpty() || this.txtpfp.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos no opcionales vacíos", "Agregar Usuario",
 					JOptionPane.ERROR_MESSAGE);
 			return false;
@@ -355,6 +383,8 @@ public class ModificarDatosUsuario extends JInternalFrame {
 			txtEmail.setText(dtu.getEmail());
 			txtNombre.setText(dtu.getNombre());
 			txtApellido.setText(dtu.getApellido());
+			txtContrasea.setText(dtu.getContrasenia());
+			txtpfp.setText(dtu.getpfp());
 			spinnerDia.setValue(Integer.valueOf(dtu.getFecha().getDia()));
 			spinnerMes.setValue(Integer.valueOf(dtu.getFecha().getMes()));
 			spinnerAnio.setValue(String.valueOf(dtu.getFecha().getAnio()));
@@ -390,6 +420,8 @@ public class ModificarDatosUsuario extends JInternalFrame {
 		txtEmail.setText("");
 		txtNombre.setText("");
 		txtApellido.setText("");
+		txtContrasea.setText("");
+		txtpfp.setText("");
 		spinnerDia.setValue(Integer.valueOf(1));
 		spinnerMes.setValue(Integer.valueOf(1));
 		spinnerAnio.setValue("1920");

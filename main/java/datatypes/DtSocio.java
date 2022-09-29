@@ -6,15 +6,15 @@ public class DtSocio extends DtUsuario{
 
 	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
 	
-	public DtSocio(String nickname, String nombre, String apellido, String email, DtFecha fecha, ArrayList<DtClase> clases) {
-		super(nickname, nombre, apellido, email, fecha);
+	public DtSocio(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha, ArrayList<DtClase> clases) {
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 		this.clases = clases;
 	}
 
 	@Override
 	public String toString() {
 		String datos = "SOCIO \nNICK: " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: "
-				+ getApellido() + "\nCorreo electrónico: " + getEmail() +
+				+ getApellido() + "\nCorreo electrónico: " + getEmail() + "\nContraseña: " + getContrasenia() + "\nFoto de perfil: " + getpfp() +
 				"\nFecha de Nacimiento: " + fechaNac.toString()+ "\nClases en las que esta registrado: \n";
 		
 		String datosClase = "";

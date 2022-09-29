@@ -22,8 +22,8 @@ public class Socio extends Usuario{
 		super();
 	}
 	
-	public Socio(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
-		super(nickname, nombre, apellido, email, fechaNac);
+	public Socio(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fechaNac) {
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fechaNac);
 	}
 
 	//@Override
@@ -46,6 +46,6 @@ public class Socio extends Usuario{
 		for(Registro r : registros) {
 			clases.add(r.getClase().getDtClase()); 
 		}
-		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac(), clases);
+		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getContrasenia(), this.getpfp(), this.getDtFechaNac(), clases);
 	}
 }

@@ -36,11 +36,11 @@ public class ControladorUsuario implements IControladorUsuario{
 			InstitucionDeportiva instDep = mInstDep.buscarInstitucion(((DtProfesor) dtU).getInstitucion().getNombre());
 			if (instDep == null)
 				throw new NoExisteInstitucionDepEx("No existe la institución deportiva: " +((DtProfesor) dtU).getInstitucion().getNombre());
-			uN = new Profesor(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(),
+			uN = new Profesor(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(), dtU.getContrasenia(), dtU.getpfp(),
 					dtU.getFecha(), ((DtProfesor) dtU).getDescripcion(), ((DtProfesor) dtU).getBiografia(), ((DtProfesor) dtU).getSitioWeb(),instDep);
 		}
 		if(dtU instanceof DtSocio) {
-			uN = new Socio(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(), dtU.getFecha());
+			uN = new Socio(dtU.getNickname(), dtU.getNombre(), dtU.getApellido(), dtU.getEmail(), dtU.getContrasenia(), dtU.getpfp(), dtU.getFecha());
 		}
 		
 		mU.agregarUsuario(uN);
@@ -54,6 +54,8 @@ public class ControladorUsuario implements IControladorUsuario{
 		uN.setNombre(dtU.getNombre());
 		uN.setApellido(dtU.getApellido());
 		uN.setDtFechaNac(dtU.getFecha());
+		uN.setContrasenia(dtU.getContrasenia());
+		uN.setpfp(dtU.getpfp());
 		
 		if(uN instanceof Profesor) {
 			((Profesor) uN).setSitioWeb(((DtProfesor) dtU).getSitioWeb());

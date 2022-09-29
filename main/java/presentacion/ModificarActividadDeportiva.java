@@ -45,6 +45,8 @@ public class ModificarActividadDeportiva extends JInternalFrame {
 	private JSpinner spnrDuracion;
 	private JTextArea txtrDescripcion;
 	private JComboBox<String> comActDep;
+	private JLabel lblPicture;
+	private JTextField textPicture;
 	
 
 	/**
@@ -127,7 +129,7 @@ public class ModificarActividadDeportiva extends JInternalFrame {
 		getContentPane().add(spnrDuracion);
 		
 		spnrCosto = new JSpinner();
-		spnrCosto.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+		spnrCosto.setModel(new SpinnerNumberModel(Float.valueOf(1), Float.valueOf(1), null, Float.valueOf(1)));
 		spnrCosto.setBounds(220, 79, 78, 18);
 		getContentPane().add(spnrCosto);
 		
@@ -171,20 +173,32 @@ public class ModificarActividadDeportiva extends JInternalFrame {
 		});
 		btnAceptar.setBounds(194, 216, 98, 23);
 		getContentPane().add(btnAceptar);
+		
+		lblPicture = new JLabel("URL de imagen:");
+		lblPicture.setForeground(Color.GRAY);
+		lblPicture.setBounds(220, 152, 114, 14);
+		getContentPane().add(lblPicture);
+		
+		textPicture = new JTextField();
+		textPicture.setBounds(220, 169, 114, 18);
+		getContentPane().add(textPicture);
+		textPicture.setColumns(10);
 
 	}
 	
 	protected void modificarUsuarioAceptarActionPerformed(ActionEvent e) {
 		String nombre = this.txtNombre.getText();
 		String descripcion = this.txtrDescripcion.getText();
-		float costo = (int) spnrCosto.getValue();
+		float costo = (float) spnrCosto.getValue();
 		int duracion = (int) spnrDuracion.getValue();
+		String picture = this.textPicture.getText();
+		
 		
 		DtActividadDeportiva dtA = null;
 		
 		if(checkFormulario()) {
 			ArrayList<DtClase> clasesVacia = new ArrayList<DtClase>(); 
-			dtA = new DtActividadDeportiva(nombre, descripcion, duracion, costo, null, clasesVacia);
+			dtA = new DtActividadDeportiva(nombre, descripcion, duracion, costo, null, clasesVacia, picture);
 		}
 		
 		this.icon.modificarActividadDeportiva(dtA);
@@ -233,6 +247,7 @@ public class ModificarActividadDeportiva extends JInternalFrame {
 			txtFecha.setText(dta.getFechaReg().toString());
 			spnrCosto.setValue(dta.getCosto());
 			spnrDuracion.setValue(dta.getDuracion());
+			textPicture.setText(dta.getPicture());
 			
 		}
 	}
@@ -243,6 +258,7 @@ public class ModificarActividadDeportiva extends JInternalFrame {
 		txtrDescripcion.setText("");
 		spnrCosto.setValue(Integer.valueOf(1));
 		spnrDuracion.setValue(Integer.valueOf(1));
+		textPicture.setText("");
 	}
 	
 }

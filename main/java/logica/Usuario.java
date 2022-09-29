@@ -15,14 +15,18 @@ public abstract class Usuario {
 	private String nombre;
 	private String apellido;
 	private String email;//unico
+	private String contrasenia;
+	private String pfp;
 	private Calendar fechaNac;
 	
-	public Usuario(String nickname, String nombre, String apellido, String email, DtFecha fechaNac) {
+	public Usuario(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fechaNac) {
 		super();
 		this.nickname = nickname;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+		this.contrasenia = contrasenia;
+		this.pfp = pfp;
 		Calendar cal = new GregorianCalendar(fechaNac.getAnio(),fechaNac.getMes(),fechaNac.getDia());
 		this.fechaNac = cal;
 	}
@@ -54,6 +58,18 @@ public abstract class Usuario {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getContrasenia() {
+		return contrasenia;
+	}
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
+	}
+	public String getpfp() {
+		return pfp; 
+	}
+	public void setpfp(String pfp) {
+		this.pfp = pfp;
 	}
 	public DtFecha getDtFechaNac() {
 		DtFecha dtF = new DtFecha(fechaNac);

@@ -16,7 +16,7 @@ public class ControladorClase implements IControladorClase{
 		super();
 	}
 	
-	public void addClase(String actDep,String nombreClase, DtFechaHora fechaInicio, String nomProf, String URL, DtFecha fechaReg) throws ClaseRepetidaEx, NoExistenUsuariosEx {
+	public void addClase(String actDep,String nombreClase, DtFechaHora fechaInicio, String nomProf, String URL, DtFecha fechaReg, String picture) throws ClaseRepetidaEx, NoExistenUsuariosEx {
 		ManejadorClase mid = ManejadorClase.getInstancia();
 		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
 		ManejadorActividadDeportiva mAD = ManejadorActividadDeportiva.getInstancia();
@@ -26,7 +26,7 @@ public class ControladorClase implements IControladorClase{
 			throw new NoExistenUsuariosEx("el usuario" + nomProf + "no existe");
 		if (!mid.existeClase(nombreClase)) {
 			//verificar que sea profesor
-			Clase clase = new Clase(nombreClase, fechaInicio, (Profesor)us, URL, fechaReg);
+			Clase clase = new Clase(nombreClase, fechaInicio, (Profesor)us, URL, fechaReg, picture);
 			mid.add(clase);
 			actDeportiva.agregarClase(clase);
 			

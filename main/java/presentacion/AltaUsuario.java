@@ -63,6 +63,8 @@ public class AltaUsuario extends JInternalFrame {
 	private JScrollPane scrollPane_1;
 	private JComboBox<String> comInst;
 	private JLabel lblInstitucion;
+	private JTextField txtContrasea;
+	private JTextField txtImagenDePerfil;
 
 	/**
 	 * Launch the application.
@@ -111,7 +113,7 @@ public class AltaUsuario extends JInternalFrame {
 		});
 		txtNickname.setForeground(Color.GRAY);
 		txtNickname.setText("Nickname");
-		txtNickname.setBounds(24, 23, 164, 20);
+		txtNickname.setBounds(24, 10, 164, 20);
 		getContentPane().add(txtNickname);
 		txtNickname.setColumns(10);
 
@@ -135,7 +137,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtNombre.setText("Nombre");
 		txtNombre.setForeground(Color.GRAY);
 		txtNombre.setColumns(10);
-		txtNombre.setBounds(24, 54, 164, 20);
+		txtNombre.setBounds(24, 41, 164, 20);
 		getContentPane().add(txtNombre);
 
 		txtApellido = new JTextField();
@@ -158,7 +160,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtApellido.setText("Apellido");
 		txtApellido.setForeground(Color.GRAY);
 		txtApellido.setColumns(10);
-		txtApellido.setBounds(24, 85, 164, 20);
+		txtApellido.setBounds(24, 72, 164, 20);
 		getContentPane().add(txtApellido);
 
 		txtEmail = new JTextField();
@@ -181,7 +183,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtEmail.setText("Email");
 		txtEmail.setForeground(Color.GRAY);
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(24, 116, 164, 20);
+		txtEmail.setBounds(24, 103, 164, 20);
 		getContentPane().add(txtEmail);
 
 		txtSitioWeb = new JTextField();
@@ -202,6 +204,32 @@ public class AltaUsuario extends JInternalFrame {
 				txtSitioWeb.setForeground(Color.black);
 			}
 		});
+		
+		txtContrasea = new JTextField();
+		txtContrasea.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtContrasea.getText().equals("")) {
+					txtContrasea.setForeground(Color.GRAY);
+					txtContrasea.setText("Contraseña");
+				}
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtContrasea.getForeground().equals(Color.GRAY)) 
+					txtContrasea.setText("");
+				txtContrasea.setForeground(Color.black);
+			}
+		});
+		txtContrasea.setForeground(Color.GRAY);
+		txtContrasea.setText("Contraseña");
+		txtContrasea.setBounds(24, 135, 164, 18);
+		getContentPane().add(txtContrasea);
+		
+		
+		
+		txtContrasea.setColumns(10);
 		txtSitioWeb.setText("Sitio web (opcional)");
 		txtSitioWeb.setForeground(Color.GRAY);
 		txtSitioWeb.setColumns(10);
@@ -238,7 +266,7 @@ public class AltaUsuario extends JInternalFrame {
 		txtrBiografia.setForeground(Color.GRAY);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(164, 228, 277, 50);
+		scrollPane_1.setBounds(164, 250, 277, 50);
 		getContentPane().add(scrollPane_1);
 		
 				txtrDescripcion = new JTextArea();
@@ -307,7 +335,7 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioAceptarActionPerformed(e);
 			}
 		});
-		btnNewButton.setBounds(24, 223, 98, 23);
+		btnNewButton.setBounds(24, 243, 98, 23);
 		getContentPane().add(btnNewButton);
 
 		JButton btnCancelar = new JButton("Cancelar");
@@ -316,22 +344,22 @@ public class AltaUsuario extends JInternalFrame {
 				altaUsuarioCancelarActionPerformed(e);
 			}
 		});
-		btnCancelar.setBounds(24, 257, 98, 23);
+		btnCancelar.setBounds(24, 277, 98, 23);
 		getContentPane().add(btnCancelar);
 
 		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento:");
 		lblFechaDeNacimiento.setForeground(Color.GRAY);
-		lblFechaDeNacimiento.setBounds(24, 147, 153, 14);
+		lblFechaDeNacimiento.setBounds(24, 157, 153, 14);
 		getContentPane().add(lblFechaDeNacimiento);
 
 		spinnerDia = new JSpinner();
 		spinnerDia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinnerDia.setBounds(24, 175, 44, 20);
+		spinnerDia.setBounds(24, 185, 44, 20);
 		getContentPane().add(spinnerDia);
 
 		spinnerMes = new JSpinner();
 		spinnerMes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinnerMes.setBounds(78, 175, 44, 20);
+		spinnerMes.setBounds(78, 185, 44, 20);
 		getContentPane().add(spinnerMes);
 
 		spinnerAnio = new JSpinner();
@@ -344,25 +372,25 @@ public class AltaUsuario extends JInternalFrame {
 				"1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004",
 				"2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017",
 				"2018", "2019", "2020", "2021", "2022" }));
-		spinnerAnio.setBounds(133, 175, 55, 20);
+		spinnerAnio.setBounds(133, 185, 55, 20);
 		getContentPane().add(spinnerAnio);
 
 		lblDia = new JLabel("Dia");
 		lblDia.setForeground(Color.GRAY);
 		lblDia.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblDia.setBounds(24, 161, 44, 14);
+		lblDia.setBounds(24, 171, 44, 14);
 		getContentPane().add(lblDia);
 
 		lblMes = new JLabel("Mes");
 		lblMes.setForeground(Color.GRAY);
 		lblMes.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblMes.setBounds(78, 161, 44, 14);
+		lblMes.setBounds(78, 171, 44, 14);
 		getContentPane().add(lblMes);
 
 		lblAnio = new JLabel("Año");
 		lblAnio.setForeground(Color.GRAY);
 		lblAnio.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblAnio.setBounds(133, 161, 44, 14);
+		lblAnio.setBounds(133, 171, 44, 14);
 		getContentPane().add(lblAnio);
 		
 		comInst = new JComboBox<String>();
@@ -374,6 +402,30 @@ public class AltaUsuario extends JInternalFrame {
 		lblInstitucion.setForeground(Color.LIGHT_GRAY);
 		lblInstitucion.setBounds(246, 57, 164, 14);
 		getContentPane().add(lblInstitucion);
+		
+		txtImagenDePerfil = new JTextField();
+		txtImagenDePerfil = new JTextField();
+		txtImagenDePerfil.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtImagenDePerfil.getText().equals("")) {
+					txtImagenDePerfil.setForeground(Color.GRAY);
+					txtImagenDePerfil.setText("Imagen de perfil");
+				}
+			}
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtImagenDePerfil.getForeground().equals(Color.GRAY)) 
+					txtImagenDePerfil.setText("");
+				txtImagenDePerfil.setForeground(Color.black);
+			}
+		});
+		txtImagenDePerfil.setForeground(Color.GRAY);
+		txtImagenDePerfil.setText("Imagen de perfil");
+		txtImagenDePerfil.setBounds(24, 217, 386, 18);
+		getContentPane().add(txtImagenDePerfil);
+		txtImagenDePerfil.setColumns(10);
 
 	}
 
@@ -387,6 +439,8 @@ public class AltaUsuario extends JInternalFrame {
 		String nombre = this.txtNombre.getText();
 		String apellido = this.txtApellido.getText();
 		String email = this.txtEmail.getText();
+		String contrasenia = this.txtContrasea.getText();
+		String pfp = this.txtImagenDePerfil.getText();
 
 		int dia = (int) spinnerDia.getValue();
 		int mes = (int) spinnerMes.getValue();
@@ -412,12 +466,12 @@ public class AltaUsuario extends JInternalFrame {
 		if (checkFormulario()) {
 			ArrayList<DtClase> clasesVacia = new ArrayList<DtClase>(); 
 			if (rdbtnSocio.isSelected()) {
-				dtU = new DtSocio(nickname, nombre, apellido, email, fecha, clasesVacia);
+				dtU = new DtSocio(nickname, nombre, apellido, email, contrasenia, pfp, fecha, clasesVacia);
 			} else if (rdbtnProfesor.isSelected()) {
 				
 				DtInstitucionDeportiva dtInstDep = icon.getDtinstitucionDeportiva((String)comInst.getSelectedItem());
 				
-				dtU = new DtProfesor(nickname, nombre, apellido, email, fecha, descripcion, biografia, sitioWeb,
+				dtU = new DtProfesor(nickname, nombre, apellido, email, contrasenia, pfp, fecha, descripcion, biografia, sitioWeb,
 						dtInstDep, clasesVacia);
 			}
 			
@@ -463,8 +517,8 @@ public class AltaUsuario extends JInternalFrame {
 
 	private boolean checkFormulario() {
 		if (this.txtNickname.getForeground().equals(Color.GRAY) || this.txtNombre.getForeground().equals(Color.GRAY)
-				|| this.txtApellido.getForeground().equals(Color.GRAY)
-				|| this.txtEmail.getForeground().equals(Color.GRAY)) {
+				|| this.txtApellido.getForeground().equals(Color.GRAY) || this.txtEmail.getForeground().equals(Color.GRAY) 
+				|| this.txtContrasea.getForeground().equals(Color.GRAY) || this.txtEmail.getForeground().equals(Color.GRAY)) {
 			JOptionPane.showMessageDialog(this, "No puede haber campos no opcionales vacíos", "Agregar Usuario",
 					JOptionPane.ERROR_MESSAGE);
 			return false;

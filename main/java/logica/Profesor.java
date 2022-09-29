@@ -27,9 +27,9 @@ public class Profesor extends Usuario {
 		super();
 	}
 
-	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fecha, String descripcion,
+	public Profesor(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha, String descripcion,
 			String biografia, String sitioWeb, InstitucionDeportiva institucion) {
-		super(nickname, nombre, apellido, email, fecha);
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
@@ -44,8 +44,8 @@ public class Profesor extends Usuario {
 		this.institucion = institucion;
 	}
 
-	public Profesor(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
-		super(nickname, nombre, apellido, email, fecha);
+	public Profesor(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha) {
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 	}
 
 	public String getDescripcion() {
@@ -88,13 +88,13 @@ public class Profesor extends Usuario {
 			dtClases.add(c.getDtClase());
 		}
 		
-		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getDtFechaNac(), this.descripcion,
+		return new DtProfesor(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getContrasenia(), this.getpfp(), this.getDtFechaNac(), this.descripcion,
 				this.biografia, this.sitioWeb, this.institucion.getDtInstitucionDeportiva(), dtClases);
 	}
 	
 	public DtProfesor consultaProfesor(Profesor prof) {
 		DtProfesor retorno;
-		retorno = new DtProfesor(prof.getNickname(), prof.getNombre(), prof.getApellido(), prof.getEmail(),
+		retorno = new DtProfesor(prof.getNickname(), prof.getNombre(), prof.getApellido(), prof.getEmail(), prof.getContrasenia(), prof.getpfp(),
 				prof.getDtFechaNac());
 		return retorno;
 	}

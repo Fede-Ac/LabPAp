@@ -8,11 +8,12 @@ public class DtActividadDeportiva {
 	private int duracion;
 	private Float costo;
 	private DtFecha fechaReg;
+	private String picture;
 	
 	private ArrayList<DtClase> clases;
 	
 	public DtActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg,
-			ArrayList<DtClase> clases) {
+			ArrayList<DtClase> clases, String picture) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -20,6 +21,7 @@ public class DtActividadDeportiva {
 		this.costo = costo;
 		this.fechaReg = fechaReg;
 		this.clases = clases;
+		this.picture = picture;
 	}
 
 	public String getNombre() {
@@ -46,10 +48,14 @@ public class DtActividadDeportiva {
 		return clases;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+	
 	@Override
 	public String toString() {
 		return "Nombre: " + nombre + "\nDescripción: " + descripcion + "\nDuración: " + duracion
-				+ "\nCosto: " + costo + "\nFecha Registro: " + fechaReg;
+				+ "\nCosto: " + costo + "\nFecha Registro: " + fechaReg + "\nURL de imagen: " + picture;
 	}
 	
 	

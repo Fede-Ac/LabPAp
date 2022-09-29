@@ -10,9 +10,9 @@ public class DtProfesor extends DtUsuario{
 	private DtInstitucionDeportiva institucion;
 	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
 
-	public DtProfesor(String nickname, String nombre, String apellido, String email, DtFecha fecha, String descripcion,
+	public DtProfesor(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha, String descripcion,
 			String biografia, String sitioWeb, DtInstitucionDeportiva institucion, ArrayList<DtClase> clases) {
-		super(nickname, nombre, apellido, email, fecha);
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 		this.descripcion = descripcion;
 		this.biografia = biografia;
 		this.sitioWeb = sitioWeb;
@@ -20,8 +20,8 @@ public class DtProfesor extends DtUsuario{
 		this.clases = clases;
 	}
 
-	public DtProfesor(String nickname, String nombre, String apellido, String email, DtFecha fecha) {
-		super(nickname, nombre, apellido, email, fecha);
+	public DtProfesor(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha) {
+		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 	}
 
 	public String getDescripcion() {
@@ -43,7 +43,7 @@ public class DtProfesor extends DtUsuario{
 	public String toString() {
 		
 		String datos ="PROFESOR:\nNickname : " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: " + getApellido() + "\nEmail: " + getEmail() 
-		+ "\nFecha de Nacimiento: " + fechaNac.toString()
+		+ "\nFecha de Nacimiento: " + "\nContraseña: " + getContrasenia() + "\nFoto de perfil: " + getpfp() + fechaNac.toString()
 		+ "\nDescripción: " + descripcion + "\nBiografía: " + biografia + "\nSitioWeb: " + sitioWeb
 		+ "\nInstitución: " + institucion.getNombre()+ "\nClases que dicta: \n";
 		

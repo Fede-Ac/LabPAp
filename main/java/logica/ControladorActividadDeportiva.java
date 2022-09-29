@@ -31,7 +31,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 	}
 	
 	@Override
-	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha) throws ActividadDepRepetidaEx{
+	public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha, String picture) throws ActividadDepRepetidaEx{
 		Boolean exists = false; 
 		ManejadorActividadDeportiva manejador = ManejadorActividadDeportiva.getInstancia();
 		ManejadorInstitucionDep mI = ManejadorInstitucionDep.getInstancia();
@@ -39,7 +39,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		
 		if(existeInstitucionD(nombreInst)){
 			if(exists == false) {
-				ActividadDeportiva nuevaActividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fecha);
+				ActividadDeportiva nuevaActividad = new ActividadDeportiva(nombre, descripcion, duracion, costo, fecha, picture);
 				InstitucionDeportiva inst = mI.buscarInstitucion(nombreInst);
 				inst.agregarActividadDeportiva(nuevaActividad);
 				manejador.add(nuevaActividad);
@@ -179,6 +179,7 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 		ad.setDescripcion(dtA.getDescripcion());
 		ad.setCosto(dtA.getCosto());
 		ad.setDuracion(dtA.getDuracion());
+		ad.setPicture(dtA.getPicture());
 		
 		Conexion conexion = Conexion.getInstancia();
 		EntityManager em = conexion.getEntityManager();

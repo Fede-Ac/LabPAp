@@ -24,6 +24,7 @@ public class ActividadDeportiva {
 	private int duracion;
 	private Float costo;
 	private Calendar fechaReg;
+	private String picture;
 	//links
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Clase> clases = new ArrayList<Clase>();
@@ -33,7 +34,7 @@ public class ActividadDeportiva {
 		super();
 	}
 
-	public ActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg) {
+	public ActividadDeportiva(String nombre, String descripcion, int duracion, Float costo, DtFecha fechaReg, String picture) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -41,6 +42,7 @@ public class ActividadDeportiva {
 		this.costo = costo;
 		Calendar cal = new GregorianCalendar(fechaReg.getAnio(),fechaReg.getMes(),fechaReg.getDia());
 		this.fechaReg = cal;
+		this.picture = picture;
 	}
 
 	public String getNombre() {
@@ -110,8 +112,16 @@ public class ActividadDeportiva {
 			dtClases.add(c.getDtClase());
 		}
 		DtFecha dtF = new DtFecha(fechaReg);
-		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, dtF, dtClases);
+		DtActividadDeportiva dt = new DtActividadDeportiva(nombre, descripcion, duracion, costo, dtF, dtClases, picture);
 		return dt;
+	}
+	
+	public String getPicture() {
+		return picture;
+	}
+	
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 	
 	public int getCantClases() {
