@@ -1,33 +1,17 @@
 package presentacion;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
-import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
-
 import datatypes.DtActividadDeportiva;
 import interfaces.IControladorActividadDeportiva;
 import excepciones.NoExisteActividadDepEx;
 
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.awt.List;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 
 public class RankingActividadDeportiva extends JInternalFrame {
@@ -37,7 +21,7 @@ public class RankingActividadDeportiva extends JInternalFrame {
 	private JScrollPane actividadesDeportivas;
 	private JButton btnOk;
 	private String[] columnNames = { "Actividad Deportiva", "N° de clases", "Costo", "Descripción"};
-	private String[][] datosTabla;
+	//private String[][] datosTabla;
 	private JTable table;
 	
 	/**

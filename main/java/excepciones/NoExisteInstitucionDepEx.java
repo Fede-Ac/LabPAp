@@ -5,7 +5,6 @@ public class NoExisteInstitucionDepEx extends Exception{
 
 	public NoExisteInstitucionDepEx(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 	
 }

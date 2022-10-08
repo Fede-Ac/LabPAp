@@ -1,8 +1,6 @@
 package presentacion;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -14,17 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
-import com.toedter.calendar.JDateChooser;
-
 import excepciones.NoExisteActividadDepEx;
-import excepciones.NoExistenUsuariosEx;
-import excepciones.RegistroRepetidoEx;
 import interfaces.IControladorActividadDeportiva;
 
 public class ConsultaDictadoDeClase extends JInternalFrame {
@@ -35,7 +28,6 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 	private JComboBox<String> comInst;
 	private JComboBox<String> comActDep;
 	private JComboBox<String> comClase;
-	private JLabel lblError;
 	private JLabel lblError2;
 
 	public ConsultaDictadoDeClase(IControladorActividadDeportiva icon) {
@@ -70,7 +62,7 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 					try {
 						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
 					}
 			}
@@ -173,7 +165,6 @@ public class ConsultaDictadoDeClase extends JInternalFrame {
 			try {
 				textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 			} catch (NoExisteActividadDepEx e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		 */

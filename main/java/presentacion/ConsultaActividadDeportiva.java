@@ -90,7 +90,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 					try {
 						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -110,7 +109,6 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 					try {
 						textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				
@@ -167,7 +165,7 @@ public class ConsultaActividadDeportiva extends JInternalFrame {
 			try {
 				textArea.setText(icon.ConsultaActividadDeportiva((String)comActDep.getSelectedItem()).toString());
 			} catch (NoExisteActividadDepEx e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 	}

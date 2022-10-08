@@ -74,15 +74,9 @@ public class ManejadorActividadDeportiva {
 			for(Clase c : clases) {
 				if (c.getNombre().equals(clase.getNombre())) {
 					actDep = a;
-					if (actDep == null) {
-						System.out.print(1);
-					}
 				}
 			}
 			
-		}
-		if (actDep == null) {
-			System.out.print(1);
 		}
 		return actDep;
 	}

@@ -6,7 +6,7 @@ public class NoExistenUsuariosEx extends Exception{
 
 	public NoExistenUsuariosEx(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

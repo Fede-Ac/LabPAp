@@ -6,28 +6,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import datatypes.DtClase;
-import datatypes.DtFecha;
-import datatypes.DtFechaHora;
-import datatypes.DtInstitucionDeportiva;
-import datatypes.DtProfesor;
-import datatypes.DtSocio;
-import datatypes.DtUsuario;
-import excepciones.ActividadDepRepetidaEx;
-import excepciones.ClaseRepetidaEx;
-import excepciones.FechaInvalidaEx;
-import excepciones.HoraInvalidaEx;
-import excepciones.InstitucionDepRepetidaEx;
-import excepciones.NoExisteInstitucionDepEx;
-import excepciones.NoExistenUsuariosEx;
-import excepciones.UsuarioRepetidoEx;
 import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
 import interfaces.IControladorClase;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class Principal {

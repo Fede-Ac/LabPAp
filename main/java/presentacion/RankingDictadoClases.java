@@ -1,13 +1,8 @@
 package presentacion;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.TextArea;
-
 import javax.swing.JInternalFrame;
 
 import interfaces.IControladorClase;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;

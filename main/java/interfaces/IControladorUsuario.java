@@ -20,5 +20,7 @@ public interface IControladorUsuario {
 	DtInstitucionDeportiva getDtinstitucionDeportiva(String institucion);
 	
 	public void modificarUsuario(DtUsuario dtU);
+
+	public DtUsuario existeUsuario(String nickname, String pass);
 }
 

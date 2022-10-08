@@ -93,7 +93,6 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 					try {
 						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 			}
@@ -116,7 +115,7 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 					try {
 						textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 					} catch (NoExisteActividadDepEx e1) {
-						// TODO Auto-generated catch block
+
 						e1.printStackTrace();
 					}
 				
@@ -261,7 +260,6 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 			try {
 				textArea.setText(icon.RegistroDictadoDeClase((String)comActDep.getSelectedItem()).toString());
 			} catch (NoExisteActividadDepEx e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		 */
@@ -291,7 +289,6 @@ public class RegistroDictadoDeClase extends JInternalFrame {
 			}
 			comSocios.setModel(modelo4);
 		} catch (NoExistenUsuariosEx e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
