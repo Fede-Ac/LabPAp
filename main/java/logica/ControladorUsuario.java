@@ -5,6 +5,7 @@ import datatypes.DtProfesor;
 import datatypes.DtSocio;
 import datatypes.DtUsuario;
 import excepciones.NoExisteInstitucionDepEx;
+import excepciones.NoExistenUsuariosEx;
 import excepciones.UsuarioRepetidoEx;
 import interfaces.IControladorUsuario;
 import persistencia.Conexion;
@@ -120,6 +121,29 @@ public class ControladorUsuario implements IControladorUsuario{
 		DtInstitucionDeportiva dtInst = inst.getDtInstitucionDeportiva();
 		return dtInst;
 		
+	}
+
+	@Override
+	public DtUsuario existeUsuario(String nickname, String pass) throws NoExistenUsuariosEx{
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		Usuario uS = mU.buscarUsuarioPorNickname(nickname);
+		DtUsuario dtU;
+		if (uS == null){
+			throw new NoExistenUsuariosEx("El usuario no existe");
+		}
+		if (uS.getContrasenia().equals(pass)) {
+			if (uS instanceof Profesor) {
+				Profesor p = (Profesor) uS;
+				dtU = p.getDtProfesor();
+			}	
+			else {
+				Socio s = (Socio) uS;
+				dtU = s.getDtSocio();
+			}
+		}else{
+			throw new NoExistenUsuariosEx("Datos equivocados");
+		}
+		return dtU;
 	}
 
 }

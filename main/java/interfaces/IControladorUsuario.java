@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtUsuario;
 import excepciones.NoExisteInstitucionDepEx;
+import excepciones.NoExistenUsuariosEx;
 import excepciones.UsuarioRepetidoEx;
 
 
@@ -21,6 +22,6 @@ public interface IControladorUsuario {
 	
 	public void modificarUsuario(DtUsuario dtU);
 
-	public DtUsuario existeUsuario(String nickname, String pass);
+	public DtUsuario existeUsuario(String nickname, String pass) throws NoExistenUsuariosEx;
 }
 

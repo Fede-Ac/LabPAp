@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import excepciones.FechaInvalidaEx;
 import excepciones.NoExisteInstitucionDepEx;
+import excepciones.NoExistenUsuariosEx;
 import excepciones.UsuarioRepetidoEx;
 
 import javax.swing.DefaultComboBoxModel;

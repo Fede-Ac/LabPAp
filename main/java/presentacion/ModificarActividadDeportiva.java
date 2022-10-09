@@ -9,7 +9,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import interfaces.IControladorActividadDeportiva;
-import interfaces.IControladorUsuario;
 
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -26,8 +25,6 @@ import javax.swing.event.InternalFrameEvent;
 
 import datatypes.DtActividadDeportiva;
 import datatypes.DtClase;
-import datatypes.DtProfesor;
-import datatypes.DtUsuario;
 import javax.swing.SpinnerNumberModel;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
