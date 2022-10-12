@@ -128,5 +128,14 @@ public class Clase {
 	public Integer getCantRegistros() {
 		return registros.size();
 	}
+	public void removerRegistro(Socio s) {
+		for(Registro r : registros) {
+			if(r.getSocio().equals(s)) {
+				r.getSocio().removerRegistro(r);
+				registros.remove(registros.indexOf(r));
+				return;
+			}
+		}
+	}
 	
 }

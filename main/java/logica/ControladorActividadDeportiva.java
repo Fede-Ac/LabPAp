@@ -121,6 +121,24 @@ public class ControladorActividadDeportiva implements IControladorActividadDepor
 
 		
 	}
+	@Override
+	public void eliminarRegistro(String socio, String clase) throws RegistroRepetidoEx{
+		ManejadorClase mC = ManejadorClase.getInstancia();
+		ManejadorUsuario mU = ManejadorUsuario.getInstancia();
+		if(!mC.existeRegistro(clase, socio)) {
+			throw new RegistroRepetidoEx("No existe ese registro, entonces no se puede eliminar");
+		}
+		Clase c = mC.buscarClase(clase);
+		Socio s = (Socio)mU.buscarUsuarioPorNickname(socio);
+		
+		c.removerRegistro(s);
+		
+		Conexion conexion = Conexion.getInstancia();
+		EntityManager em = conexion.getEntityManager();
+		em.getTransaction().begin();
+		em.persist(c);
+		em.getTransaction().commit();
+	}
 	
 	@Override
 	public ArrayList<String> listarClases(String actividadDeportiva) {

@@ -61,5 +61,9 @@ public class DtProfesor extends DtUsuario{
 		return datos;
 	}
 	
+	public ArrayList<DtClase> getClases(){
+		return clases;
+	}
+	
 
 }

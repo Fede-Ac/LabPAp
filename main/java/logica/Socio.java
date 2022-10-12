@@ -48,4 +48,8 @@ public class Socio extends Usuario{
 		}
 		return new DtSocio(this.getNickname(), this.getNombre(), this.getApellido(), this.getEmail(), this.getContrasenia(), this.getpfp(), this.getDtFechaNac(), clases);
 	}
+	
+	public void removerRegistro(Registro r) {
+		registros.remove(registros.indexOf(r));
+	}
 }

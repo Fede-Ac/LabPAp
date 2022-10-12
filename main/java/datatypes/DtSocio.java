@@ -30,6 +30,10 @@ public class DtSocio extends DtUsuario{
 		
 		return datos;
 	}
+	
+	public ArrayList<DtClase> getClases(){
+		return clases;
+	}
 
 	
 }
