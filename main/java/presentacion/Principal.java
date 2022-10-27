@@ -10,6 +10,10 @@ import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 import interfaces.IControladorInstitucionDep;
 import interfaces.IControladorUsuario;
+import publicadores.ControladorClasePublish;
+import publicadores.ControladorActDepPublish;
+import publicadores.ControladorInstPublish;
+import publicadores.ControladorUsuarioPublish;
 import interfaces.IControladorClase;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -65,6 +69,17 @@ public class Principal {
 	 * Create the application.
 	 */
 	public Principal() {
+	    //publicar operaciones
+	    ControladorClasePublish ccp = new ControladorClasePublish();
+	    ControladorActDepPublish cadp = new ControladorActDepPublish();
+	    ControladorInstPublish cip = new ControladorInstPublish();
+	    ControladorUsuarioPublish cup = new ControladorUsuarioPublish();
+	    
+	    ccp.publicar();  
+	    cadp.publicar();  
+	    cip.publicar();  
+	    cup.publicar();  
+	    
 		initialize();
 		// indicializo icon
 		Fabrica fabrica = Fabrica.getInstancia();

@@ -4,7 +4,10 @@ import java.util.Calendar;
 
 import excepciones.FechaInvalidaEx;
 import excepciones.HoraInvalidaEx;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DtFechaHora extends DtFecha{
 	//formato 24hs
 	final int MAXHORA = 23;
