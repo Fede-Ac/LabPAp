@@ -43,6 +43,10 @@ public class ControladorUsuarioPublish {
 	}
 	
 	//METODOS A PUBLICAR
+	@WebMethod
+	public void prueba() {
+	    
+	}
 	
 
 }

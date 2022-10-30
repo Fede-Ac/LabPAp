@@ -21,7 +21,6 @@ public class WebServiceConfiguracion {
                     configs.put(div[0], div[1]);
                 }
             }
-            System.out.println(path);
         } catch(Exception e) {
             System.out.print("Error en el archivo de configuraciones. Ruta: " + path);
         }

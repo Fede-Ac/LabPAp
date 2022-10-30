@@ -32,7 +32,7 @@ public class ControladorClasePublish {
 
 	@WebMethod(exclude = true)
 	public void publicar() {
-	    endpoint = Endpoint.publish("http://127.0.0.1:2942/controladorClase", this);
+	    endpoint = Endpoint.publish("http://127.0.0.2:1942/controladorClase", this);
 	    //endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorClase", this);
 		System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorClase");
 	}
@@ -44,8 +44,8 @@ public class ControladorClasePublish {
 	
 	//METODOS A PUBLICAR
 	@WebMethod
-	public void listarClases(String actividad) {
-	    iConClase.listarClases(actividad);
+	public void listarClases(/*String actividad*/) {
+	    //iConClase.listarClases(actividad);
 	}
 
 }

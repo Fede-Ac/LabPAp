@@ -44,6 +44,9 @@ public class ControladorInstPublish {
 	}
 	
 	//METODOS A PUBLICAR
-	
+	@WebMethod
+	public void rueba() {
+	    
+	}
 
 }

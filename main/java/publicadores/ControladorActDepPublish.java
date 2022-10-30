@@ -8,6 +8,7 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtFecha;
 import interfaces.Fabrica;
 import interfaces.IControladorActividadDeportiva;
 
@@ -43,6 +44,10 @@ public class ControladorActDepPublish {
 	}
 	
 	//METODOS A PUBLICAR
-	
+	@WebMethod
+	   public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha, String picture) {
+	       
+	   }
+	   
 
 }
