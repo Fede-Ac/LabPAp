@@ -70,18 +70,18 @@ public class Principal {
 	 */
 	public Principal() {
 	    //publicar operaciones
-	    //ControladorClasePublish ccp = new ControladorClasePublish();
-	    //ControladorActDepPublish cadp = new ControladorActDepPublish();
-	    //ControladorInstPublish cip = new ControladorInstPublish();
-	    //ControladorUsuarioPublish cup = new ControladorUsuarioPublish();
+	    ControladorClasePublish ccp = new ControladorClasePublish();
+	    ControladorActDepPublish cadp = new ControladorActDepPublish();
+	    ControladorInstPublish cip = new ControladorInstPublish();
+	    ControladorUsuarioPublish cup = new ControladorUsuarioPublish();
 	    
-	    //ccp.publicar();  
-	    //cadp.publicar();  
-	    //cip.publicar();  
-	    //cup.publicar();  
+	    ccp.publicar();  
+	    cadp.publicar();  
+	    cip.publicar();  
+	    cup.publicar();  
 	    
 		initialize();
-		// indicializo icon
+		//indicializo icon
 		Fabrica fabrica = Fabrica.getInstancia();
 		IControladorClase iConClase = fabrica.getIControladorClase();
 		IControladorInstitucionDep iConIntDep = fabrica.getIControladorInstitucionDep();
