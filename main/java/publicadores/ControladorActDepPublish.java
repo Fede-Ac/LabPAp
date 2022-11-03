@@ -31,7 +31,7 @@ public class ControladorActDepPublish {
 		try {
 			configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 
@@ -52,7 +52,9 @@ public class ControladorActDepPublish {
 	   public void AltaActividadDeportiva(String nombre, String nombreInst, String descripcion, int duracion, float costo, DtFecha fecha, String picture) {
 	        try {
 	            iConActDep.AltaActividadDeportiva(nombre, nombreInst, descripcion, duracion, costo, fecha, picture);
-	        }catch(Exception ex) {}   
+	        }catch(Exception ex) {
+	        	ex.printStackTrace();
+	        }   
 	     }
 	@WebMethod
 	public boolean existeInstitucionD(String nombreInst) {
@@ -87,7 +89,9 @@ public class ControladorActDepPublish {
 	    DtActividadDeportiva ret = null;
 	    try {
 	        ret = iConActDep.ConsultaActividadDeportiva(nombreAct);
-	    }catch(Exception ex) {}
+	    }catch(Exception ex) {
+	    	ex.printStackTrace();
+	    }
 	    
 	    return ret;
 	}
@@ -96,20 +100,26 @@ public class ControladorActDepPublish {
 	    DtActividadDeportiva ret = null;
 	    try {
 	        ret = iConActDep.RegistroDictadoDeClase(regClase);
-	    }catch (Exception ex) {}
+	    }catch (Exception ex) {
+	    	ex.printStackTrace();
+	    }
 	    return ret;
 	}
 	@WebMethod
 	public void altaRegistroDictadoDeClase(String socio, String clase) {
 	    try {
 	        iConActDep.altaRegistroDictadoDeClase(socio, clase);
-	    }catch (Exception ex) {}
+	    }catch (Exception ex) {
+	    	ex.printStackTrace();
+	    }
 	}
 	@WebMethod
 	public void eliminarRegistroClase(String socio, String clase) {
 	    try {
 	        iConActDep.eliminarRegistro(socio, clase);
-	    }catch (Exception ex) {}
+	    }catch (Exception ex) {
+	    	ex.printStackTrace();
+	    }
 	}
 	@WebMethod
 	public String[] listarClases(String ActDeportiva) {
@@ -131,7 +141,9 @@ public class ControladorActDepPublish {
 	   ArrayList<String> socios = null; 
 	   try { 
 	    socios = iConActDep.getSocios();
-	       }catch (Exception ex) {} 
+	       }catch (Exception ex) {
+	    	   ex.printStackTrace();
+	       } 
 	   String[] ret = new String[socios.size()];
 	   int i = 0;
 	   for(String s: socios) {

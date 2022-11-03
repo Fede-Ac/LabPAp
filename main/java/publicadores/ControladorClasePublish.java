@@ -31,7 +31,7 @@ public class ControladorClasePublish {
 		try {
 			configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 
@@ -52,14 +52,18 @@ public class ControladorClasePublish {
 	public void addClase(String actDep,String nombreClase, DtFechaHora fechaInicio, String nomProf, String URL, DtFecha fechaReg, String picture) {
 	  try {
 	      iConClase.addClase(actDep, nombreClase, fechaInicio, nomProf, URL, fechaReg, picture);   
-	  }catch (Exception ex) {}  
+	  }catch (Exception ex) {
+		  ex.printStackTrace();
+	  }  
 	}
 	@WebMethod
 	public String[] listarInstituciones() {
 	    ArrayList<String> inst = null;
 	    try {
 	       inst = iConClase.listarInstituciones();
-	    }catch (Exception ex) {}
+	    }catch (Exception ex) {
+	    	ex.printStackTrace();
+	    }
 	    String [] ret = new String[inst.size()];
 	    int i = 0;
 	    for (String s : inst) {
