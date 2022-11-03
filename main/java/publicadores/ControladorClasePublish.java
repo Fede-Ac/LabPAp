@@ -1,5 +1,7 @@
 package publicadores;
 
+import java.util.ArrayList;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -8,6 +10,9 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtClase;
+import datatypes.DtFecha;
+import datatypes.DtFechaHora;
 import interfaces.Fabrica;
 import interfaces.IControladorClase;
 
@@ -44,8 +49,68 @@ public class ControladorClasePublish {
 	
 	//METODOS A PUBLICAR
 	@WebMethod
-	public void listarClases(/*String actividad*/) {
-	    //iConClase.listarClases(actividad);
+	public void addClase(String actDep,String nombreClase, DtFechaHora fechaInicio, String nomProf, String URL, DtFecha fechaReg, String picture) {
+	  try {
+	      iConClase.addClase(actDep, nombreClase, fechaInicio, nomProf, URL, fechaReg, picture);   
+	  }catch (Exception ex) {}  
 	}
-
+	@WebMethod
+	public String[] listarInstituciones() {
+	    ArrayList<String> inst = null;
+	    try {
+	       inst = iConClase.listarInstituciones();
+	    }catch (Exception ex) {}
+	    String [] ret = new String[inst.size()];
+	    int i = 0;
+	    for (String s : inst) {
+	        ret[i]=s;
+	        i++;
+	    }
+	    return ret;	    
+	}
+	@WebMethod
+	public String[] listarActividadesDeportivas(String nombreInst) {
+	    ArrayList<String> inst = iConClase.listarActividadesDeportivas(nombreInst);
+	    String [] ret = new String[inst.size()];
+	    int i = 0;
+	    for(String s:inst) {
+	        ret[i]= s;
+	        i++;
+	    }
+	    return ret;    
+	}
+	@WebMethod
+    public String[] listarProfesores(String nombreInst) {
+	    ArrayList<String> profs = iConClase.listarProfesores(nombreInst);
+	    String[] ret = new String[profs.size()];
+	    int i = 0;
+	    for(String s:profs) {
+	        ret[i]=s;
+	        i++;
+	    }
+	    return ret;
+	    
+	}
+	@WebMethod
+	public String[] listarClases(String actividad) {
+	    ArrayList<String> clases = iConClase.listarClases(actividad);
+	    String[] ret = new String[clases.size()];
+	    int i = 0;
+	    for(String s: clases) {
+	        ret[i]=s;
+	        i++;
+	    }
+	    return ret;
+	}
+	@WebMethod
+    public DtClase[] rankingClases() {
+        ArrayList<DtClase> clases = iConClase.rankingClases();
+        DtClase[] ret = new DtClase[clases.size()];
+        int i = 0;
+        for(DtClase d: clases) {
+            ret[i]=d;
+            i++;
+        }
+        return ret;
+    }
 }
