@@ -33,9 +33,9 @@ public class ControladorActDepPublish {
 
 	@WebMethod(exclude = true)
 	public void publicar() {
-		endpoint = Endpoint.publish("http://127.0.0.1:1942/controladorActDep", this);
+		endpoint = Endpoint.publish("http://127.0.0.1:1890/controladorActDep", this);
 	    //endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorActDep", this);
-		System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorActDep");
+		//System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorActDep");
 	}
 	
 	@WebMethod(exclude = true)
