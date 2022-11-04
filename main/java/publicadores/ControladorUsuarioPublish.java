@@ -1,5 +1,7 @@
 package publicadores;
 
+import java.util.ArrayList;
+
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -8,6 +10,10 @@ import javax.jws.soap.SOAPBinding.Style;
 import javax.xml.ws.Endpoint;
 
 import configuraciones.WebServiceConfiguracion;
+import datatypes.DtActividadDeportiva;
+import datatypes.DtClase;
+import datatypes.DtInstitucionDeportiva;
+import datatypes.DtUsuario;
 import interfaces.Fabrica;
 import interfaces.IControladorUsuario;
 
@@ -26,7 +32,7 @@ public class ControladorUsuarioPublish {
 		try {
 			configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 
@@ -44,9 +50,57 @@ public class ControladorUsuarioPublish {
 	
 	//METODOS A PUBLICAR
 	@WebMethod
-	public void prueba() {
-	    
+	public void altaUsuario(DtUsuario dtU) {
+		try {
+			iConUsuario.altaUsuario(dtU);
+		}catch(Exception ex) {
+        	ex.printStackTrace();
+        }   
+	   
 	}
-	
-
+	@WebMethod
+	public void modificarUsuario(DtUsuario dtU) {
+		iConUsuario.modificarUsuario(dtU);
+	}
+	@WebMethod
+	public String[] mostrarUsuarios(){
+        ArrayList<String> usuarios = iConUsuario.mostrarUsuarios();
+        String[] ret = new String[usuarios.size()];
+        int i = 0;
+        for(String d: usuarios) {
+            ret[i]=d;
+            i++;
+        }
+        return ret;
+	}
+	@WebMethod
+	public DtUsuario consultaUsuario(String nick) {
+		return iConUsuario.consultaUsuario(nick);
+	}
+	@WebMethod
+	public String[] listarInstituciones() {
+	    ArrayList<String> inst = iConUsuario.listarInstituciones();    
+	    String[] retorno = new String[inst.size()];
+	    int i = 0;
+	    for(String s : inst) {
+	        retorno[i]=s;
+	        i++;
+	    }
+	    return retorno;
+	}
+	@WebMethod
+	public DtInstitucionDeportiva getDtinstitucionDeportiva(String institucion) {
+		return iConUsuario.getDtinstitucionDeportiva(institucion);
+	}
+	@WebMethod
+	public DtUsuario existeUsuario(String nickname, String pass) {
+		DtUsuario us = null;
+		    try {
+		    	us = iConUsuario.existeUsuario(nickname, pass);
+		    }catch(Exception ex) {
+		    	ex.printStackTrace();
+		    }
+		    
+		    return us;
+	}
 }
