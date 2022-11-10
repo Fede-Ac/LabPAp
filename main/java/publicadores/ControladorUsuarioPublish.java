@@ -64,14 +64,14 @@ public class ControladorUsuarioPublish {
 	}
 	@WebMethod
 	public String[] mostrarUsuarios(){
-        ArrayList<String> usuarios = iConUsuario.mostrarUsuarios();
+        /*ArrayList<String> usuarios = iConUsuario.mostrarUsuarios();
         String[] ret = new String[usuarios.size()];
         int i = 0;
         for(String d: usuarios) {
             ret[i]=d;
             i++;
-        }
-        return ret;
+        }*/
+		return iConUsuario.mostrarUsuarios();
 	}
 	@WebMethod
 	public DtUsuario consultaUsuario(String nick) {
