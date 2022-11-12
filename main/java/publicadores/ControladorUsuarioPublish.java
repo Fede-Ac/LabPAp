@@ -93,19 +93,20 @@ public class ControladorUsuarioPublish {
     public DtUsuario consultaUsuario(String nick) {
         return iConUsuario.consultaUsuario(nick);
     }
-
-    @WebMethod
-    public String[] listarInstituciones() {
-        ArrayList<String> inst = iConUsuario.listarInstituciones();
-        String[] retorno = new String[inst.size()];
+/* 
+	@WebMethod
+	public String[] mostrarUsuarios(){
+        ArrayList<String> usuarios = iConUsuario.mostrarUsuarios();
+        String[] ret = new String[usuarios.size()];
         int i = 0;
         for (String s : inst) {
             retorno[i] = s;
             i++;
+
         }
         return retorno;
     }
-
+*/
     @WebMethod
     public DtInstitucionDeportiva getDtinstitucionDeportiva(String institucion) {
         return iConUsuario.getDtinstitucionDeportiva(institucion);
@@ -124,4 +125,16 @@ public class ControladorUsuarioPublish {
 
         return us;
     }
+    
+	@WebMethod
+	public String[] listarInstituciones() {
+	    ArrayList<String> inst = iConUsuario.listarInstituciones();    
+	    String[] retorno = new String[inst.size()];
+	    int i = 0;
+	    for(String s : inst) {
+	        retorno[i]=s;
+	        i++;
+	    }
+	    return retorno;
+	}
 }
