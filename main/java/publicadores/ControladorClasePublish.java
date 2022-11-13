@@ -117,4 +117,14 @@ public class ControladorClasePublish {
         }
         return ret;
     }
+	@WebMethod
+    public DtClase[] agregarClaseArray(DtClase[] arrayDtClases, DtClase dtClase) {
+        int l = arrayDtClases.length;
+        DtClase nuevoArrayDtClases[] = new DtClase[l+1];
+        for(int i = 0; i<l; i++) {  
+            nuevoArrayDtClases[i] = arrayDtClases[i];  
+        } 
+        nuevoArrayDtClases[l] = dtClase;
+        return nuevoArrayDtClases;
+    }
 }

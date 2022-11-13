@@ -171,5 +171,27 @@ public class ControladorActDepPublish {
 	public void modificarActividadDeportiva(DtActividadDeportiva dta) {
 	    iConActDep.modificarActividadDeportiva(dta);
 	}
+	@WebMethod
+	public DtActividadDeportiva[] rankingActividadesDeportivas(){
+	    
+	    ArrayList<DtActividadDeportiva> dtActividadDep = iConActDep.rankingActividadesDeportivas();
+	    DtActividadDeportiva[] dtActDep = new DtActividadDeportiva[dtActividadDep.size()];
+        int i = 0;
+        for(DtActividadDeportiva dtad: dtActividadDep) {
+            dtActDep[i]=dtad;
+            i++;
+        }
+	    return dtActDep;
+	}
 	
+	@WebMethod
+    public DtActividadDeportiva[] agregarActDepArray(DtActividadDeportiva[] arrayDtActDep, DtActividadDeportiva dtActDep) {
+        int l = arrayDtActDep.length;
+        DtActividadDeportiva nuevoArrayDtActDep[] = new DtActividadDeportiva[l+1];
+        for(int i = 0; i<l; i++) {  
+            nuevoArrayDtActDep[i] = arrayDtActDep[i];  
+        } 
+        nuevoArrayDtActDep[l] = dtActDep;
+        return nuevoArrayDtActDep;
+    }
 }
