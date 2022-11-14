@@ -9,6 +9,10 @@ public class DtSocio extends DtUsuario{
 
 	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
 	
+	public DtSocio() {
+	    super();
+	}
+	
 	public DtSocio(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha, ArrayList<DtClase> clases) {
 		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
 		this.clases = clases;

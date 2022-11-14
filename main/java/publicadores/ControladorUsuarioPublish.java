@@ -69,7 +69,7 @@ public class ControladorUsuarioPublish {
 
     @WebMethod
     public DtProfesor consultaProfesor(String nick) {
-        return (DtProfesor)iConUsuario.consultaUsuario(nick);
+        return (DtProfesor) iConUsuario.consultaUsuario(nick);
     }
     
     @WebMethod

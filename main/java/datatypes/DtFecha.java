@@ -18,6 +18,10 @@ public class DtFecha {
 	private int mes;
 	private int dia;
 	
+	public DtFecha() {
+	    super();
+	}
+	
 	public DtFecha(int anio, int mes, int dia) throws FechaInvalidaEx {
 		super();
 		if (anio < MINANIO || anio > MAXANIO) {

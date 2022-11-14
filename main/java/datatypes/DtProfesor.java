@@ -13,6 +13,10 @@ public class DtProfesor extends DtUsuario{
 	private DtInstitucionDeportiva institucion;
 	private ArrayList<DtClase> clases = new ArrayList<DtClase>();
 
+	public DtProfesor() {
+	    super();
+	}
+	
 	public DtProfesor(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fecha, String descripcion,
 			String biografia, String sitioWeb, DtInstitucionDeportiva institucion, ArrayList<DtClase> clases) {
 		super(nickname, nombre, apellido, email, contrasenia, pfp, fecha);
