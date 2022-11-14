@@ -46,7 +46,7 @@ public class DtProfesor extends DtUsuario{
 	public String toString() {
 		
 		String datos ="PROFESOR:\nNickname : " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: " + getApellido() + "\nEmail: " + getEmail() 
-		+ "\nFecha de Nacimiento: " + "\nContraseña: " + getContrasenia() + "\nFoto de perfil: " + getpfp() + fechaNac.toString()
+		+ "\nFecha de Nacimiento: " + "\nContraseña: " + getContrasenia() + "\nFoto de perfil: " + getpfp() + this.getFecha().toString()
 		+ "\nDescripción: " + descripcion + "\nBiografía: " + biografia + "\nSitioWeb: " + sitioWeb
 		+ "\nInstitución: " + institucion.getNombre()+ "\nClases que dicta: \n";
 		

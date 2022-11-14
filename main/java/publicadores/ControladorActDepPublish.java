@@ -29,7 +29,7 @@ public class ControladorActDepPublish {
 		iConActDep = fabrica.getIControladorActividadDeportiva();
 		
 		try {
-			configuracion = new WebServiceConfiguracion();
+			//configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -183,15 +183,5 @@ public class ControladorActDepPublish {
         }
 	    return dtActDep;
 	}
-	
-	@WebMethod
-    public DtActividadDeportiva[] agregarActDepArray(DtActividadDeportiva[] arrayDtActDep, DtActividadDeportiva dtActDep) {
-        int l = arrayDtActDep.length;
-        DtActividadDeportiva nuevoArrayDtActDep[] = new DtActividadDeportiva[l+1];
-        for(int i = 0; i<l; i++) {  
-            nuevoArrayDtActDep[i] = arrayDtActDep[i];  
-        } 
-        nuevoArrayDtActDep[l] = dtActDep;
-        return nuevoArrayDtActDep;
-    }
+
 }

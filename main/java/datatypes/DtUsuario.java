@@ -10,7 +10,7 @@ public abstract class DtUsuario {
 	private String email;
 	private String contrasenia;
 	private String pfp;
-	protected DtFecha fechaNac;
+	private DtFecha fechaNac;
 	
 	public DtUsuario(String nickname, String nombre, String apellido, String email, String contrasenia, String pfp, DtFecha fechaNac) {
 		super();

@@ -28,7 +28,7 @@ public class ControladorInstPublish {
 		iConInstDep = fabrica.getIControladorInstitucionDep();
 		
 		try {
-			configuracion = new WebServiceConfiguracion();
+			//configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -44,5 +44,7 @@ public interface IControladorActividadDeportiva {
 	public ArrayList<DtActividadDeportiva> rankingActividadesDeportivas();
 
 	public void eliminarRegistro(String socio, String clase) throws RegistroRepetidoEx;
+	
+	public DtActividadDeportiva[] agregarActDepArray(DtActividadDeportiva[] arrayDtActDep, DtActividadDeportiva dtActDep);
 }
                                    

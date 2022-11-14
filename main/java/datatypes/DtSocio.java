@@ -18,7 +18,7 @@ public class DtSocio extends DtUsuario{
 	public String toString() {
 		String datos = "SOCIO \nNICK: " + getNickname() + "\nNombre: " + getNombre() + "\nApellido: "
 				+ getApellido() + "\nCorreo electrónico: " + getEmail() + "\nContraseña: " + getContrasenia() + "\nFoto de perfil: " + getpfp() +
-				"\nFecha de Nacimiento: " + fechaNac.toString()+ "\nClases en las que esta registrado: \n";
+				"\nFecha de Nacimiento: " + this.getFecha().toString() + "\nClases en las que esta registrado: \n";
 		
 		String datosClase = "";
 		for(DtClase c : clases) {

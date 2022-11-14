@@ -29,7 +29,7 @@ public class ControladorClasePublish {
 		iConClase = fabrica.getIControladorClase();
 		
 		try {
-			configuracion = new WebServiceConfiguracion();
+			//configuracion = new WebServiceConfiguracion();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class ControladorClasePublish {
 
 	@WebMethod(exclude = true)
 	public void publicar() {
-	    endpoint = Endpoint.publish("http://127.0.0.2:1890/controladorClase", this);
+	    endpoint = Endpoint.publish("http://127.0.0.1:1890/controladorClase", this);
 	    //endpoint = Endpoint.publish("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorClase", this);
 		//System.out.println("http://" + configuracion.getConfigOf("#WS_IP") + ":" + configuracion.getConfigOf("#WS_PORT") + "/controladorClase");
 	}
@@ -117,14 +117,15 @@ public class ControladorClasePublish {
         }
         return ret;
     }
+	/*
 	@WebMethod
     public DtClase[] agregarClaseArray(DtClase[] arrayDtClases, DtClase dtClase) {
-        int l = arrayDtClases.length;
-        DtClase nuevoArrayDtClases[] = new DtClase[l+1];
-        for(int i = 0; i<l; i++) {  
-            nuevoArrayDtClases[i] = arrayDtClases[i];  
-        } 
-        nuevoArrayDtClases[l] = dtClase;
-        return nuevoArrayDtClases;
-    }
+        return iConClase.agregarClaseArray(arrayDtClases, dtClase);
+    }*/
+	/*
+	   @WebMethod
+	    public DtClase[] listarClaseDeActividad(String a) {
+	        return iConClase.listarClaseDeActividad(a);
+	    }
+	*/
 }

@@ -12,6 +12,7 @@ import javax.xml.ws.Endpoint;
 import configuraciones.WebServiceConfiguracion;
 import datatypes.DtInstitucionDeportiva;
 import datatypes.DtUsuario;
+import excepciones.NoExistenUsuariosEx;
 import interfaces.Fabrica;
 import interfaces.IControladorUsuario;
 import datatypes.DtProfesor;
@@ -30,7 +31,7 @@ public class ControladorUsuarioPublish {
         iConUsuario = fabrica.getIControladorUsuario();
 
         try {
-            configuracion = new WebServiceConfiguracion();
+            //configuracion = new WebServiceConfiguracion();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -52,36 +53,13 @@ public class ControladorUsuarioPublish {
 
     // METODOS A PUBLICAR
     @WebMethod
-    public void altaUsuario(DtUsuario dtU) {
-        try {
-            iConUsuario.altaUsuario(dtU);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
+    public void modificarProfesor(DtProfesor dtP) {
+        iConUsuario.modificarUsuario((DtUsuario)dtP);
     }
-
+    
     @WebMethod
-    public void altaUsuarioSocio(DtSocio dtS) {
-        try {
-            iConUsuario.altaUsuario(dtS);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    @WebMethod
-    public void altaUsuarioProfesor(DtProfesor dtP) {
-        try {
-            iConUsuario.altaUsuario(dtP);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    @WebMethod
-    public void modificarUsuario(DtUsuario dtU) {
-        iConUsuario.modificarUsuario(dtU);
+    public void modificarSocio(DtSocio dtS) {
+        iConUsuario.modificarUsuario((DtUsuario)dtS);
     }
 
     @WebMethod
@@ -89,6 +67,15 @@ public class ControladorUsuarioPublish {
         return iConUsuario.mostrarUsuarios();
     }
 
+    @WebMethod
+    public DtProfesor consultaProfesor(String nick) {
+        return (DtProfesor)iConUsuario.consultaUsuario(nick);
+    }
+    
+    @WebMethod
+    public DtSocio consultaSocio(String nick) {
+        return (DtSocio) iConUsuario.consultaUsuario(nick);
+    }
     @WebMethod
     public DtUsuario consultaUsuario(String nick) {
         return iConUsuario.consultaUsuario(nick);
@@ -113,10 +100,8 @@ public class ControladorUsuarioPublish {
     }
 
     @WebMethod
-    public DtUsuario existeUsuario(String nickname, String pass) {
+    public DtUsuario existeUsuario(String nickname, String pass){
         DtUsuario us = null;
-        DtSocio dts = null;// dejar
-        DtProfesor dtp = null;// dejar
         try {
             us = iConUsuario.existeUsuario(nickname, pass);
         } catch (Exception ex) {
