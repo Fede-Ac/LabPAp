@@ -20,6 +20,9 @@ public class DtFechaHora extends DtFecha{
 	private int min;
 	private int seg;
 
+	public DtFechaHora() {
+	    super();
+	}
 	public DtFechaHora(int anio, int mes, int dia, int hora, int min, int seg) throws HoraInvalidaEx, FechaInvalidaEx {
 		super(anio, mes, dia);
 		if (hora >= MAXHORA && hora <=MINHORA) {
